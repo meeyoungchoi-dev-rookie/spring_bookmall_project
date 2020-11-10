@@ -7,16 +7,20 @@ import com.bookkurly.bookmall.customer.register.dao.CustomerDAO;
 import com.bookkurly.bookmall.customer.register.entity.Customer;
 
 @Service
-public class CustomerServiceImpl {
+public class CustomerServiceImpl implements CustomerService {
 
 	@Autowired
 	private CustomerDAO customerDao;
-	
-	
+
+	@Override
+	public void regist(Customer regist) {
+		customerDao.regist(regist);
+
+	}
+
+	@Override
 	public Customer checkLogin(Customer login) {
-		System.out.println("a");
 		return customerDao.checkLogin(login);
-		
 	}
 
 }

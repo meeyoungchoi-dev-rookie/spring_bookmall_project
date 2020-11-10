@@ -24,7 +24,7 @@ public class BookMallMangerController {
 	
 	@GetMapping("/manager/page")
 	public String index() {
-		return "admin/manager";
+		return "redirect:/admin/login";
 	}
 	
 	
@@ -46,9 +46,20 @@ public class BookMallMangerController {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("adminlogin", bm.getAdminId());
-		
-		model.addAttribute("adminSuccess", session.getAttribute("adminlogin"));
-		
-		return "";
+		System.out.println( session.getAttribute("adminlogin"));
+		return "redirect:/admin/manager";
+	}
+
+	@GetMapping("/admin/manager")
+	public String manage(HttpSession session, Model model) {
+		  session.getAttribute("adminlogin");
+		return "admin/manager";
+	}
+	
+	
+	@GetMapping("/admin/logout")
+	public String logout(HttpSession session) {
+		session.invalidate();
+		return "redirect:/manager/page";
 	}
 }

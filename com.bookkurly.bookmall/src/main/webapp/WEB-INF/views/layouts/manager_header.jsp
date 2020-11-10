@@ -1,13 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.List"%>
-<%@ page
-	import="com.bookkurly.bookmall.customer.category.entity.MainCategory"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="<%=request.getContextPath()%>" />
-
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,14 +14,7 @@
 </head>
 <body>
 
-	<%
-		List<MainCategory> mainCategories = (List<MainCategory>) session.getAttribute("mainCategories");
-
-	String userId = (String) session.getAttribute("loginSession");
-	%>
-
-
-	<nav class="navbar navbar-expand-lg navbar-light bg-light ">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
 		<a class="navbar-brand" href="#">Navbar</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarSupportedContent"
@@ -45,24 +32,12 @@
 				<li class="nav-item dropdown"><a
 					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> 카테고리 </a>
+					aria-expanded="false"> Dropdown </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-						<c:forEach var="maincategory" items="${mainCategories}"
-							varStatus="status">
-							<c:choose>
-								<c:when test="${maincategory.mainCateSeq == 1}">
-									<a class="dropdown-item"
-										href="${path}/subacategory/backend/${maincategory.mainCateSeq}">${maincategory.mainCateName}</a>
-								</c:when>
-								<c:when test="${maincategory.mainCateSeq == 2}">
-									<a class="dropdown-item"
-										href="${path}/subacategory/frontend/${maincategory.mainCateSeq}">${maincategory.mainCateName}</a>
-
-								</c:when>
-
-							</c:choose>
-						</c:forEach>
+						<a class="dropdown-item" href="#">Action</a> <a
+							class="dropdown-item" href="#">Another action</a>
+						<div class="dropdown-divider"></div>
+						<a class="dropdown-item" href="#">Something else here</a>
 					</div></li>
 				<li class="nav-item"><a class="nav-link disabled" href="#"
 					tabindex="-1" aria-disabled="true">Disabled</a></li>
@@ -71,17 +46,16 @@
 				<input class="form-control mr-sm-2" type="search"
 					placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				<c:if test="${userId != null}">
-					<h1 class="text-success">${userId}님로그인중</h1>
+				<c:if test="${adminlogin != null}">
+					<h1 class="text-success">${adminlogin}님로그인중</h1>
 					<a class="btn btn-outline-info my-2 my-sm-0 ml-2"
-						href="${path}/customer/logout" type="submit">로그아웃</a>
+						href="${path}/admin/logout" type="submit">로그아웃</a>
 				</c:if>
-				<c:if test="${userId == null}">
+				<c:if test="${adminlogin == null } ">
 					<a class="btn btn-outline-info my-2 my-sm-0 ml-2"
-						href="${path}/customer/login" type="submit">로그인</a>
-					<a class="btn btn-outline-primary my-2 my-sm-0 ml-2" href="${path}/customer/register" type="submit">회원가입</a>
-				</c:if>
+						href="${path}/admin/login" type="submit">로그인</a>
 
+				</c:if>
 			</form>
 		</div>
 	</nav>

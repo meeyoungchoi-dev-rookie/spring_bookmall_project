@@ -3,11 +3,21 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="CustomerDAO">
-	<select resultType="Customer" id="selectOne" parameterType="Customer">
+	<select resultType="Customer" id="selectOne"
+		parameterType="Customer">
 
-		select * from "customer" where "custom_id" = #{customId} and "custom_pw" =
+		select * from "customer" where "custom_id" = #{customId}
+		and "custom_pw" =
 		#{customPw}
 	</select>
+
+
+	<insert id="customerRegist" parameterType="String">
+		insert into "customer" values ( "custom_seq".nextval,
+		#{customId},
+		#{customPw}, null, null)
+
+	</insert>
 
 
 

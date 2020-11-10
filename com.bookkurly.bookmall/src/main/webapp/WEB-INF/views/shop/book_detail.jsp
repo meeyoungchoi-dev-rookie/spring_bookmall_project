@@ -11,6 +11,8 @@
 
 <%
 	List<MainCategory> mainCategories = (List<MainCategory>) session.getAttribute("maincategories");
+
+String userId = (String) session.getAttribute("loginSession");
 %>
 
 <div class="container">
@@ -65,8 +67,9 @@
 
 						</div>
 
-						<button type="submit" class="btn btn-success mt-5 btn-lg">주문담기</button>
-
+						<c:if test="${userId != null}">
+							<button type="submit" class="btn btn-success mt-5 btn-lg">주문담기</button>
+						</c:if>
 
 					</form>
 				</div>
@@ -95,17 +98,17 @@
 
 
 
-	<div class="card container mt-5">
-    <div class="card-body">
-        <form method="post" action="/comments/{{articleId}}" class="container">
-            <label>댓글을 입력하세요</label>
-            <textarea rows="5" class="form-control" name="comment"></textarea>
-            <input type="hidden" name="author" value="hong park">
-            <button type="submit" class="btn btn-primary mt-3">댓글저장</button>
-        </form>
+<div class="card container mt-5">
+	<div class="card-body">
+		<form method="post" action="/comments/{{articleId}}" class="container">
+			<label>댓글을 입력하세요</label>
+			<textarea rows="5" class="form-control" name="comment"></textarea>
+			<input type="hidden" name="author" value="hong park">
+			<button type="submit" class="btn btn-primary mt-3">댓글저장</button>
+		</form>
 
-      
-    </div>
+
+	</div>
 </div>
 
 

@@ -17,6 +17,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 		System.out.println("b");
 		return sqlSession.selectOne("CustomerDAO.selectOne", login);
 	}
+
+	@Override
+	public void regist(Customer regist) {
+		sqlSession.insert("CustomerDAO.customerRegist", regist);
+	}
 	
 	
 	
