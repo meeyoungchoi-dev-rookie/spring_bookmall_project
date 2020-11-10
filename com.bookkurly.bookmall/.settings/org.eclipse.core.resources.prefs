@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+encoding//src/main/webapp/WEB-INF/views/layouts/header.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/shop/categories.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/shop/html_books.jsp=UTF-8
+encoding//src/main/webapp/WEB-INF/views/shop/subcategories.jsp=UTF-8

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="MainCateDAO">
+	<select resultType="MainCategory" id="selectMainCategorys">
+		select * from
+		"maincategory"
+	</select>
+
+
+	<select resultType="SubCategory" id="selectSubCategorys">
+		select
+		"subcategory"."sub_cate_name" , "subcategory"."sub_cate_seq" ,
+		"maincategory"."main_cate_seq" from
+		"subcategory", "maincategory" where
+		"maincategory"."main_cate_seq" =
+		#{mainCateSeq}
+		and
+		"maincategory"."main_cate_seq" =
+		"subcategory"."main_cate_seq"
+	</select>
+
+
+	<select resultType="String" id="selectSubCateName">
+		select
+		"subcategory"."sub_cate_name"
+		from "subcategory"
+		where
+		"subcategory"."sub_cate_seq" = #{subCateSeq}
+
+	</select>
+
+
+	<select resultType="String" id="selectMainCateName">
+		select
+		"maincategory"."main_cate_name"
+		from "subcategory" , "maincategory"
+		where "subcategory"."sub_cate_seq" = #{subCateSeq}
+		and
+		"subcategory"."main_cate_seq" = "maincategory"."main_cate_seq"
+
+	</select>
+
+
+	<select resultType="String" id="selectMainCate">
+		select
+		"maincategory"."main_cate_name"
+		from "maincategory"
+		where "maincategory"."main_cate_seq" = #{mainCateSeq}
+	</select>
+
+
+
+</mapper>

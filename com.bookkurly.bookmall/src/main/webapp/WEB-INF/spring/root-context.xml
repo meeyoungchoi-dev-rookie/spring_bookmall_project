@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- Root Context: defines shared resources visible to all other web components -->
+	
+		<bean destroy-method="close"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource" id="dataSource">
+		<property value="oracle.jdbc.driver.OracleDriver"
+			name="driverClass" />
+		<property value="jdbc:oracle:thin:@localhost:1521:xe"
+			name="jdbcUrl" />
+		<property value="scott" name="user" />
+		<property value="tiger" name="password" />
+		<property value="100" name="maxPoolSize" />
+		<property value="600" name="maxIdleTime" />
+	</bean>
+
+
+
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean"
+		id="sqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property value="classpath:config/mybatis-config.xml"
+			name="configLocation" />
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:config/sqlmap-customercategory.xml</value>
+				<value>classpath:config/sqlmap-customerbook.xml</value>
+				<value>classpath:config/sqlmap-customerlogin.xml</value>
+				<value>classpath:config/sqlmap-managerlogin.xml</value>
+			</list>
+			
+				
+			
+		</property>
+	</bean>
+
+	<bean class="org.mybatis.spring.SqlSessionTemplate"
+		id="sqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactoryBean" />
+	</bean>
+	
+	
+	
+		
+</beans>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+	<!-- 마이바티스 동작 관련 설정 -->
+
+	<settings>
+
+		<setting value="false" name="cacheEnabled" />
+
+		<setting value="false" name="useGeneratedKeys" />
+
+		<!-- 자바 이름규칙은 camel을 사용. _를 사용하는 경우 매핑 문제를 해결하기 위한 설정 -->
+
+		<setting value="true" name="mapUnderscoreToCamelCase" />
+
+	</settings>
+
+
+
+	<typeAliases>
+		<typeAlias alias="MainCategory"
+			type="com.bookkurly.bookmall.customer.category.entity.MainCategory" />
+			
+		<typeAlias alias="SubCategory"
+			type="com.bookkurly.bookmall.customer.category.entity.SubCategory"
+		/>	
+		
+		<typeAlias alias="Book"
+			type="com.bookkurly.bookmall.customer.category.entity.Book"
+		/>	
+			<typeAlias alias="Customer"
+			type="com.bookkurly.bookmall.customer.register.entity.Customer"
+		/>
+		
+			<typeAlias alias="BookMallManager"
+			type="com.bookkurly.bookmall.admin.adimaccount.entity.BookMallManager"
+		/>		
+
+	</typeAliases>
+</configuration>
