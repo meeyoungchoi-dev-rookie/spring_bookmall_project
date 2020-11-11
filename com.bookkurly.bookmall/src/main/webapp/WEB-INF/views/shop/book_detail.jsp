@@ -59,10 +59,15 @@ String userId = (String) session.getAttribute("loginSession");
 
 
 
-					<form method="" action="">
+					<form method="post" action="${path}/book/jangbaguni">
+						<input type="hidden" name="bookSeq" value="${book.bookSeq}">
+						<input type="hidden" name="userId" value="${userId}">
+						<input type="hidden" name="bookPrice" value="${book.bookPrice}">
+						
+						
 						<div class="row">
 							<label class="col-sm-2 col-form-label">구매수량</label> <input
-								type="number" name="orderCnt" placeholder="구매하실 수량을 입력하세요"
+								type="text" name="orderCnt" placeholder="구매하실 수량을 입력하세요"
 								class="form-control col-sm-9">
 
 						</div>

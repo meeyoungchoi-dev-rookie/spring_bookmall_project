@@ -10,5 +10,6 @@ public interface BookService {
 	public List<Book> selectList2(Integer subCateSeq);
 
 	public Book selectBook(Integer bookSeq);
+	
 
 }
