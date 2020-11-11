@@ -41,6 +41,8 @@
 		
 		<typeAlias alias="JangEntity" type="com.bookkurly.bookmall.customer.jang.entity.JangEntity"/>
 			
+		<typeAlias alias="JangInfo" type="com.bookkurly.bookmall.customer.jang.dto.JangInfo" />	
+			
 
 	</typeAliases>
 </configuration>

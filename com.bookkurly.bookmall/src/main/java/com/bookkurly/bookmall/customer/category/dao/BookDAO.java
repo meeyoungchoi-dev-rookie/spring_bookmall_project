@@ -13,4 +13,6 @@ public interface BookDAO {
 
 	public Integer selectBkookPrice(Integer bookSeq);
 
+	public String findBookTitle(Integer bookSeq);
+
 }

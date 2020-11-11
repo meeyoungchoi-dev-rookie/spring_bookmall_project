@@ -1,14 +1,18 @@
 package com.bookkurly.bookmall.customer.jang.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.bookkurly.bookmall.customer.category.service.BookServiceImpl;
 import com.bookkurly.bookmall.customer.jang.dto.JangForm;
+import com.bookkurly.bookmall.customer.jang.dto.JangInfo;
 import com.bookkurly.bookmall.customer.jang.entity.JangEntity;
 import com.bookkurly.bookmall.customer.jang.service.JangServiceImpl;
 import com.bookkurly.bookmall.customer.register.service.CustomerServiceImpl;
@@ -30,6 +34,7 @@ public class JangController {
 
 	@PostMapping("/book/jangbaguni")
 	public String insertJang(JangForm jangForm, HttpSession session) {
+		String bookTitle = "";
 		String jangNum = "";
 		System.out.println("jangForm: " + jangForm.toString());
 
@@ -49,6 +54,8 @@ public class JangController {
 
 			System.out.println("주문수량: " + jangForm.getBookOrderCnt());
 			System.out.println("주문한 책 번호: " + jangForm.getBookSeq());
+			
+			bookTitle = bookService.findBookTitle(jangForm.getBookSeq());
 
 			Integer bookPrice = bookService.selectBookPrice(jangForm.getBookSeq());
 			System.out.println("책 한권 당 가격: " + bookPrice);
@@ -62,7 +69,7 @@ public class JangController {
 			System.out.println("주문한 고객 seq: " + customSeq);
 			jangForm.setCustomSeq(customSeq);
 			jangForm.setOrderPaymentStatus("false");
-
+			jangForm.setBookTitle(bookTitle);
 			System.out.println("최초 장바구니에 담긴 상품: " + jangForm.toString());
 
 			JangEntity entity = jangForm.toEntity();
@@ -79,7 +86,9 @@ public class JangController {
 
 			System.out.println("주문수량: " + jangForm.getBookOrderCnt());
 			System.out.println("주문한 책 번호: " + jangForm.getBookSeq());
-
+			bookTitle = bookService.findBookTitle(jangForm.getBookSeq());
+			
+			
 			Integer bookPrice = bookService.selectBookPrice(jangForm.getBookSeq());
 			System.out.println("책 한권 당 가격: " + bookPrice);
 			Integer bookOrderCntPrice = jangForm.getBookOrderCnt() * bookPrice;
@@ -89,6 +98,7 @@ public class JangController {
 			jangForm.setCustomSeq(customSeq);
 			jangForm.setOrderPaymentStatus("false");
 			jangForm.setBookOrderCntPrice(bookOrderCntPrice);
+			jangForm.setBookTitle(bookTitle);
 			System.out.println("두번째부터 장바구니 담을때: " + session.getAttribute("userJangSession") + " , jangForm: "
 					+ jangForm.toString());
 
@@ -104,6 +114,27 @@ public class JangController {
 	}
 	
 	
-	
-
+	@GetMapping("/shop/janglist")
+	public String printJangList(HttpSession session, Model model) {
+	    String userId = (String)session.getAttribute("userId");
+	    
+	    Integer customerSeq = customerService.selectCustomerSeq(userId);
+	    System.out.println("userId: " + userId + " 님 회원번호: " + customerSeq);
+	    
+	    System.out.println("주문번호: " + jangId);
+	    
+	    JangInfo jangInfo = new JangInfo(customerSeq, jangId);
+	    System.out.println("jangInfo: " + jangInfo.toString());
+	    
+	    List<JangEntity> jangs = jangService.getCustomerJangList(jangInfo);
+	    
+	  
+	    
+	    System.out.println(jangs.toString());
+	   
+	    
+	    model.addAttribute("myJangList", jangs);
+	    
+		return "shop/myjangs";
+	}
 }

@@ -34,6 +34,13 @@ public class BookServiceImpl implements BookService {
 		return bookDao.selectBkookPrice(bookSeq);
 	}
 
+	@Override
+	public String findBookTitle(Integer bookSeq) {
+		return bookDao.findBookTitle(bookSeq);
+	}
+
+	
+
 
 
 }

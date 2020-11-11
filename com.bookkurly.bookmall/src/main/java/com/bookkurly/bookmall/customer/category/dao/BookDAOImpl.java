@@ -37,5 +37,11 @@ public class BookDAOImpl  implements BookDAO{
 		return sqlSession.selectOne("BookDAO.selectBookPrice", bookSeq);
 	}
 
+
+	@Override
+	public String findBookTitle(Integer bookSeq) {
+		return sqlSession.selectOne("BookDAO.selectBookTitle", bookSeq);
+	}
+
 	
 }

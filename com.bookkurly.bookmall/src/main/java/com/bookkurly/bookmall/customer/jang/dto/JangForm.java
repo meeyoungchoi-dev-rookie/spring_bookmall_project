@@ -13,6 +13,26 @@ public class JangForm {
 	private Integer bookSeq;
 	private Integer customSeq;
 	private String userId;
+	private String bookTitle;
+	
+	
+	
+
+	public Date getOrderDate() {
+		return orderDate;
+	}
+
+	public void setOrderDate(Date orderDate) {
+		this.orderDate = orderDate;
+	}
+
+	public String getBookTitle() {
+		return bookTitle;
+	}
+
+	public void setBookTitle(String bookTitle) {
+		this.bookTitle = bookTitle;
+	}
 
 	public String getUserId() {
 		return userId;
@@ -71,7 +91,7 @@ public class JangForm {
 	}
 
 	public JangForm(String orderSerialNum, Date orderDate, String orderPaymentStatus, Integer bookOrderCnt,
-			Integer bookOrderCntPrice, Integer bookSeq, Integer customSeq, String userId) {
+			Integer bookOrderCntPrice, Integer bookSeq, Integer customSeq, String userId, String bookTitle) {
 		super();
 		this.orderSerialNum = orderSerialNum;
 		this.orderDate = orderDate;
@@ -81,12 +101,13 @@ public class JangForm {
 		this.bookSeq = bookSeq;
 		this.customSeq = customSeq;
 		this.userId = userId;
+		this.bookTitle = bookTitle;
 	}
 
 	public JangEntity toEntity() {
 		return JangEntity.builder().orderSerialNum(orderSerialNum).orderDate(orderDate)
 				.orderPaymentStatus(orderPaymentStatus).bookOrderCnt(bookOrderCnt).bookOrderCntPrice(bookOrderCntPrice)
-				.bookSeq(bookSeq).customSeq(customSeq).build();
+				.bookSeq(bookSeq).customSeq(customSeq).bookTitle(bookTitle).build();
 	}
 
 	@Override

@@ -21,18 +21,20 @@ public class JangEntity {
 	private Integer bookOrderCntPrice;
 	private Integer bookSeq;
 	private Integer customSeq;
+	private String bookTitle;
 
 	@Override
 	public String toString() {
 		return "JangEntity [orderSeq=" + orderSeq + ", orderSerialNum=" + orderSerialNum + ", orderDate=" + orderDate
 				+ ", orderPaymentStatus=" + orderPaymentStatus + ", bookOrderCnt=" + bookOrderCnt
 				+ ", bookOrderCntPrice=" + bookOrderCntPrice + ", bookSeq=" + bookSeq + ", customSeq=" + customSeq
-				+ "]";
+				+ ", bookTitle=" + bookTitle + "]";
 	}
+
 
 	@Builder
 	public JangEntity(Integer orderSeq, String orderSerialNum, Date orderDate, String orderPaymentStatus,
-			Integer bookOrderCnt, Integer bookOrderCntPrice, Integer bookSeq, Integer customSeq) {
+			Integer bookOrderCnt, Integer bookOrderCntPrice, Integer bookSeq, Integer customSeq, String bookTitle) {
 		super();
 		this.orderSeq = orderSeq;
 		this.orderSerialNum = orderSerialNum;
@@ -42,6 +44,7 @@ public class JangEntity {
 		this.bookOrderCntPrice = bookOrderCntPrice;
 		this.bookSeq = bookSeq;
 		this.customSeq = customSeq;
+		this.bookTitle = bookTitle;
 	}
 
 }

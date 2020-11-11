@@ -49,6 +49,11 @@
 	</select>
 
 
+	<select resultType="String" id="selectBookTitle">
+		select "book"."book_title" from
+		"book" where "book"."book_seq" = #{bookSeq}
+
+	</select>
 
 
 </mapper>

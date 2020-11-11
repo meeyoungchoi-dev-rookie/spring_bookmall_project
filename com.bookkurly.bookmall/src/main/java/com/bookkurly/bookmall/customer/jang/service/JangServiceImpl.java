@@ -2,11 +2,13 @@ package com.bookkurly.bookmall.customer.jang.service;
 
 import java.text.DecimalFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bookkurly.bookmall.customer.jang.dao.JangDAO;
+import com.bookkurly.bookmall.customer.jang.dto.JangInfo;
 import com.bookkurly.bookmall.customer.jang.entity.JangEntity;
 
 @Service
@@ -49,6 +51,15 @@ public class JangServiceImpl implements JangService {
 		jangDao.insertToJang(entity);
 	}
 
+	@Override
+	public List<JangEntity> getCustomerJangList(JangInfo jangInfo) {
+		return jangDao.getCustomerJangList(jangInfo);
+	}
+
+
+	
+	
+	
 
 
 

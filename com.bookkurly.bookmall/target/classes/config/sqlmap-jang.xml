@@ -9,9 +9,16 @@
 		insert into "order"
 		values("order_seq".nextval, #{orderSerialNum},
 		sysdate,#{orderPaymentStatus}, #{bookOrderCnt},
-		#{bookOrderCntPrice}, #{bookSeq}, #{customSeq})
+		#{bookOrderCntPrice},
+		#{bookSeq}, #{customSeq} , #{bookTitle})
 
 	</insert>
+
+	<select id="getCustomerJangList" parameterType="JangInfo"
+		resultType="JangEntity">
+		select * from "order" where "custom_seq" = #{customSeq} and
+		"order_serial_num" = #{orderSerialNum}
+	</select>
 
 
 </mapper>

@@ -13,5 +13,6 @@ public interface BookService {
 	
 	public Integer selectBookPrice(Integer bookSeq); 
 
+	public String findBookTitle(Integer bookSeq);
 
 }
