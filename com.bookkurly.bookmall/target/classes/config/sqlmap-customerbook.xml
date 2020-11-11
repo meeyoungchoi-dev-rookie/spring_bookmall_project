@@ -21,22 +21,32 @@
 
 	<select resultType="Book" id="selectBooksByCate">
 		select "book"."book_seq",
-		"book"."book_title", "book"."book_intro", "book"."book_contents",  "book"."book_price", "book"."book_status",
-		"book"."book_image_name" ,"book"."sub_cate_seq" ,
-		"book"."book_amount", "subcategory"."sub_cate_name"
+		"book"."book_title", "book"."book_intro", "book"."book_contents",
+		"book"."book_price", "book"."book_status",
+		"book"."book_image_name"
+		,"book"."sub_cate_seq" ,
+		"book"."book_amount",
+		"subcategory"."sub_cate_name"
 		from "subcategory", "book"
-		where "subcategory"."sub_cate_seq" = #{subCateSeq}
-		and "book"."sub_cate_seq" = "subcategory"."sub_cate_seq"
+		where
+		"subcategory"."sub_cate_seq" = #{subCateSeq}
+		and "book"."sub_cate_seq"
+		= "subcategory"."sub_cate_seq"
 
 
 
 	</select>
 
 	<select resultType="Book" id="selectBook">
-		select * from "book" where "book"."book_seq" = #{bookSeq}
+		select * from "book" where
+		"book"."book_seq" = #{bookSeq}
 	</select>
 
 
+	<select resultType="Integer" id="selectBookPrice">
+		select "book"."book_price" from
+		"book" where "book"."book_seq" = #{bookSeq}
+	</select>
 
 
 

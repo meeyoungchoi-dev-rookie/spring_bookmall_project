@@ -18,6 +18,11 @@
 		#{customPw}, null, null)
 
 	</insert>
+	
+	<select id="selectCustomerSeq" resultType="Integer">
+		select "customer"."custom_seq" from "customer" where "customer"."custom_id" = #{customerId}
+		
+	</select>
 
 
 

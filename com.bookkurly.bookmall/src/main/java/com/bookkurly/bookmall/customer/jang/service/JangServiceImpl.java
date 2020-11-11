@@ -3,11 +3,20 @@ package com.bookkurly.bookmall.customer.jang.service;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.bookkurly.bookmall.customer.jang.dao.JangDAO;
+import com.bookkurly.bookmall.customer.jang.entity.JangEntity;
 
 @Service
 public class JangServiceImpl implements JangService {
 
+	@Autowired
+	private JangDAO jangDao;
+	
+	
+	
 	@Override
 	public String createJangSerialNum() {
 		System.out.println("createNum");
@@ -33,6 +42,14 @@ public class JangServiceImpl implements JangService {
 		
 		return jangId;
 	}
+
+	@Override
+	public void insertToJang(JangEntity entity) {
+		
+		jangDao.insertToJang(entity);
+	}
+
+
 
 
 

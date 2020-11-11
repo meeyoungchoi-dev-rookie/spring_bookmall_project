@@ -28,6 +28,12 @@ public class BookServiceImpl implements BookService {
 		return bookDao.selectBook(bookSeq);
 	}
 
+	
+	@Override
+	public Integer selectBookPrice(Integer bookSeq) {
+		return bookDao.selectBkookPrice(bookSeq);
+	}
+
 
 
 }

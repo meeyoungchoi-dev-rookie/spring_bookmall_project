@@ -11,4 +11,6 @@ public interface BookDAO {
 
 	public Book selectBook(Integer bookSeq);
 
+	public Integer selectBkookPrice(Integer bookSeq);
+
 }

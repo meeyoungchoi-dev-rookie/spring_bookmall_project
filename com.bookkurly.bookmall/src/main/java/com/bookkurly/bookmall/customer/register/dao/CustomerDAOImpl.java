@@ -22,6 +22,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public void regist(Customer regist) {
 		sqlSession.insert("CustomerDAO.customerRegist", regist);
 	}
+
+	@Override
+	public Integer selectCustomerSeq(String userId) {
+		return sqlSession.selectOne("CustomerDAO.selectCustomerSeq", userId);
+	}
 	
 	
 	

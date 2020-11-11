@@ -67,7 +67,7 @@ String userId = (String) session.getAttribute("loginSession");
 						
 						<div class="row">
 							<label class="col-sm-2 col-form-label">구매수량</label> <input
-								type="text" name="orderCnt" placeholder="구매하실 수량을 입력하세요"
+								type="text" name="bookOrderCnt" placeholder="구매하실 수량을 입력하세요"
 								class="form-control col-sm-9">
 
 						</div>

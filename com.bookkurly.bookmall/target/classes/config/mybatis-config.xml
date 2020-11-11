@@ -37,7 +37,10 @@
 		
 			<typeAlias alias="BookMallManager"
 			type="com.bookkurly.bookmall.admin.adimaccount.entity.BookMallManager"
-		/>		
+		/>	
+		
+		<typeAlias alias="JangEntity" type="com.bookkurly.bookmall.customer.jang.entity.JangEntity"/>
+			
 
 	</typeAliases>
 </configuration>

@@ -7,4 +7,6 @@ public interface CustomerDAO {
 	Customer checkLogin(Customer login);
 
 	void regist(Customer regist);
+
+	Integer selectCustomerSeq(String userId);
 }

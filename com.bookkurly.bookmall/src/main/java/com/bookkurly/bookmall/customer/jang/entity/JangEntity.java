@@ -15,32 +15,33 @@ public class JangEntity {
 
 	private Integer orderSeq;
 	private String orderSerialNum;
-	private Integer bookOrederCnt;
+	private Date orderDate;
+	private String orderPaymentStatus;
+	private Integer bookOrderCnt;
+	private Integer bookOrderCntPrice;
 	private Integer bookSeq;
 	private Integer customSeq;
-	private Integer bookOrderCntPrice;
-	private String orderPaymentStatus;
-	private Date orderDate;
-
-	@Builder
-	public JangEntity(Integer orderSeq, String orderSerialNum, Integer bookOrederCnt, Integer bookSeq,
-			Integer customSeq, Integer bookOrderCntPrice, String orderPaymentStatus, Date orderDate) {
-		super();
-		this.orderSeq = orderSeq;
-		this.orderSerialNum = orderSerialNum;
-		this.bookOrederCnt = bookOrederCnt;
-		this.bookSeq = bookSeq;
-		this.customSeq = customSeq;
-		this.bookOrderCntPrice = bookOrderCntPrice;
-		this.orderPaymentStatus = orderPaymentStatus;
-		this.orderDate = orderDate;
-	}
 
 	@Override
 	public String toString() {
-		return "JangEntity [orderSeq=" + orderSeq + ", orderSerialNum=" + orderSerialNum + ", bookOrederCnt="
-				+ bookOrederCnt + ", bookSeq=" + bookSeq + ", customSeq=" + customSeq + ", bookOrderCntPrice="
-				+ bookOrderCntPrice + ", orderPaymentStatus=" + orderPaymentStatus + ", orderDate=" + orderDate + "]";
+		return "JangEntity [orderSeq=" + orderSeq + ", orderSerialNum=" + orderSerialNum + ", orderDate=" + orderDate
+				+ ", orderPaymentStatus=" + orderPaymentStatus + ", bookOrderCnt=" + bookOrderCnt
+				+ ", bookOrderCntPrice=" + bookOrderCntPrice + ", bookSeq=" + bookSeq + ", customSeq=" + customSeq
+				+ "]";
+	}
+
+	@Builder
+	public JangEntity(Integer orderSeq, String orderSerialNum, Date orderDate, String orderPaymentStatus,
+			Integer bookOrderCnt, Integer bookOrderCntPrice, Integer bookSeq, Integer customSeq) {
+		super();
+		this.orderSeq = orderSeq;
+		this.orderSerialNum = orderSerialNum;
+		this.orderDate = orderDate;
+		this.orderPaymentStatus = orderPaymentStatus;
+		this.bookOrderCnt = bookOrderCnt;
+		this.bookOrderCntPrice = bookOrderCntPrice;
+		this.bookSeq = bookSeq;
+		this.customSeq = customSeq;
 	}
 
 }

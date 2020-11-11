@@ -6,5 +6,7 @@ public interface CustomerService {
 	public Customer checkLogin(Customer login);
 	
 	public void regist(Customer regist);
+	
+	public Integer selectCustomerSeq(String userId);
 
 }

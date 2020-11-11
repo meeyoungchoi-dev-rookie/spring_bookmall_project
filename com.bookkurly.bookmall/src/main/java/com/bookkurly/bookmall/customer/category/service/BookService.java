@@ -11,5 +11,7 @@ public interface BookService {
 
 	public Book selectBook(Integer bookSeq);
 	
+	public Integer selectBookPrice(Integer bookSeq); 
+
 
 }

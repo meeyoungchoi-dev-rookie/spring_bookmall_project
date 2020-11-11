@@ -23,4 +23,11 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.checkLogin(login);
 	}
 
+	@Override
+	public Integer selectCustomerSeq(String userId) {
+		return customerDao.selectCustomerSeq(userId);
+		
+	}
+
+
 }
