@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bookkurly.bookmall.customer.jang.dao.JangDAO;
+import com.bookkurly.bookmall.customer.jang.dto.JangDeleteInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangInfo;
+import com.bookkurly.bookmall.customer.jang.dto.JangUpdate;
 import com.bookkurly.bookmall.customer.jang.entity.JangEntity;
 
 @Service
@@ -56,6 +58,39 @@ public class JangServiceImpl implements JangService {
 		return jangDao.getCustomerJangList(jangInfo);
 	}
 
+	@Override
+	public Integer updateOrder(JangUpdate jangUpdate) {
+		return jangDao.updateOrder(jangUpdate);
+	}
+
+	@Override
+	public JangEntity selectJangByBookSeqOrderSerialNum(JangUpdate jangUpdate) {
+		return jangDao.selectJangByBookSeqOrderSerialNum(jangUpdate);
+	}
+
+	@Override
+	public Integer deleteJangItem(JangDeleteInfo jangDelete) {
+		return jangDao.deleteJangItem(jangDelete);
+	}
+
+	@Override
+	public Integer deleteJang(String myOrderSerialNum) {
+		return jangDao.deleteJang(myOrderSerialNum);
+	}
+
+	@Override
+	public List<JangEntity> selectAll(String myOrderSerialNum) {
+		return jangDao.selectAll(myOrderSerialNum);
+	}
+
+	
+	
+	
+
+	
+	
+
+	
 
 	
 	

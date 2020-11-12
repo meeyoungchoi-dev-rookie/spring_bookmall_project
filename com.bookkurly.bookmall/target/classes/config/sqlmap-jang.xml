@@ -21,4 +21,47 @@
 	</select>
 
 
+	<update id="updateJang" parameterType="JangUpdate">
+		update "order"
+		set
+		"order"."book_order_cnt" = #{bookOrderCnt},
+		"order"."book_order_cnt_price" = #{bookOrderCntPrice}
+		where
+		"order"."book_seq" =
+		#{bookSeq}
+		and "order"."order_serial_num" =
+		#{orderSerialNum}
+
+	</update>
+
+	<select id="selectJangByBookSeqOrderSerialNum"
+		resultType="JangEntity" parameterType="JangUpdate">
+		select * from "order" where
+		"order"."book_seq" = #{bookSeq} and
+		"order"."order_serial_num" =
+		#{orderSerialNum}
+
+	</select>
+
+	<delete id="deleteJangItem" parameterType="JangDeleteInfo">
+
+		delete from "order"
+		where "order"."book_seq" = #{bookSeq} and
+		"order"."order_serial_num" =
+		#{orderSerialNum}
+
+	</delete>
+
+	<delete id="delete" parameterType="String">
+
+		delete from "order" where
+		"order"."order_serial_num" = #{myOrderSerialNum}
+	</delete>
+
+	<select id="selectAll" parameterType="String" resultType="JangEntity">
+		select * from "order" where
+		"order"."order_serial_num" = #{myOrderSerialNum}
+	</select>
+
+
 </mapper>

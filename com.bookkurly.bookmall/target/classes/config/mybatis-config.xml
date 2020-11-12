@@ -42,6 +42,10 @@
 		<typeAlias alias="JangEntity" type="com.bookkurly.bookmall.customer.jang.entity.JangEntity"/>
 			
 		<typeAlias alias="JangInfo" type="com.bookkurly.bookmall.customer.jang.dto.JangInfo" />	
+		
+		<typeAlias alias="JangUpdate" type="com.bookkurly.bookmall.customer.jang.dto.JangUpdate"/>
+		
+		<typeAlias alias="JangDeleteInfo" type="com.bookkurly.bookmall.customer.jang.dto.JangDeleteInfo"/>
 			
 
 	</typeAliases>
