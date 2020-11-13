@@ -3,6 +3,7 @@ package com.bookkurly.bookmall.customer.register.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bookkurly.bookmall.customer.jang.dto.PaymentForm;
 import com.bookkurly.bookmall.customer.register.dao.CustomerDAO;
 import com.bookkurly.bookmall.customer.register.entity.Customer;
 
@@ -24,10 +25,15 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Integer selectCustomerSeq(String userId) {
-		return customerDao.selectCustomerSeq(userId);
-		
+	public Integer selectCustomerSeq(String customId) {
+		return customerDao.selectCustomerSeq(customId);
 	}
+
+	@Override
+	public Integer updateCustomInfo(PaymentForm paymentForm) {
+		return customerDao.updateCustomInfo(paymentForm);
+	}
+
 
 
 }

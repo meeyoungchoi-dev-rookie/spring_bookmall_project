@@ -56,4 +56,13 @@
 	</select>
 
 
+	<select id="findBook" parameterType="JangEntity"
+		resultType="Book">
+		select * from "book" where "book"."book_seq" = #{bookSeq} and "book"."book_title" =
+		#{bookTitle}
+
+	</select>
+	
+
+
 </mapper>

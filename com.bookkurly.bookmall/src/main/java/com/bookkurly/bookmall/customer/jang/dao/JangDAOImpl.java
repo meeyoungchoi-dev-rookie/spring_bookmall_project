@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.bookkurly.bookmall.customer.jang.dto.JangDeleteInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangUpdate;
+import com.bookkurly.bookmall.customer.jang.dto.OrderDetail;
 import com.bookkurly.bookmall.customer.jang.entity.JangEntity;
 
 @Repository
@@ -51,6 +52,21 @@ public class JangDAOImpl implements JangDAO {
 	@Override
 	public List<JangEntity> selectAll(String myOrderSerialNum) {
 		return sqlSession.selectList("JangDAO.selectAll", myOrderSerialNum);
+	}
+
+	@Override
+	public Integer updateOrderStatement(String myOrderSerialNum) {
+		return sqlSession.update("JangDAO.updateOrderStatement", myOrderSerialNum);
+	}
+
+	@Override
+	public JangEntity selectOrderDetail(OrderDetail orderDetail) {
+		return sqlSession.selectOne("JangDAO.selectOrderDetail", orderDetail);
+	}
+
+	@Override
+	public JangEntity findJangInfo(JangEntity jangEntity) {
+		return sqlSession.selectOne("JangDAO.findJangInfo", jangEntity);
 	}
 
 }

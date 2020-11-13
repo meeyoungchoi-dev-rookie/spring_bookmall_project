@@ -23,30 +23,35 @@
 	<typeAliases>
 		<typeAlias alias="MainCategory"
 			type="com.bookkurly.bookmall.customer.category.entity.MainCategory" />
-			
+
 		<typeAlias alias="SubCategory"
-			type="com.bookkurly.bookmall.customer.category.entity.SubCategory"
-		/>	
-		
+			type="com.bookkurly.bookmall.customer.category.entity.SubCategory" />
+
 		<typeAlias alias="Book"
-			type="com.bookkurly.bookmall.customer.category.entity.Book"
-		/>	
-			<typeAlias alias="Customer"
-			type="com.bookkurly.bookmall.customer.register.entity.Customer"
-		/>
-		
-			<typeAlias alias="BookMallManager"
-			type="com.bookkurly.bookmall.admin.adimaccount.entity.BookMallManager"
-		/>	
-		
-		<typeAlias alias="JangEntity" type="com.bookkurly.bookmall.customer.jang.entity.JangEntity"/>
+			type="com.bookkurly.bookmall.customer.category.entity.Book" />
+		<typeAlias alias="Customer"
+			type="com.bookkurly.bookmall.customer.register.entity.Customer" />
+
+		<typeAlias alias="BookMallManager"
+			type="com.bookkurly.bookmall.admin.adimaccount.entity.BookMallManager" />
+
+		<typeAlias alias="JangEntity"
+			type="com.bookkurly.bookmall.customer.jang.entity.JangEntity" />
+
+		<typeAlias alias="JangInfo"
+			type="com.bookkurly.bookmall.customer.jang.dto.JangInfo" />
+
+		<typeAlias alias="JangUpdate"
+			type="com.bookkurly.bookmall.customer.jang.dto.JangUpdate" />
+
+		<typeAlias alias="JangDeleteInfo"
+			type="com.bookkurly.bookmall.customer.jang.dto.JangDeleteInfo" />
+
+		<typeAlias alias="PaymentForm"
+			type="com.bookkurly.bookmall.customer.jang.dto.PaymentForm" />
 			
-		<typeAlias alias="JangInfo" type="com.bookkurly.bookmall.customer.jang.dto.JangInfo" />	
-		
-		<typeAlias alias="JangUpdate" type="com.bookkurly.bookmall.customer.jang.dto.JangUpdate"/>
-		
-		<typeAlias alias="JangDeleteInfo" type="com.bookkurly.bookmall.customer.jang.dto.JangDeleteInfo"/>
-			
+		<typeAlias alias="OrderDetail" type="com.bookkurly.bookmall.customer.jang.dto.OrderDetail"/>	
+
 
 	</typeAliases>
 </configuration>

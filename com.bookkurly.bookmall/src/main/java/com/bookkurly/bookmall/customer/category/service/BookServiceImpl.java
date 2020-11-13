@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.bookkurly.bookmall.customer.category.dao.BookDAO;
 import com.bookkurly.bookmall.customer.category.entity.Book;
+import com.bookkurly.bookmall.customer.jang.entity.JangEntity;
 
 @Service
 public class BookServiceImpl implements BookService {
@@ -38,6 +39,20 @@ public class BookServiceImpl implements BookService {
 	public String findBookTitle(Integer bookSeq) {
 		return bookDao.findBookTitle(bookSeq);
 	}
+
+	@Override
+	public Book findBook(JangEntity jangEntity) {
+		return bookDao.findBook(jangEntity);
+	}
+
+
+	
+	
+
+
+	
+	
+	
 
 	
 

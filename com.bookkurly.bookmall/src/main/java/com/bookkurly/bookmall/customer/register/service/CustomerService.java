@@ -1,5 +1,6 @@
 package com.bookkurly.bookmall.customer.register.service;
 
+import com.bookkurly.bookmall.customer.jang.dto.PaymentForm;
 import com.bookkurly.bookmall.customer.register.entity.Customer;
 
 public interface CustomerService {
@@ -7,6 +8,8 @@ public interface CustomerService {
 	
 	public void regist(Customer regist);
 	
-	public Integer selectCustomerSeq(String userId);
+	public Integer selectCustomerSeq(String customId);
+	
+	public Integer updateCustomInfo(PaymentForm paymentForm);
 
 }

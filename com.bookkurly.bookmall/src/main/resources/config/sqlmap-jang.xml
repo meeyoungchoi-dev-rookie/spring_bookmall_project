@@ -58,9 +58,36 @@
 		"order"."order_serial_num" = #{myOrderSerialNum}
 	</delete>
 
-	<select id="selectAll" parameterType="String" resultType="JangEntity">
+	<select id="selectAll" parameterType="String"
+		resultType="JangEntity">
 		select * from "order" where
-		"order"."order_serial_num" = #{myOrderSerialNum}
+		"order"."order_serial_num" =
+		#{myOrderSerialNum}
+	</select>
+
+	<update id="updateOrderStatement" parameterType="String">
+		update "order"
+		set "order_payment_status" = 'true'
+		where "order_serial_num" =
+		#{myOrderSerialNum}
+	</update>
+
+
+	<select id="selectOrderDetail" parameterType="OrderDetail"
+		resultType="JangEntity">
+		select * from
+		"order" where "order_serial_num" =
+		#{myOrderSerialNum} and "bookTitle"
+		=
+		#{bookTitle}
+	</select>
+
+
+	<select id="findJangInfo" parameterType="JangEntity"
+		resultType="JangEntity">
+		select * from "order" where "order_serial_num" =
+		#{orderSerialNum} and "book_seq" = #{bookSeq} and "bookTitle" = #{bookTitle}
+
 	</select>
 
 

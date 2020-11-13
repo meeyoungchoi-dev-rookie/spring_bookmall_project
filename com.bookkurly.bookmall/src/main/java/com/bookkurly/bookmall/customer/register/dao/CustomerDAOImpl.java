@@ -4,6 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.bookkurly.bookmall.customer.jang.dto.PaymentForm;
 import com.bookkurly.bookmall.customer.register.entity.Customer;
 
 @Repository
@@ -24,8 +25,13 @@ public class CustomerDAOImpl implements CustomerDAO {
 	}
 
 	@Override
-	public Integer selectCustomerSeq(String userId) {
-		return sqlSession.selectOne("CustomerDAO.selectCustomerSeq", userId);
+	public Integer selectCustomerSeq(String customId) {
+		return sqlSession.selectOne("CustomerDAO.selectCustomerSeq", customId);
+	}
+
+	@Override
+	public Integer updateCustomInfo(PaymentForm paymentForm) {
+		return sqlSession.update("CustomerDAO.updateCustomerInfo", paymentForm);
 	}
 	
 	

@@ -13,17 +13,29 @@
 
 
 	<insert id="customerRegist" parameterType="String">
-		insert into "customer" values ( "custom_seq".nextval,
+		insert into "customer"
+		values ( "custom_seq".nextval,
 		#{customId},
-		#{customPw}, null, null)
+		#{customPw}, null, null, null, null)
 
 	</insert>
-	
+
 	<select id="selectCustomerSeq" resultType="Integer">
-		select "customer"."custom_seq" from "customer" where "customer"."custom_id" = #{customerId}
-		
+		select
+		"customer"."custom_seq" from "customer" where "customer"."custom_id" =
+		#{customId}
+
 	</select>
 
+
+	<update id="updateCustomerInfo" parameterType="PaymentForm">
+		update "customer"
+		set "custom_name"=#{customName} ,
+		"custom_addr" = #{customAddr},
+		"custom_phone_number" = #{customPhoneNumber}
+		where "custom_seq" = #{customSeq}
+
+	</update>
 
 
 </mapper>

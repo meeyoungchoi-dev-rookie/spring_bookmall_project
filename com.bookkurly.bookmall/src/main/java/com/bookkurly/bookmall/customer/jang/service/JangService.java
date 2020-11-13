@@ -5,6 +5,7 @@ import java.util.List;
 import com.bookkurly.bookmall.customer.jang.dto.JangDeleteInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangUpdate;
+import com.bookkurly.bookmall.customer.jang.dto.OrderDetail;
 import com.bookkurly.bookmall.customer.jang.entity.JangEntity;
 
 public interface JangService {
@@ -25,5 +26,10 @@ public interface JangService {
 	public Integer deleteJang(String myOrderSerialNum);
 	
 	public List<JangEntity> selectAll(String myOrderSerialNum);
+	
+	public Integer updateOrderStatement(String myOrderSerialNum);
 
+	public JangEntity selectOrderDetail(OrderDetail orderDetail);
+	
+	public JangEntity findJangInfo(JangEntity jangEntity);
 }

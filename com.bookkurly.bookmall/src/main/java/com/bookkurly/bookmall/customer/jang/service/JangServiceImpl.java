@@ -11,6 +11,7 @@ import com.bookkurly.bookmall.customer.jang.dao.JangDAO;
 import com.bookkurly.bookmall.customer.jang.dto.JangDeleteInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangUpdate;
+import com.bookkurly.bookmall.customer.jang.dto.OrderDetail;
 import com.bookkurly.bookmall.customer.jang.entity.JangEntity;
 
 @Service
@@ -83,6 +84,23 @@ public class JangServiceImpl implements JangService {
 		return jangDao.selectAll(myOrderSerialNum);
 	}
 
+	@Override
+	public Integer updateOrderStatement(String myOrderSerialNum) {
+		return jangDao.updateOrderStatement(myOrderSerialNum);
+	}
+
+	@Override
+	public JangEntity selectOrderDetail(OrderDetail orderDetail) {
+		return jangDao.selectOrderDetail(orderDetail);
+	}
+
+	public JangEntity findJangInfo(JangEntity jangEntity) {
+		return jangDao.findJangInfo(jangEntity);
+	}
+
+	
+	
+	
 	
 	
 	

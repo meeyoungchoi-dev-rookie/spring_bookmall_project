@@ -12,7 +12,7 @@ public class JangForm {
 	private Integer bookOrderCntPrice;
 	private Integer bookSeq;
 	private Integer customSeq;
-	private String userId;
+	private String customId;
 	private String bookTitle;
 	
 	
@@ -34,12 +34,17 @@ public class JangForm {
 		this.bookTitle = bookTitle;
 	}
 
-	public String getUserId() {
-		return userId;
+	
+	
+	
+	
+
+	public String getCustomId() {
+		return customId;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setCustomId(String customId) {
+		this.customId = customId;
 	}
 
 	public Integer getBookOrderCntPrice() {
@@ -91,7 +96,7 @@ public class JangForm {
 	}
 
 	public JangForm(String orderSerialNum, Date orderDate, String orderPaymentStatus, Integer bookOrderCnt,
-			Integer bookOrderCntPrice, Integer bookSeq, Integer customSeq, String userId, String bookTitle) {
+			Integer bookOrderCntPrice, Integer bookSeq, Integer customSeq, String customId, String bookTitle) {
 		super();
 		this.orderSerialNum = orderSerialNum;
 		this.orderDate = orderDate;
@@ -100,7 +105,7 @@ public class JangForm {
 		this.bookOrderCntPrice = bookOrderCntPrice;
 		this.bookSeq = bookSeq;
 		this.customSeq = customSeq;
-		this.userId = userId;
+		this.customId = customId;
 		this.bookTitle = bookTitle;
 	}
 
@@ -114,7 +119,7 @@ public class JangForm {
 	public String toString() {
 		return "JangForm [orderSerialNum=" + orderSerialNum + ", orderDate=" + orderDate + ", orderPaymentStatus="
 				+ orderPaymentStatus + ", bookOrderCnt=" + bookOrderCnt + ", bookSeq=" + bookSeq + ", customSeq="
-				+ customSeq + ", userId=" + userId + ", bookOrderCntPrice=" + bookOrderCntPrice + "]";
+				+ customSeq + ", customId=" + customId + ", bookOrderCntPrice=" + bookOrderCntPrice + "]";
 	}
 
 }

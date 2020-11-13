@@ -13,13 +13,13 @@
 <%
 	List<MainCategory> mainCategories = (List<MainCategory>) session.getAttribute("maincategories");
 
-String userId = (String) session.getAttribute("loginSession");
+String customId = (String) session.getAttribute("loginSession");
 
 List<JangEntity> myJangList = (List<JangEntity>) request.getAttribute("myJangList");
 %>
 
 <div class="jumbotron">
-	<h1>${userId}님장바구니</h1>
+	<h1>${customId}님장바구니</h1>
 </div>
 
 <c:if test="${empty myJangList}">

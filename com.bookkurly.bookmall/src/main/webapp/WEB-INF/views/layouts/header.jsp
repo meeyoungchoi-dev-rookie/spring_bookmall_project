@@ -23,7 +23,7 @@
 	<%
 		List<MainCategory> mainCategories = (List<MainCategory>) session.getAttribute("mainCategories");
 
-	String userId = (String) session.getAttribute("loginSession");
+	String customId = (String) session.getAttribute("loginSession");
 	%>
 
 
@@ -71,12 +71,13 @@
 				<input class="form-control mr-sm-2" type="search"
 					placeholder="Search" aria-label="Search">
 				<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-				<c:if test="${userId != null}">
-					<h1 class="text-success">${userId}님로그인중</h1>
+				<c:if test="${customId != null}">
+					<h1 class="text-success">${customId}님로그인중</h1>
 					<a class="btn btn-outline-info my-2 my-sm-0 ml-2"
 						href="${path}/customer/logout" type="submit">로그아웃</a>
+					<a class="btn btn-outline-success my-2 my-sm-0 ml-2" href="${path}/customer/mypage">마이페이지</a>	
 				</c:if>
-				<c:if test="${userId == null}">
+				<c:if test="${customId == null}">
 					<a class="btn btn-outline-info my-2 my-sm-0 ml-2"
 						href="${path}/customer/login" type="submit">로그인</a>
 					<a class="btn btn-outline-primary my-2 my-sm-0 ml-2" href="${path}/customer/register" type="submit">회원가입</a>

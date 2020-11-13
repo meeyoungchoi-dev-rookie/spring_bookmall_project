@@ -10,7 +10,7 @@
 <%
 	List<MainCategory> mainCategories = (List<MainCategory>) session.getAttribute("maincategories");
 
-String userId = (String) session.getAttribute("loginSession");
+String customId = (String) session.getAttribute("loginSession");
 
 List<JangEntity> myOrders = (List<JangEntity>) request.getAttribute("myOrders");
 %>
@@ -18,7 +18,7 @@ List<JangEntity> myOrders = (List<JangEntity>) request.getAttribute("myOrders");
 
 <c:if test="${not empty userId}">
 	<div class="jumbotron">
-		<h1>${userId}님주문목록</h1>
+		<h1>${customId}님주문목록</h1>
 
 	</div>
 </c:if>
@@ -70,22 +70,22 @@ List<JangEntity> myOrders = (List<JangEntity>) request.getAttribute("myOrders");
 </p>
 
 <div class="container">
-	<form method="post" action="${path}/payment/${myOrderSerialNum}">
+	<form method="post" action="${path}/payment/${myOrderSerialNum}/${customId}">
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">주문자 아이디</label>
-			<p class="col-sm-10 text-center">${userId}</p>
+			<p class="col-sm-10 text-center">${customId}</p>
 		</div>
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">주문자 이름</label>
-			<input type="text" name="userName" class="form-control col-sm-10">
+			<input type="text" name="customName" class="form-control col-sm-10">
 		</div>
 		<div class="form-group row">
 			<label class="col-sm-2 col-form-label">배송지 주소</label>
-			<input type="text" name="address" class="form-control col-sm-10">
+			<input type="text" name="customAddr" class="form-control col-sm-10">
 		</div>
 		<div class="form-group row">
-			<label class="col-sm-2 col-form-label">배송지 주소</label>
-			<input type="number" name="연락처" class="form-control col-sm-10">
+			<label class="col-sm-2 col-form-label">수취인 연락처</label>
+			<input type="text" name="customPhoneNumber" class="form-control col-sm-10">
 		</div>
 	
 

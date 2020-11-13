@@ -11,11 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.bookkurly.bookmall.customer.category.entity.Book;
 import com.bookkurly.bookmall.customer.category.service.BookServiceImpl;
 import com.bookkurly.bookmall.customer.jang.dto.JangDeleteInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangForm;
 import com.bookkurly.bookmall.customer.jang.dto.JangInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangUpdate;
+import com.bookkurly.bookmall.customer.jang.dto.PaymentForm;
 import com.bookkurly.bookmall.customer.jang.entity.JangEntity;
 import com.bookkurly.bookmall.customer.jang.service.JangServiceImpl;
 import com.bookkurly.bookmall.customer.register.service.CustomerServiceImpl;
@@ -41,11 +43,11 @@ public class JangController {
 		String jangNum = "";
 		System.out.println("jangForm: " + jangForm.toString());
 
-		String userId = (String) session.getAttribute("userId");
-		System.out.println("userId: " + userId);
+		String customId = (String) session.getAttribute("customId");
+		System.out.println("customId: " + customId);
 
 		if (session.getAttribute("userJangSession") == null) {
-			String sessionName = userId + "jang";
+			String sessionName = customId + "jang";
 			session.setAttribute("userJangSession", sessionName);
 			System.out.println(
 					"최조 장바구니 세션 : " + session.getAttribute("userJangSession") + " jangForm: " + jangForm.toString());
@@ -67,8 +69,8 @@ public class JangController {
 
 			jangForm.setBookOrderCntPrice(bookOrderCntPrice);
 
-			System.out.println("주문한 고객 아이디: " + jangForm.getUserId());
-			customSeq = customerService.selectCustomerSeq(jangForm.getUserId());
+			System.out.println("주문한 고객 아이디: " + jangForm.getCustomId());
+			customSeq = customerService.selectCustomerSeq(jangForm.getCustomId());
 			System.out.println("주문한 고객 seq: " + customSeq);
 			jangForm.setCustomSeq(customSeq);
 			jangForm.setOrderPaymentStatus("false");
@@ -95,7 +97,7 @@ public class JangController {
 			System.out.println("책 한권 당 가격: " + bookPrice);
 			Integer bookOrderCntPrice = jangForm.getBookOrderCnt() * bookPrice;
 			System.out.println("책 주문 수량 별 가격: " + bookOrderCntPrice);
-			System.out.println("주문한 고객 Id: " + jangForm.getUserId());
+			System.out.println("주문한 고객 Id: " + jangForm.getCustomId());
 			System.out.println("주문한 고객 seq: " + customSeq);
 			jangForm.setCustomSeq(customSeq);
 			jangForm.setOrderPaymentStatus("false");
@@ -117,10 +119,10 @@ public class JangController {
 
 	@GetMapping("/shop/janglist")
 	public String printJangList(HttpSession session, Model model) {
-		String userId = (String) session.getAttribute("userId");
+		String customId = (String) session.getAttribute("customId");
 
-		Integer customerSeq = customerService.selectCustomerSeq(userId);
-		System.out.println("userId: " + userId + " 님 회원번호: " + customerSeq);
+		Integer customerSeq = customerService.selectCustomerSeq(customId);
+		System.out.println("customId: " + customId + " 님 회원번호: " + customerSeq);
 
 		System.out.println("주문번호: " + jangId);
 
@@ -132,7 +134,7 @@ public class JangController {
 		System.out.println(jangs.toString());
 
 		model.addAttribute("myJangList", jangs);
-		
+
 		System.out.println("myOrderSerialNum: " + jangInfo.getOrderSerialNum());
 		model.addAttribute("myOrderSerialNum", jangInfo.getOrderSerialNum());
 
@@ -185,27 +187,83 @@ public class JangController {
 		System.out.println("삭제성공: " + deletedRow);
 		return "redirect:/shop/janglist";
 	}
-	
-	
+
 	@GetMapping("/remove/{myOrderSerialNum}")
 	public String deleteJang(@PathVariable String myOrderSerialNum) {
 		System.out.println("remove: " + myOrderSerialNum);
-		
+
 		Integer removeSuccess = jangService.deleteJang(myOrderSerialNum);
 		System.out.println("장바구니 삭제성공: " + removeSuccess);
-		
+
 		return "redirect:/shop/janglist";
 	}
-	
-	
+
 	@GetMapping("/order/{myOrderSerialNum}")
 	public String order(@PathVariable String myOrderSerialNum, Model model) {
 		List<JangEntity> myOrders = jangService.selectAll(myOrderSerialNum);
 		System.out.println("주문목록: " + myOrders.toString());
 		model.addAttribute("myOrders", myOrders);
 		model.addAttribute("myOrderSerialNum", myOrderSerialNum);
-		
+
 		return "shop/orders";
 	}
-	
+
+	@PostMapping("/payment/{myOrderSerialNum}/{customId}")
+	public String pay(PaymentForm paymentForm, @PathVariable String myOrderSerialNum, @PathVariable String customId,
+			Model model) {
+		System.out.println("paymentForm: " + paymentForm.toString() + " , myOrderSerialNum: " + myOrderSerialNum);
+		System.out.println("customId: " + customId);
+
+		Integer customSeq = customerService.selectCustomerSeq(customId);
+
+		paymentForm.setCustomSeq(customSeq);
+		System.out.println("디비에 저장하기 위한 paymentForm: " + paymentForm.toString());
+
+		Integer myOrderSerialNumUpdated = jangService.updateOrderStatement(myOrderSerialNum);
+		System.out.println("결제상태변경 성공: " + myOrderSerialNumUpdated);
+		
+		
+		Integer updatedSuccess = customerService.updateCustomInfo(paymentForm);
+		System.out.println("update 성공: " + updatedSuccess);
+
+		
+		
+		
+		List<JangEntity> myOrders = jangService.selectAll(myOrderSerialNum);
+		System.out.println("결제완료후 myOrders: " + myOrders.toString());
+		
+		
+		System.out.println("==================책 주문수량 만큼 삭제하기위한 코드==================");
+		for (int i = 0; i < myOrders.size(); i++) {
+			JangEntity bookEntity = jangService.findJangInfo(myOrders.get(i));
+			System.out.println((i + 1) + "번 도서: " + bookEntity.toString());
+			System.out.println("=================현재 디비에 저장되 있는 책 정보=====================");
+			Book book = bookService.findBook(myOrders.get(i));
+			System.out.println((i + 1) + "번 도서: " + book.toString());
+			int bookAmount = book.getBookAmount();
+			System.out.println("bookAmount: " + bookAmount);
+			int orderAmount = bookEntity.getBookOrderCnt();
+			System.out.println("orderAmount: " + orderAmount);
+			
+			bookAmount -= orderAmount;
+			System.out.println("변경후 bookAmount: " + bookAmount);
+			book.setBookAmount(bookAmount);
+			System.out.println("수정된 도서정보: " + book.toString());
+		}
+		
+		
+
+		
+		
+		
+		
+		
+		model.addAttribute("myOrderSerialNum", myOrderSerialNum);
+		model.addAttribute("myOrders",myOrders);
+		
+		return "shop/paymentsuccess";
+	}
+
+
+
 }

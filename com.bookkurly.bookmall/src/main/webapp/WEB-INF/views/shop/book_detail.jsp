@@ -12,7 +12,7 @@
 <%
 	List<MainCategory> mainCategories = (List<MainCategory>) session.getAttribute("maincategories");
 
-String userId = (String) session.getAttribute("loginSession");
+String customId = (String) session.getAttribute("loginSession");
 %>
 
 <div class="container">
@@ -61,7 +61,7 @@ String userId = (String) session.getAttribute("loginSession");
 
 					<form method="post" action="${path}/book/jangbaguni">
 						<input type="hidden" name="bookSeq" value="${book.bookSeq}">
-						<input type="hidden" name="userId" value="${userId}">
+						<input type="hidden" name=customId value="${customId}">
 						<input type="hidden" name="bookPrice" value="${book.bookPrice}">
 						
 						
@@ -72,7 +72,7 @@ String userId = (String) session.getAttribute("loginSession");
 
 						</div>
 
-						<c:if test="${userId != null}">
+						<c:if test="${customId != null}">
 							<button type="submit" class="btn btn-success mt-5 btn-lg">주문담기</button>
 						</c:if>
 
