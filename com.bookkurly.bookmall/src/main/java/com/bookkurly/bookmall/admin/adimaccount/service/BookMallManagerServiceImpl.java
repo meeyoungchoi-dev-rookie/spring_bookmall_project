@@ -15,7 +15,6 @@ public class BookMallManagerServiceImpl implements BookMallMangerService{
 	
 	@Override
 	public BookMallManager logincheck(BookMallManager bm) {
-		System.out.println("a");
 		return bookMallMangerdao.selectOne(bm);
 	}
 

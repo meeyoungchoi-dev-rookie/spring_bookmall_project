@@ -20,6 +20,4 @@
 		<h1>관리자 페이지 입니다.</h1>
 	</div>
 
-
-</body>
-</html>
+	<jsp:include page="../layouts/footer.jsp" />

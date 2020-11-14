@@ -15,7 +15,6 @@ public class BookMallMangerDAOImpl implements BookMallManagerDAO {
 	
 	@Override
 	public BookMallManager selectOne(BookMallManager bm) {
-		System.out.println("b");
 		return sqlSession.selectOne("BookMallDAO.logincheck", bm);
 	}
 

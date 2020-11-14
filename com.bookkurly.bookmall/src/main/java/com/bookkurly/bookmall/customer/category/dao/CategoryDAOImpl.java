@@ -6,6 +6,8 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.bookkurly.bookmall.admin.adimaccount.entity.AdminMainCategory;
+import com.bookkurly.bookmall.admin.adimaccount.entity.AdminSubCategory;
 import com.bookkurly.bookmall.customer.category.entity.Book;
 import com.bookkurly.bookmall.customer.category.entity.MainCategory;
 import com.bookkurly.bookmall.customer.category.entity.SubCategory;
@@ -49,5 +51,45 @@ public class CategoryDAOImpl implements CategoryDAO {
 	public String selectMainCate(Integer mainCateSeq) {
 		return sqlSession.selectOne("MainCateDAO.selectMainCate", mainCateSeq);
 	}
+
+	@Override
+	public List<SubCategory> selectSubCateList(MainCategory mainCategory) {
+		return sqlSession.selectList("MainCateDAO.selectSubCate", mainCategory);
+	}
+
+	@Override
+	public List<Book> countAllBooksInSubCateName(SubCategory subCategory) {
+		return sqlSession.selectList("MainCateDAO.selectBookCountInSubcate", subCategory);
+	}
+
+	@Override
+	public Book findBook(Integer bookSeq) {
+		return sqlSession.selectOne("MainCateDAO.selectBook", bookSeq);
+	}
+
+	@Override
+	public Integer insertMainCate(AdminMainCategory adminMainCategoryEntity) {
+		return sqlSession.insert("MainCateDAO.insertMainCate", adminMainCategoryEntity);
+	}
+
+	@Override
+	public Integer findMainCateSeq(String mainCateName) {
+		return sqlSession.selectOne("MainCateDAO.findMainCateSeq", mainCateName);
+	}
+
+	@Override
+	public Integer insertSubCategory(AdminSubCategory adminSubCategory) {
+		return sqlSession.insert("MainCateDAO.insertSubCate", adminSubCategory);
+	}
+
+	@Override
+	public Integer findBookSeq(Book book) {
+		return sqlSession.selectOne("MainCateDAO.selectBookSeq", book);
+	}
+
+	
+	
+	
+	
 
 }

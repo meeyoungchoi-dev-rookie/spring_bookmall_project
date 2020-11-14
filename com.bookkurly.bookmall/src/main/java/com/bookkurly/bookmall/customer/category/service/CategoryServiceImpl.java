@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bookkurly.bookmall.admin.adimaccount.entity.AdminMainCategory;
+import com.bookkurly.bookmall.admin.adimaccount.entity.AdminSubCategory;
 import com.bookkurly.bookmall.customer.category.dao.CategoryDAO;
 import com.bookkurly.bookmall.customer.category.entity.Book;
 import com.bookkurly.bookmall.customer.category.entity.MainCategory;
@@ -18,7 +20,7 @@ public class CategoryServiceImpl implements CategoryService {
 
 	@Override
 	public List<MainCategory> selectList() {
-		// TODO Auto-generated method stub
+		System.out.println("categorySerivce.selectlist()");
 		return categoryDao.selectList();
 	}
 
@@ -49,5 +51,42 @@ public class CategoryServiceImpl implements CategoryService {
 	public String selectMaincate(Integer mainCateSeq) {
 		return categoryDao.selectMainCate(mainCateSeq);
 	}
+
+	@Override
+	public List<SubCategory> selectSubCateList(MainCategory mainCategory) {
+		return categoryDao.selectSubCateList(mainCategory);
+	}
+
+	@Override
+	public List<Book> countAllBooksInSubCateName(SubCategory subCategory) {
+		return categoryDao.countAllBooksInSubCateName(subCategory);
+	}
+
+	@Override
+	public Book findBook(Integer bookSeq) {
+		return categoryDao.findBook(bookSeq);
+	}
+
+	@Override
+	public Integer insertMainCate(AdminMainCategory adminMainCategoryEntity) {
+		return categoryDao.insertMainCate(adminMainCategoryEntity);
+	}
+
+	@Override
+	public Integer findMainCateSeq(String mainCateName) {
+		return categoryDao.findMainCateSeq(mainCateName);
+	}
+
+	@Override
+	public Integer insertSubCategory(AdminSubCategory adminSubCategory) {
+		return categoryDao.insertSubCategory(adminSubCategory);
+	}
+
+	@Override
+	public Integer findBookSeq(Book book) {
+		return categoryDao.findBookSeq(book);
+	}
+
+	
 
 }

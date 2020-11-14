@@ -11,6 +11,7 @@ public class Book {
 	private String bookImageName;
 	private String bookStatus;
 	private String subCateName;
+	private String bookDescription;
 
 	
 	
@@ -95,10 +96,16 @@ public class Book {
 		this.bookStatus = bookStatus;
 	}
 
+	public String getBookDescription() {
+		return bookDescription;
+	}
 
+	public void setBookDescription(String bookDescription) {
+		this.bookDescription = bookDescription;
+	}
 
 	public Book(Integer bookSeq, String bookTitle, String bookIntro, String bookContents, int bookPrice, int bookAmount,
-			Integer subCateSeq, String bookImageName, String bookStatus, String subCateName) {
+			Integer subCateSeq, String bookImageName, String bookStatus, String subCateName, String bookDescription) {
 		super();
 		this.bookSeq = bookSeq;
 		this.bookTitle = bookTitle;
@@ -110,6 +117,7 @@ public class Book {
 		this.bookImageName = bookImageName;
 		this.bookStatus = bookStatus;
 		this.subCateName = subCateName;
+		this.bookDescription = bookDescription;
 	}
 
 	public Book() {
@@ -121,7 +129,7 @@ public class Book {
 		return "Book [bookSeq=" + bookSeq + ", bookTitle=" + bookTitle + ", bookIntro=" + bookIntro + ", bookContents="
 				+ bookContents + ", bookPrice=" + bookPrice + ", bookAmount=" + bookAmount + ", subCateSeq="
 				+ subCateSeq + ", bookImageName=" + bookImageName + ", bookStatus=" + bookStatus + ", subCateName="
-				+ subCateName + "]";
+				+ subCateName + ", bookDescription=" + bookDescription + "]";
 	}
 
 

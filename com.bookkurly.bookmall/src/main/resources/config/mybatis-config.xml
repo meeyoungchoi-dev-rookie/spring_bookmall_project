@@ -52,6 +52,11 @@
 			
 		<typeAlias alias="OrderDetail" type="com.bookkurly.bookmall.customer.jang.dto.OrderDetail"/>	
 
+		<typeAlias alias="AdminMainCategory" type="com.bookkurly.bookmall.admin.adimaccount.entity.AdminMainCategory"/>
+
+		<typeAlias alias="AdminSubCategory" type="com.bookkurly.bookmall.admin.adimaccount.entity.AdminSubCategory"></typeAlias>
+
+
 
 	</typeAliases>
 </configuration>

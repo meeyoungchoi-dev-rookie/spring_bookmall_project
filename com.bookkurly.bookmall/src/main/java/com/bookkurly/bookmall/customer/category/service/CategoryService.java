@@ -2,6 +2,8 @@ package com.bookkurly.bookmall.customer.category.service;
 
 import java.util.List;
 
+import com.bookkurly.bookmall.admin.adimaccount.entity.AdminMainCategory;
+import com.bookkurly.bookmall.admin.adimaccount.entity.AdminSubCategory;
 import com.bookkurly.bookmall.customer.category.entity.Book;
 import com.bookkurly.bookmall.customer.category.entity.MainCategory;
 import com.bookkurly.bookmall.customer.category.entity.SubCategory;
@@ -19,4 +21,18 @@ public interface CategoryService {
 	public String selectMaincateName(Integer subCateSeq);
 
 	public String selectMaincate(Integer mainCateSeq);
+
+	public List<SubCategory> selectSubCateList(MainCategory mainCategory);
+
+	public List<Book> countAllBooksInSubCateName(SubCategory subCategory);
+
+	public Book findBook(Integer bookSeq);
+
+	public Integer insertMainCate(AdminMainCategory adminMainCategoryEntity);
+
+	public Integer findMainCateSeq(String mainCateName);
+
+	public Integer insertSubCategory(AdminSubCategory adminSubCategory);
+
+	public Integer findBookSeq(Book book);
 }

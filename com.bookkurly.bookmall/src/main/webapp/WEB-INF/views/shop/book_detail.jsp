@@ -84,6 +84,16 @@ String customId = (String) session.getAttribute("loginSession");
 </div>
 
 
+<div class="container">
+	<c:if test="${book != null}">
+		<label class="font-weight-bold">책설명</label>
+		<p>${book.bookDescription}</p>
+
+	</c:if>
+
+</div>
+
+
 
 <div class="container">
 	<c:if test="${book != null}">
@@ -93,13 +103,7 @@ String customId = (String) session.getAttribute("loginSession");
 </div>
 
 
-<div class="container">
-	<c:if test="${book != null}">
-		<p>책 추천사</p>
 
-	</c:if>
-
-</div>
 
 
 

@@ -47,7 +47,64 @@
 		select
 		"maincategory"."main_cate_name"
 		from "maincategory"
-		where "maincategory"."main_cate_seq" = #{mainCateSeq}
+		where
+		"maincategory"."main_cate_seq" = #{mainCateSeq}
+	</select>
+
+
+	<select resultType="SubCategory" id="selectSubCate"
+		parameterType="MainCategory">
+
+		select * from "subcategory" where "main_cate_seq" =
+		#{mainCateSeq}
+
+	</select>
+
+
+	<select id="selectBookCountInSubcate"
+		parameterType="SubCategory" resultType="Book">
+		select * from "book" where
+		"sub_cate_seq" =
+		#{subCateSeq}
+	</select>
+
+
+	<select id="selectBook" parameterType="Integer"
+		resultType="Book">
+
+		select * from "book" where "book_seq" = #{bookSeq}
+
+	</select>
+
+
+	<insert id="insertMainCate" parameterType="AdminMainCategory">
+		insert into
+		"maincategory"
+		values("main_cate_seq".nextval,
+		#{mainCateName})
+
+	</insert>
+
+	<select id="findMainCateSeq" parameterType="String"
+		resultType="Integer">
+		select * from "maincategory" where "main_cate_name" =
+		#{mainCateName}
+
+	</select>
+
+	<insert id="insertSubCate" parameterType="AdminSubCategory">
+		insert into
+		"subcategory"
+		values("sub_cate_seq".nextval,
+		#{subCateName},
+		#{mainCateSeq})
+	</insert>
+
+
+	<select id="selectBookSeq" parameterType="String"
+		resultType="Integer">
+
+		select "book_seq" from "book" where "book_title" = #{bookTitle}
 	</select>
 
 

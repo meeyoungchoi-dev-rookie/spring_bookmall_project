@@ -30,11 +30,11 @@
 				</a></li>
 				<li class="nav-item"><a class="nav-link" href="#">Link</a></li>
 				<li class="nav-item dropdown"><a
-					class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+					class="nav-link dropdown-toggle" href="${path}/manager/maincategories" id="navbarDropdown"
 					role="button" data-toggle="dropdown" aria-haspopup="true"
-					aria-expanded="false"> Dropdown </a>
+					aria-expanded="false"> 카테고리관리 </a>
 					<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-						<a class="dropdown-item" href="#">Action</a> <a
+						<a class="dropdown-item" href="${path}/manager/maincategories">메인카테고리</a> <a
 							class="dropdown-item" href="#">Another action</a>
 						<div class="dropdown-divider"></div>
 						<a class="dropdown-item" href="#">Something else here</a>
