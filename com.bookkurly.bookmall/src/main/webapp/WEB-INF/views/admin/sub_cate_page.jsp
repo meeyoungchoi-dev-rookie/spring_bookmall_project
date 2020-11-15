@@ -10,7 +10,8 @@
 <jsp:include page="../layouts/manager_header.jsp" />
 
 <%List<SubCategory> subCategories  = (List<SubCategory>)request.getAttribute("subCategories");
-  MainCategory mainCate = (MainCategory)request.getAttribute("mainCate");
+  String mainCateName = (String)request.getAttribute("mainCateName");
+  Integer mainCateSeq = (Integer)request.getAttribute("mainCateSeq");
 %>
 
 <div class="jumbotron">
@@ -18,7 +19,7 @@
 </div>
 
 <div class="container mt-3">
-	<p class="font-weight-bold">메인카테고리: ${mainCate.mainCateName}</p>
+	<p class="font-weight-bold">메인카테고리: ${mainCateName}</p>
 </div>
 
 
@@ -36,7 +37,7 @@
 			<tr>
 				<input type="hidden" name="subCateSeq" value="${str.subCateSeq}">
 				<td>
-					<a href="${path}/manager/subcatename/book/${str.subCateName}/${str.subCateSeq}/${mainCate.mainCateName}">${str.subCateName}</a>
+					<a href="${path}/manager/subcate/${str.subCateSeq}">${str.subCateName}</a>
 				</td>
 				<td>${str.subCateBookCount}</td>
 				<td><a class="btn btn-info">서브카테고리 수정</a></td>
@@ -48,7 +49,7 @@
 
 
 <div class="container">
-	<a class="btn btn-info" href="${path}/manager/add/subcategory/${mainCate.mainCateName}">서브카테고리 추가</a>
+	<a class="btn btn-info" href="${path}/manager/add/subcategory/${mainCateSeq}">서브카테고리 추가</a>
 </div>
 
 

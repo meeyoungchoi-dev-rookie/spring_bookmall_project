@@ -25,16 +25,15 @@ String customId = (String) session.getAttribute("loginSession");
 
 </div>
 
+<c:if test="${book != null}">
+	<div class="card mb-3 container mt-5 " style="max-width: 1100px;">
+		<div class="row no-gutters">
+			<div class="col-md-4">
+				<img src="${path}/resources/${book.bookImageName}" class="card-img"
+					alt="...">
+			</div>
+			<div class="col-md-8">
 
-<div class="card mb-3 container mt-5 " style="max-width: 1100px;">
-	<div class="row no-gutters">
-		<div class="col-md-4">
-			<img
-				src="https://image.shutterstock.com/image-illustration/handsome-cartoon-character-billy-sitting-600w-1388391212.jpg"
-				class="card-img" alt="...">
-		</div>
-		<div class="col-md-8">
-			<c:if test="${book != null}">
 				<div class="card-body  mt-5 ">
 					<div class="row">
 						<label class="col-sm-2 col-form-label">책제목</label> <input
@@ -61,10 +60,10 @@ String customId = (String) session.getAttribute("loginSession");
 
 					<form method="post" action="${path}/book/jangbaguni">
 						<input type="hidden" name="bookSeq" value="${book.bookSeq}">
-						<input type="hidden" name=customId value="${customId}">
-						<input type="hidden" name="bookPrice" value="${book.bookPrice}">
-						
-						
+						<input type="hidden" name=customId value="${customId}"> <input
+							type="hidden" name="bookPrice" value="${book.bookPrice}">
+
+
 						<div class="row">
 							<label class="col-sm-2 col-form-label">구매수량</label> <input
 								type="text" name="bookOrderCnt" placeholder="구매하실 수량을 입력하세요"
@@ -78,11 +77,12 @@ String customId = (String) session.getAttribute("loginSession");
 
 					</form>
 				</div>
-			</c:if>
+
+
+			</div>
 		</div>
 	</div>
-</div>
-
+</c:if>
 
 <div class="container">
 	<c:if test="${book != null}">
@@ -106,7 +106,7 @@ String customId = (String) session.getAttribute("loginSession");
 
 
 
-
+<c:if test=""></c:if>
 <div class="card container mt-5">
 	<div class="card-body">
 		<form method="post" action="/comments/{{articleId}}" class="container">

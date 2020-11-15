@@ -87,6 +87,28 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return sqlSession.selectOne("MainCateDAO.selectBookSeq", book);
 	}
 
+	@Override
+	public String findMainCateName(Integer mainCateSeq) {
+		return sqlSession.selectOne("MainCateDAO.selectMainCateName", mainCateSeq);
+	}
+
+	@Override
+	public Integer selectMainCateSeq(Integer subCateSeq) {
+		return sqlSession.selectOne("MainCateDAO.selectMainCateSeq", subCateSeq);
+	}
+
+	@Override
+	public Integer updateBook(Book book) {
+		return sqlSession.update("MainCateDAO.updateBook", book);
+	}
+
+	@Override
+	public Integer insertBook(Book book) {
+		return sqlSession.insert("MainCateDAO.insertBook", book);
+	}
+
+	
+
 	
 	
 	

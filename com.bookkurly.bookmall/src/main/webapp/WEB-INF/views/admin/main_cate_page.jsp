@@ -21,7 +21,7 @@
 			<tr>
 				<td>${str.mainCateSeq}</td>
 				<td>
-					<a href="${path}/manager/maincategory/${str.mainCateName}/detail/${str.mainCateSeq}">${str.mainCateName}</a>
+					<a href="${path}/manager/maincategory/${str.mainCateSeq}">${str.mainCateName}</a>
 				</td>
 				<td><a class="btn btn-info" href="${path}/manager/${str.mainCateSeq}/update">메인카테고리 수정</a></td>
 			</tr>

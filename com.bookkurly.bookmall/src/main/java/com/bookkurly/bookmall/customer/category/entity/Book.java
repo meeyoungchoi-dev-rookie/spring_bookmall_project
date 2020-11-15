@@ -1,5 +1,7 @@
 package com.bookkurly.bookmall.customer.category.entity;
 
+import lombok.Builder;
+
 public class Book {
 	private Integer bookSeq;
 	private String bookTitle;
@@ -8,14 +10,19 @@ public class Book {
 	private int bookPrice;
 	private int bookAmount;
 	private Integer subCateSeq;
-	private String bookImageName;
 	private String bookStatus;
 	private String subCateName;
 	private String bookDescription;
+	private String bookImageName;
 
-	
-	
-	
+	public String getBookImageName() {
+		return bookImageName;
+	}
+
+	public void setBookImageName(String bookImageName) {
+		this.bookImageName = bookImageName;
+	}
+
 	public String getSubCateName() {
 		return subCateName;
 	}
@@ -80,14 +87,6 @@ public class Book {
 		this.subCateSeq = subCateSeq;
 	}
 
-	public String getBookImageName() {
-		return bookImageName;
-	}
-
-	public void setBookImageName(String bookImageName) {
-		this.bookImageName = bookImageName;
-	}
-
 	public String getBookStatus() {
 		return bookStatus;
 	}
@@ -104,8 +103,9 @@ public class Book {
 		this.bookDescription = bookDescription;
 	}
 
+	@Builder
 	public Book(Integer bookSeq, String bookTitle, String bookIntro, String bookContents, int bookPrice, int bookAmount,
-			Integer subCateSeq, String bookImageName, String bookStatus, String subCateName, String bookDescription) {
+			Integer subCateSeq, String bookStatus, String subCateName, String bookDescription, String bookImageName) {
 		super();
 		this.bookSeq = bookSeq;
 		this.bookTitle = bookTitle;
@@ -114,10 +114,10 @@ public class Book {
 		this.bookPrice = bookPrice;
 		this.bookAmount = bookAmount;
 		this.subCateSeq = subCateSeq;
-		this.bookImageName = bookImageName;
 		this.bookStatus = bookStatus;
 		this.subCateName = subCateName;
 		this.bookDescription = bookDescription;
+		this.bookImageName = bookImageName;
 	}
 
 	public Book() {
@@ -128,11 +128,8 @@ public class Book {
 	public String toString() {
 		return "Book [bookSeq=" + bookSeq + ", bookTitle=" + bookTitle + ", bookIntro=" + bookIntro + ", bookContents="
 				+ bookContents + ", bookPrice=" + bookPrice + ", bookAmount=" + bookAmount + ", subCateSeq="
-				+ subCateSeq + ", bookImageName=" + bookImageName + ", bookStatus=" + bookStatus + ", subCateName="
-				+ subCateName + ", bookDescription=" + bookDescription + "]";
+				+ subCateSeq + ", bookStatus=" + bookStatus + ", subCateName=" + subCateName + ", bookDescription="
+				+ bookDescription + ", bookImageName=" + bookImageName + "]";
 	}
-
-
-	
 
 }

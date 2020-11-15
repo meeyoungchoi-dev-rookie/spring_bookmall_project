@@ -13,19 +13,17 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
-	integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
-	crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 </head>
 <body>
+
+
 
 	<%
 		List<MainCategory> mainCategories = (List<MainCategory>) session.getAttribute("mainCategories");
 
 	String customId = (String) session.getAttribute("loginSession");
 	%>
-
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light ">
 		<a class="navbar-brand" href="#">Navbar</a>
@@ -75,12 +73,14 @@
 					<h1 class="text-success">${customId}님로그인중</h1>
 					<a class="btn btn-outline-info my-2 my-sm-0 ml-2"
 						href="${path}/customer/logout" type="submit">로그아웃</a>
-					<a class="btn btn-outline-success my-2 my-sm-0 ml-2" href="${path}/customer/mypage">마이페이지</a>	
+					<a class="btn btn-outline-success my-2 my-sm-0 ml-2"
+						href="${path}/customer/mypage">마이페이지</a>
 				</c:if>
 				<c:if test="${customId == null}">
 					<a class="btn btn-outline-info my-2 my-sm-0 ml-2"
 						href="${path}/customer/login" type="submit">로그인</a>
-					<a class="btn btn-outline-primary my-2 my-sm-0 ml-2" href="${path}/customer/register" type="submit">회원가입</a>
+					<a class="btn btn-outline-primary my-2 my-sm-0 ml-2"
+						href="${path}/customer/register" type="submit">회원가입</a>
 				</c:if>
 
 			</form>

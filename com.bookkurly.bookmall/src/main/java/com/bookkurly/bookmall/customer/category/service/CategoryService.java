@@ -35,4 +35,12 @@ public interface CategoryService {
 	public Integer insertSubCategory(AdminSubCategory adminSubCategory);
 
 	public Integer findBookSeq(Book book);
+
+	public String findMainCateName(Integer mainCateSeq);
+
+	public Integer selectMainCateSeq(Integer subCateSeq);
+
+	public Integer updateBook(Book book);
+
+	public Integer insertBook(Book book);
 }

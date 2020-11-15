@@ -13,6 +13,8 @@
 List<Book> books = (List<Book>) request.getAttribute("books");
 String subCateName = (String)request.getAttribute("subCateName");
 String mainCateName = (String)request.getAttribute("mainCateName");
+Integer subCateSeq = (Integer)request.getAttribute("subCateSeq");
+Integer mainCateSeq = (Integer)request.getAttribute("mainCateSeq");
 %>
 
 <div class="jumbotron">
@@ -26,7 +28,7 @@ String mainCateName = (String)request.getAttribute("mainCateName");
 
 
 <div class="container">
-	<a class="btn btn-success" herf="${path}/manager/add/book">도서추가</a>
+	<a class="btn btn-success" href="${path}/manager/add/book/${mainCateSeq}/${subCateSeq}">도서추가</a>
 </div>
 
 
@@ -40,14 +42,14 @@ String mainCateName = (String)request.getAttribute("mainCateName");
 		<c:forEach var="str" items="${books}">
 			<div class="card mt-5 mr-5 ml-4" style="width: 19rem;">
 				<img
-					src="https://image.shutterstock.com/image-illustration/handsome-cartoon-character-billy-sitting-600w-1388391212.jpg"
+					src="${path}/resources/${str.bookImageName}"
 					class="card-img-top" alt="...">
 				<div class="card-body">
 
 					<h5 class="card-title container text-center font-weight-bold">${str.bookTitle}</h5>
 					<p class="card-text container text-center">${str.bookPrice}원</p>
 					<a
-						href="${path}/manager/book/${str.bookSeq}/subcateseq/${str.subCateSeq}/${mainCateName}/${subCateName}"
+						href="${path}/manager/book/${str.bookSeq}"
 						class="btn btn-primary btn-block text-center">상세조회</a>
 
 				</div>

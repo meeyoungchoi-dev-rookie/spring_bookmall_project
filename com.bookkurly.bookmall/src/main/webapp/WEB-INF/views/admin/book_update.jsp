@@ -28,49 +28,48 @@ String mainCateName = (String) request.getAttribute("mainCateName");
 </div>
 
 
+<c:if test="${book != null}">
+	<form method="post"
+		action="${path}/manager/book/update/${book.bookSeq}" enctype="multipart/form-data">
+		<div class="card mb-3 container mt-5 " style="max-width: 1100px;">
+			<div class="row no-gutters">
+				<div class="col-md-4">
+					<img src="${path}/resources/${book.bookImageName}" class="card-img"
+						alt="...">
 
-<div class="card mb-3 container mt-5 " style="max-width: 1100px;">
-	<div class="row no-gutters">
-		<div class="col-md-4">
-			<img
-				src="https://image.shutterstock.com/image-illustration/handsome-cartoon-character-billy-sitting-600w-1388391212.jpg"
-				class="card-img" alt="...">
-		</div>
-		<div class="col-md-8">
-			<c:if test="${book != null}">
-				<form method="post"
-					action="${path}/manager/book/update/${mainCateName}">
+					
+				</div>
+				<div class="col-md-8">
+
+
 					<div class="card-body  mt-5 ">
 						<div class="row">
 							<label class="col-sm-2">책번호</label>
-							<p class="card-title font-weight-bold col-sm-9" name="bookSeq"
-								value="${bookSeq}">${book.bookSeq}</p>
+							<p class="card-title font-weight-bold col-sm-9">${book.bookSeq}</p>
+							<input type="hidden" name="bookSeq" value="${book.bookSeq}">	
 
 						</div>
 						<div class="row">
-							<label class="col-sm-2">메인카테</label> <input type="text"
-								class="card-title font-weight-bold  col-sm-9 form-control"
-								name="mainCateName" value="${mainCateName}" readonly="readonly">
+							<label class="col-sm-2">메인카테</label>
+							<p class="card-title font-weight-bold  col-sm-9">${mainCateName}</p>
 
 						</div>
 
 						<div class="row">
-							<label class="col-sm-2">서브카테</label> <input type="text"
-								class="card-title font-weight-bold  col-sm-9 form-control"
-								name="subCateName" value="${book.subCateName}" readonly="readonly">
+							<label class="col-sm-2">서브카테</label>
+							<p type="text" class="card-title font-weight-bold  col-sm-9 ">${book.subCateName}</p>
 
 						</div>
 
 
 
 						<div class="row">
-							<label class="col-sm-2  ">책제목</label> <p
-								
-								class="card-title font-weight-bold  col-sm-9 ">${book.bookTitle}</p>
-								<input type="hidden" name="bookTitle" value="${book.bookTitle}">
+							<label class="col-sm-2  ">책제목</label>
+							<p class="card-title font-weight-bold  col-sm-9 ">${book.bookTitle}</p>
+							<input type="hidden" name="bookTitle" value="${book.bookTitle}">
 						</div>
 						<div class="row">
-							<label class="col-sm-2 col-form-label">한줄 소개</label> <input
+							<label class="col-sm-2 col-form-label">한줄소개</label> <input
 								type="text" name="bookIntro" value="${book.bookIntro}"
 								class="card-title font-weight-bold col-sm-9 form-control">
 						</div>
@@ -86,31 +85,35 @@ String mainCateName = (String) request.getAttribute("mainCateName");
 								type="text" name="bookAmount" value="${book.bookAmount}"
 								class="col-sm-9 form-control">
 						</div>
-						
-						<input type="hidden" name="bookImageName" value="${book.bookImageName}">
-						<input type="hidden" name="bookStatus" value="${book.bookStatus}">
-						<input type="hidden" name="subCateSeq" value="${book.subCateSeq}">
 
+						<input type="hidden"
+							name="bookStatus" value="${book.bookStatus}"> <input
+							type="hidden" name="subCateSeq" value="${book.subCateSeq}">
+						<input type="hidden" name="subCateName"
+							value="${book.subCateName}">
+							 <input type="file"
+							name="file" placeholder="첨부할 이미지 파일을 선택하세요">
 					</div>
+				</div>
+
+			</div>
 		</div>
 
-	</div>
-</div>
+		<div class="container mt-5">
+			<label class="col-sm-2">목차</label>
+			<p class="card-title font-weight-bold col-sm-9">${book.bookContents}</p>
+			<input type="hidden" name="bookContents" value="${book.bookContents}">
+		</div>
+		<div class="container mt-5">
+			<label class="col-sm-2">책 설명</label>
+			<p class="card-title font-weight-bold col-sm-9">책 내용</p>
+			<input type="hidden" name="bookDescription" value="${book.bookDescription}">
+		</div>
 
-<div class="container mt-5">
-	<label class="col-sm-2">목차</label>
-	<input type="text" name="bookContents" value="${book.bookContents}" class="col-sm-8 form-control">
-</div>
-<div class="container mt-5">
-	<label class="col-sm-2">책 내용</label>
-	<p>책 내용</p>
-</div>
+		<div class="container">
+			<button type="submit" class="btn btn-success">수정완료</button>
 
-<div class="container">
-	<button type="submit" class="btn btn-success">수정완료</button>
-
-</div>
-
+		</div>
 </c:if>
 
 

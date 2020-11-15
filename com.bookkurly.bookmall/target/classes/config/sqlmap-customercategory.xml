@@ -31,18 +31,6 @@
 
 	</select>
 
-
-	<select resultType="String" id="selectMainCateName">
-		select
-		"maincategory"."main_cate_name"
-		from "subcategory" , "maincategory"
-		where "subcategory"."sub_cate_seq" = #{subCateSeq}
-		and
-		"subcategory"."main_cate_seq" = "maincategory"."main_cate_seq"
-
-	</select>
-
-
 	<select resultType="String" id="selectMainCate">
 		select
 		"maincategory"."main_cate_name"
@@ -50,6 +38,9 @@
 		where
 		"maincategory"."main_cate_seq" = #{mainCateSeq}
 	</select>
+
+
+
 
 
 	<select resultType="SubCategory" id="selectSubCate"
@@ -104,8 +95,54 @@
 	<select id="selectBookSeq" parameterType="String"
 		resultType="Integer">
 
-		select "book_seq" from "book" where "book_title" = #{bookTitle}
+		select "book_seq" from "book" where "book_title" =
+		#{bookTitle}
 	</select>
+
+	<select id="selectMainCateName" parameterType="Integer"
+		resultType="String">
+		select
+		"main_cate_name" from "maincategory" where
+		"main_cate_seq" = #{mainCateSeq}
+
+	</select>
+
+	<select id="selectMainCateSeq" parameterType="Integer"
+		resultType="Integer">
+		select "main_cate_seq" from "subcategory" where
+		"sub_cate_seq" = #{subCateSeq}
+
+	</select>
+
+	<update id="updateBook" parameterType="Book">
+		update "book"
+		set
+		"book_title" = #{bookTitle},
+		"book_intro" = #{bookIntro},
+		"book_amount"
+		= #{bookAmount},
+		"book_image_name" = #{bookImageName}
+		where "book_seq" = #{bookSeq}
+
+	</update>
+
+	<insert id="insertBook" parameterType="Book">
+
+		insert into "book"
+		values(
+		"book_seq".nextval,
+		#{bookTitle},
+		#{bookIntro},
+		#{bookContents},
+		#{bookPrice},
+		#{bookAmount},
+		#{subCateSeq},
+		#{bookImageName},
+		#{bookStatus},
+		#{bookDescription}
+		)
+
+	</insert>
 
 
 

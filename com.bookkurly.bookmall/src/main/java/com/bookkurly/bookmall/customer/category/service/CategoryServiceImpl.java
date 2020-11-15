@@ -87,6 +87,27 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryDao.findBookSeq(book);
 	}
 
+	@Override
+	public String findMainCateName(Integer mainCateSeq) {
+		return categoryDao.findMainCateName(mainCateSeq);
+	}
+
+	@Override
+	public Integer selectMainCateSeq(Integer subCateSeq) {
+		return categoryDao.selectMainCateSeq(subCateSeq);
+	}
+
+	@Override
+	public Integer updateBook(Book book) {
+		return categoryDao.updateBook(book);
+	}
+
+	@Override
+	public Integer insertBook(Book book) {
+		return categoryDao.insertBook(book);
+	}
+
+	
 	
 
 }

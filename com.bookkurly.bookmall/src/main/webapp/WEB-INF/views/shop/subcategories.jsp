@@ -46,7 +46,7 @@
 		<c:forEach var="book" items="${books}">
 			<div class="card mt-5 mr-5 ml-4" style="width: 19rem;">
 				<img
-					src="https://image.shutterstock.com/image-illustration/handsome-cartoon-character-billy-sitting-600w-1388391212.jpg"
+					src="${path}/resources/${book.bookImageName}"
 					class="card-img-top" alt="...">
 				<div class="card-body">
 

@@ -16,6 +16,8 @@ Book book = (Book) request.getAttribute("book");
 
 String mainCateName = (String)request.getAttribute("mainCateName");
 
+String subCateName = (String)request.getAttribute("subCateName");
+
 
 %>
 <div class="jumbotron">
@@ -23,21 +25,22 @@ String mainCateName = (String)request.getAttribute("mainCateName");
 </div>
 
 <div class="container mt-3">
-	<p class="font-weight-bold ">메인카테고리: ${mainCateName} >> 서브카테고리: ${book.subCateName} >> 책제목: ${book.bookTitle}</p>
+	<p class="font-weight-bold ">메인카테고리: ${mainCateName} >> 서브카테고리: ${subCateName} >> 책제목: ${book.bookTitle}</p>
 </div>
 
 
-
+<c:if test="${book != null}">
 <div class="card mb-3 container mt-5 " style="max-width: 1100px;">
+	
 	<div class="row no-gutters">
 		<div class="col-md-4">
 			<img
-				src="https://image.shutterstock.com/image-illustration/handsome-cartoon-character-billy-sitting-600w-1388391212.jpg"
+				src="${path}/resources/${book.bookImageName}"
 				class="card-img" alt="...">
 		</div>
 		<div class="col-md-8">
-			<c:if test="${book != null}">
-				<form method="post" action="${path}/manager/book/update/${book.bookSeq}/${mainCateName}">
+			
+				<form method="post" action="${path}/manager/book/edit/${book.bookSeq}">
 					<div class="card-body  mt-5 ">
 						<div class="row">
 							<label class="col-sm-2">책번호</label>
@@ -82,7 +85,7 @@ String mainCateName = (String)request.getAttribute("mainCateName");
 
 <div class="container mt-5">
 	<label class="col-sm-2">목차</label>
-	<p>${book.bookContents}</p>
+	<div>${book.bookContents}</div>
 </div>
 
 
