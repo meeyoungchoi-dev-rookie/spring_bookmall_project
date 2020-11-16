@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.bookkurly.bookmall.customer.category.entity.Book;
+import com.bookkurly.bookmall.customer.category.entity.PurchaseReview;
 import com.bookkurly.bookmall.customer.jang.entity.JangEntity;
 
 @Repository
@@ -48,6 +49,12 @@ public class BookDAOImpl  implements BookDAO{
 	@Override
 	public Book findBook(JangEntity jangEntity) {
 		return sqlSession.selectOne("BookDAO.findBook", jangEntity);
+	}
+
+
+	@Override
+	public List<PurchaseReview> selectPurchasReview(Integer bookSeq) {
+		return sqlSession.selectList("BookDAO.selectPurchaseReview", bookSeq);
 	}
 
 

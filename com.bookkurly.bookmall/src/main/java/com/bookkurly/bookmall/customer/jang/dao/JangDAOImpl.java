@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.bookkurly.bookmall.customer.category.entity.CheckJang;
 import com.bookkurly.bookmall.customer.jang.dto.JangDeleteInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangUpdate;
@@ -67,6 +68,11 @@ public class JangDAOImpl implements JangDAO {
 	@Override
 	public JangEntity findJangInfo(JangEntity jangEntity) {
 		return sqlSession.selectOne("JangDAO.findJangInfo", jangEntity);
+	}
+
+	@Override
+	public List<JangEntity> selectJang(CheckJang check) {
+		return sqlSession.selectList("JangDAO.selectJang", check);
 	}
 
 }

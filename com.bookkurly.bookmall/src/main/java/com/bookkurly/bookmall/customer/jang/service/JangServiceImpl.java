@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.bookkurly.bookmall.customer.category.entity.CheckJang;
 import com.bookkurly.bookmall.customer.jang.dao.JangDAO;
 import com.bookkurly.bookmall.customer.jang.dto.JangDeleteInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangInfo;
@@ -96,6 +97,11 @@ public class JangServiceImpl implements JangService {
 
 	public JangEntity findJangInfo(JangEntity jangEntity) {
 		return jangDao.findJangInfo(jangEntity);
+	}
+
+	@Override
+	public List<JangEntity> selectJang(CheckJang check) {
+		return jangDao.selectJang(check);
 	}
 
 	

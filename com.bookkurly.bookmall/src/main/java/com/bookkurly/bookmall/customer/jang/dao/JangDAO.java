@@ -2,6 +2,7 @@ package com.bookkurly.bookmall.customer.jang.dao;
 
 import java.util.List;
 
+import com.bookkurly.bookmall.customer.category.entity.CheckJang;
 import com.bookkurly.bookmall.customer.jang.dto.JangDeleteInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangUpdate;
@@ -29,6 +30,8 @@ public interface JangDAO {
 	JangEntity selectOrderDetail(OrderDetail orderDetail);
 
 	JangEntity findJangInfo(JangEntity jangEntity);
+
+	List<JangEntity> selectJang(CheckJang check);
 
 	
 	

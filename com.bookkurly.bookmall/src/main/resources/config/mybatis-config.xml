@@ -56,7 +56,10 @@
 
 		<typeAlias alias="AdminSubCategory" type="com.bookkurly.bookmall.admin.adimaccount.entity.AdminSubCategory"></typeAlias>
 
+		<typeAlias alias="PurchaseReview" type="com.bookkurly.bookmall.customer.category.entity.PurchaseReview"/>
 
+		<typeAlias alias="CheckJang" type="com.bookkurly.bookmall.customer.category.entity.CheckJang"/>
+	
 
 	</typeAliases>
 </configuration>

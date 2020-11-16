@@ -33,6 +33,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public Integer updateCustomInfo(PaymentForm paymentForm) {
 		return sqlSession.update("CustomerDAO.updateCustomerInfo", paymentForm);
 	}
+
+	@Override
+	public String findCustomerName(Integer customSeq) {
+		return sqlSession.selectOne("CustomerDAO.selectCustomerName", customSeq);
+	}
 	
 	
 	

@@ -3,6 +3,7 @@ package com.bookkurly.bookmall.customer.category.dao;
 import java.util.List;
 
 import com.bookkurly.bookmall.customer.category.entity.Book;
+import com.bookkurly.bookmall.customer.category.entity.PurchaseReview;
 import com.bookkurly.bookmall.customer.jang.entity.JangEntity;
 
 public interface BookDAO {
@@ -17,6 +18,8 @@ public interface BookDAO {
 	public String findBookTitle(Integer bookSeq);
 
 	public Book findBook(JangEntity jangEntity);
+
+	public List<PurchaseReview> selectPurchasReview(Integer bookSeq);
 
 
 }

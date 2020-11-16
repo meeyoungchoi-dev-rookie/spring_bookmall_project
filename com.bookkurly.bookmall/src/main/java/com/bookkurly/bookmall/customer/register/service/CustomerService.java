@@ -12,4 +12,6 @@ public interface CustomerService {
 	
 	public Integer updateCustomInfo(PaymentForm paymentForm);
 
+	public String findCustomerName(Integer customSeq);
+
 }

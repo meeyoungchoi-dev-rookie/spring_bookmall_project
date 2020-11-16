@@ -89,6 +89,10 @@
 		#{orderSerialNum} and "book_seq" = #{bookSeq} and "bookTitle" = #{bookTitle}
 
 	</select>
+	
+	<select id="selectJang" parameterType="CheckJang" resultType="JangEntity">
+		select * from "order" where "custom_seq" = #{customSeq} and "book_seq" = #{bookSeq}
+	</select>
 
 
 </mapper>

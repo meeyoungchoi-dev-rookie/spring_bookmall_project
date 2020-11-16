@@ -12,4 +12,6 @@ public interface CustomerDAO {
 	Integer selectCustomerSeq(String customId);
 
 	Integer updateCustomInfo(PaymentForm paymentForm);
+
+	String findCustomerName(Integer customSeq);
 }

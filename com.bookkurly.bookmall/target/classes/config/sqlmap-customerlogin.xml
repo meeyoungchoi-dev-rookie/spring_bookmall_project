@@ -22,7 +22,7 @@
 
 	<select id="selectCustomerSeq" resultType="Integer">
 		select
-		"customer"."custom_seq" from "customer" where "customer"."custom_id" =
+		"customer"."custom_seq" from "customer" where "custom_id" =
 		#{customId}
 
 	</select>
@@ -36,6 +36,11 @@
 		where "custom_seq" = #{customSeq}
 
 	</update>
+	
+	<select id="selectCustomerName" parameterType="Integer" resultType="String">
+		select "custom_id" from "customer" where "custom_seq" = #{customSeq}
+	</select>
+	
 
 
 </mapper>

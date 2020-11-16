@@ -34,6 +34,11 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.updateCustomInfo(paymentForm);
 	}
 
+	@Override
+	public String findCustomerName(Integer customSeq) {
+		return customerDao.findCustomerName(customSeq);
+	}
+
 
 
 }

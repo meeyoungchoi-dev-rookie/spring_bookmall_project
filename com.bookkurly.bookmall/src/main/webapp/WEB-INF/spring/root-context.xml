@@ -31,6 +31,7 @@
 				<value>classpath:config/sqlmap-customerlogin.xml</value>
 				<value>classpath:config/sqlmap-managerlogin.xml</value>
 				<value>classpath:config/sqlmap-jang.xml</value>
+				<value>classpath:config/slqmap-review.xml</value>
 			</list>
 			
 				

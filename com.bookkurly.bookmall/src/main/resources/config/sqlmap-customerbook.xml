@@ -58,11 +58,18 @@
 
 	<select id="findBook" parameterType="JangEntity"
 		resultType="Book">
-		select * from "book" where "book"."book_seq" = #{bookSeq} and "book"."book_title" =
+		select * from "book" where "book"."book_seq" = #{bookSeq}
+		and "book"."book_title" =
 		#{bookTitle}
 
 	</select>
-	
+
+	<select id="selectPurchaseReview" parameterType="Integer"
+		resultType="PurchaseReview">
+		select * from "purchase_review" where "book_seq" = #{bookSeq}
+
+	</select>
+
 
 
 </mapper>
