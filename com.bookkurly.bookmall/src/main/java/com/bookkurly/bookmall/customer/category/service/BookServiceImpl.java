@@ -51,6 +51,14 @@ public class BookServiceImpl implements BookService {
 		return bookDao.selectPurchasReview(bookSeq);
 	}
 
+	@Override
+	public Integer updateBookAmount(Book book) {
+		return bookDao.updateBookAmount(book);
+	}
+
+	
+
+
 
 	
 	

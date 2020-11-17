@@ -143,6 +143,10 @@
 		)
 
 	</insert>
+	
+	<select id="selectSubCateSeq" parameterType="Integer" resultType="Integer">
+		select "sub_cate_seq" from "book" where "book_seq" = #{bookSeq}
+	</select>
 
 
 

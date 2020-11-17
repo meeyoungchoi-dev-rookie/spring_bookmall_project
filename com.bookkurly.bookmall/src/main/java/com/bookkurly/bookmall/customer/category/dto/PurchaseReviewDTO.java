@@ -9,6 +9,18 @@ public class PurchaseReviewDTO {
 	private Integer customSeq;
 	private Integer orderSeq;
 	private String orderSerialNum;
+	private String writerStatus;
+	
+	
+	
+	
+	
+	public String getWriterStatus() {
+		return writerStatus;
+	}
+	public void setWriterStatus(String writerStatus) {
+		this.writerStatus = writerStatus;
+	}
 	public String getCustomId() {
 		return customId;
 	}
@@ -46,7 +58,7 @@ public class PurchaseReviewDTO {
 		this.orderSerialNum = orderSerialNum;
 	}
 	public PurchaseReviewDTO(String customId, String purchaseReviewContent, Integer bookSeq, Integer customSeq,
-			Integer orderSeq, String orderSerialNum) {
+			Integer orderSeq, String orderSerialNum, String writerStatus) {
 		super();
 		this.customId = customId;
 		this.purchaseReviewContent = purchaseReviewContent;
@@ -54,15 +66,21 @@ public class PurchaseReviewDTO {
 		this.customSeq = customSeq;
 		this.orderSeq = orderSeq;
 		this.orderSerialNum = orderSerialNum;
+		this.writerStatus = writerStatus;
 	}
+	
+
 	@Override
 	public String toString() {
 		return "PurchaseReviewDTO [customId=" + customId + ", purchaseReviewContent=" + purchaseReviewContent
 				+ ", bookSeq=" + bookSeq + ", customSeq=" + customSeq + ", orderSeq=" + orderSeq + ", orderSerialNum="
-				+ orderSerialNum + "]";
+				+ orderSerialNum + ", writerStatus=" + writerStatus + "]";
 	}
+	
 	public PurchaseReview toEntity() {
-		return PurchaseReview.builder().customId(customId).purchaseReviewContent(purchaseReviewContent).bookSeq(bookSeq).customSeq(customSeq).orderSeq(orderSeq).orderSerialNum(orderSerialNum).build();
+		return PurchaseReview.builder().customId(customId).purchaseReviewContent(purchaseReviewContent).bookSeq(bookSeq).customSeq(customSeq).orderSeq(orderSeq).orderSerialNum(orderSerialNum)
+				.writerStatus(writerStatus)
+				.build();
 	}
 	
 	

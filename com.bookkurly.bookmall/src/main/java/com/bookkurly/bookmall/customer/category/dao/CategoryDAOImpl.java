@@ -43,8 +43,8 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 
 	@Override
-	public String selectMaincateName(Integer subCateSeq) {
-		return sqlSession.selectOne("MainCateDAO.selectMainCateName", subCateSeq);
+	public String selectMaincateName(Integer mainCateSeq) {
+		return sqlSession.selectOne("MainCateDAO.selectMainCateName", mainCateSeq);
 	}
 
 	@Override
@@ -105,6 +105,11 @@ public class CategoryDAOImpl implements CategoryDAO {
 	@Override
 	public Integer insertBook(Book book) {
 		return sqlSession.insert("MainCateDAO.insertBook", book);
+	}
+
+	@Override
+	public Integer selectSubCateSeq(Integer bookSeq) {
+		return sqlSession.selectOne("MainCateDAO.selectSubCateSeq", bookSeq);
 	}
 
 	

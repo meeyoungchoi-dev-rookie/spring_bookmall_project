@@ -58,6 +58,12 @@ public class BookDAOImpl  implements BookDAO{
 	}
 
 
+	@Override
+	public Integer updateBookAmount(Book book) {
+		return sqlSession.update("BookDAO.updateBookAmount", book);
+	}
+
+
 	
 
 

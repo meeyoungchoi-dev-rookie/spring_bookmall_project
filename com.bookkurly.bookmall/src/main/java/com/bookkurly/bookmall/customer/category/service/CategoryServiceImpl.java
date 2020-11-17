@@ -42,8 +42,8 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 
 	@Override
-	public String selectMaincateName(Integer subCateSeq) {
-		return categoryDao.selectMaincateName(subCateSeq);
+	public String selectMaincateName(Integer mainCateSeq) {
+		return categoryDao.selectMaincateName(mainCateSeq);
 		
 	}
 
@@ -105,6 +105,11 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public Integer insertBook(Book book) {
 		return categoryDao.insertBook(book);
+	}
+
+	@Override
+	public Integer selectSubCateSeq(Integer bookSeq) {
+		return categoryDao.selectSubCateSeq(bookSeq);
 	}
 
 	

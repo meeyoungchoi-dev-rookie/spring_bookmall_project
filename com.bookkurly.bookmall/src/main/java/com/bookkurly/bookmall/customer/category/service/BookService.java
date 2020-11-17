@@ -20,5 +20,7 @@ public interface BookService {
 	public Book findBook(JangEntity jangEntity);
 
 	public List<PurchaseReview> selectPurchaseReview(Integer bookSeq);
+	
+	public Integer updateBookAmount(Book book);
 
 }

@@ -16,7 +16,24 @@ public class PurchaseReviewDAOImpl implements PurchaseReviewDAO {
 	@Override
 	public Integer insertPurchaseReview(PurchaseReview purchaseReview) {
 		return sqlSession.insert("PurchaseReviewDAO.insert", purchaseReview);
-		
+	}
+
+
+	@Override
+	public PurchaseReview find(Integer purchaseReviewSeq) {
+		return sqlSession.selectOne("PurchaseReviewDAO.find", purchaseReviewSeq);
+	}
+
+
+	@Override
+	public Integer update(PurchaseReview before) {
+		return sqlSession.update("PurchaseReviewDAO.update", before);
+	}
+
+
+	@Override
+	public Integer delete(Integer purchaseReviewSeq) {
+		return sqlSession.delete("PurchaseReviewDAO.delete", purchaseReviewSeq);
 	}
 	
 	

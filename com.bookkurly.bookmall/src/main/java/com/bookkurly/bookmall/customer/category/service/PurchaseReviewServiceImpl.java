@@ -18,4 +18,22 @@ public class PurchaseReviewServiceImpl implements PurchaseReviewService {
 		return purchaseReviewDAO.insertPurchaseReview(purchaseReview);
 	}
 
+
+	@Override
+	public PurchaseReview find(Integer purchaseReviewSeq) {
+		return purchaseReviewDAO.find(purchaseReviewSeq);
+	}
+
+
+	@Override
+	public Integer update(PurchaseReview before) {
+		return purchaseReviewDAO.update(before);
+	}
+
+
+	@Override
+	public Integer delete(Integer purchaseReviewSeq) {
+		return purchaseReviewDAO.delete(purchaseReviewSeq);
+	}
+
 }

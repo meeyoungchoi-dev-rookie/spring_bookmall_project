@@ -69,6 +69,12 @@
 		select * from "purchase_review" where "book_seq" = #{bookSeq}
 
 	</select>
+	
+	<update id="updateBookAmount" parameterType="Book">
+		update "book"
+		set "book_amount" = #{bookAmount}
+		where "book_seq" = #{bookSeq}
+	</update>
 
 
 

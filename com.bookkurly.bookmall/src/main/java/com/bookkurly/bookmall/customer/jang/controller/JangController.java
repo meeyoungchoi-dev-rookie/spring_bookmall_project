@@ -2,6 +2,7 @@ package com.bookkurly.bookmall.customer.jang.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -111,8 +112,10 @@ public class JangController {
 
 			jangService.insertToJang(entity);
 			System.out.println("장바구니 담기 성공");
+			
 
 		}
+		
 
 		return "redirect:/shop/janglist";
 	}
@@ -120,6 +123,7 @@ public class JangController {
 	@GetMapping("/shop/janglist")
 	public String printJangList(HttpSession session, Model model) {
 		String customId = (String) session.getAttribute("customId");
+		
 
 		Integer customerSeq = customerService.selectCustomerSeq(customId);
 		System.out.println("customId: " + customId + " 님 회원번호: " + customerSeq);
@@ -210,7 +214,7 @@ public class JangController {
 
 	@PostMapping("/payment/{myOrderSerialNum}/{customId}")
 	public String pay(PaymentForm paymentForm, @PathVariable String myOrderSerialNum, @PathVariable String customId,
-			Model model) {
+			Model model , HttpSession session) {
 		System.out.println("paymentForm: " + paymentForm.toString() + " , myOrderSerialNum: " + myOrderSerialNum);
 		System.out.println("customId: " + customId);
 
@@ -249,15 +253,14 @@ public class JangController {
 			System.out.println("변경후 bookAmount: " + bookAmount);
 			book.setBookAmount(bookAmount);
 			System.out.println("수정된 도서정보: " + book.toString());
+			
+			Integer updateAmount = bookService.updateBookAmount(book);
+			System.out.println((i + 1) + "번 도서 수량변경 성공여부: " + updateAmount );
+			
 		}
-		
-		
-
-		
-		
-		
-		
-		
+			
+		session.setAttribute("userJangSession", null);
+	
 		model.addAttribute("myOrderSerialNum", myOrderSerialNum);
 		model.addAttribute("myOrders",myOrders);
 		

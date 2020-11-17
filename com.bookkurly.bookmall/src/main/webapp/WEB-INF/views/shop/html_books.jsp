@@ -55,10 +55,10 @@
 
 <div class="container">
 	<div class="row ml-2 mt-5">
-		<input type="text" value="${maincate}"
-			class="form-control col-sm-3 my-1" readonly="readonly"> <input
-			type="text" value="${subCateName}"
-			class="form-control col-sm-3 my-1 ml-3" readonly="readonly">
+		<p class="col-sm-2 my-1">${maincate}</p>
+		<p class="col-sm-1 my-1">>></p>
+
+		<p class=" col-sm-1 my-1">${subCateName}</p>
 	</div>
 
 </div>

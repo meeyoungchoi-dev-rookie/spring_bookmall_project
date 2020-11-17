@@ -1,14 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-    
-    
+
+
 <mapper namespace="PurchaseReviewDAO">
 	<insert id="insert" parameterType="PurchaseReview">
 		insert into "purchase_review"
-values("purchase_review_seq".nextval, sysdate, sysdate, #{purchaseReviewContent}, #{bookSeq}, #{customSeq},#{orderSeq}, #{orderSerialNum}, #{customId})
-	
+		values("purchase_review_seq".nextval, sysdate, sysdate,
+		#{purchaseReviewContent}, #{bookSeq}, #{customSeq},#{orderSeq},
+		#{orderSerialNum},
+		#{customId}, #{writerStatus})
+
 	</insert>
+
+
+
+	<select id="find" parameterType="Integer"
+		resultType="PurchaseReview">
+		select * from "purchase_review" where "purchase_review_seq"
+		=
+		#{purchaseReviewSeq}
+
+	</select>
+
+	<update id="update" parameterType="PurchaseReview">
+		update "purchase_review"
+		set "purchase_review_content" = #{purchaseReviewContent}
+		where "purchase_review_seq" = #{purchaseReviewSeq}
+	</update>
+
+
+	<delete id="delete" parameterType="Integer">
+		delete from "purchase_review"
+		where "purchase_review_seq" = #{purchaseReviewSeq}
+	</delete>
 
 
 </mapper>

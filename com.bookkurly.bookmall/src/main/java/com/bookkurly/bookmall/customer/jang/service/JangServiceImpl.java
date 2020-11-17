@@ -31,7 +31,8 @@ public class JangServiceImpl implements JangService {
 		int year = cal.get(Calendar.YEAR);
 		System.out.println("year: " + year);
 		
-		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);
+		//참고 - https://hyeonstorage.tistory.com/163
+		String ym = year + new DecimalFormat("00").format(cal.get(Calendar.MONTH) + 1);//년 + 현재월 + 1개월 빈자리는 00으로 채우겠다
 		System.out.println("ym: " + ym);
 		
 		String ymd = ym + new DecimalFormat("00").format(cal.get(Calendar.DATE));

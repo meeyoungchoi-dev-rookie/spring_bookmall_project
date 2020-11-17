@@ -21,5 +21,7 @@ public interface BookDAO {
 
 	public List<PurchaseReview> selectPurchasReview(Integer bookSeq);
 
+	public Integer updateBookAmount(Book book);
+
 
 }

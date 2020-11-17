@@ -18,7 +18,7 @@ public interface CategoryService {
 
 	public String selectSubcateName(Integer subCateSeq);
 
-	public String selectMaincateName(Integer subCateSeq);
+	public String selectMaincateName(Integer mainCateSeq);
 
 	public String selectMaincate(Integer mainCateSeq);
 
@@ -43,4 +43,6 @@ public interface CategoryService {
 	public Integer updateBook(Book book);
 
 	public Integer insertBook(Book book);
+
+	public Integer selectSubCateSeq(Integer bookSeq);
 }

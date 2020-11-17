@@ -49,7 +49,9 @@ public class BookController {
 	
 	@RequestMapping(value ="/book/{bookSeq}/subcateseq/{subCateSeq}", method=RequestMethod.GET)
 	public String detail(@PathVariable Integer bookSeq, @PathVariable Integer subCateSeq , Model model ,  HttpServletRequest  request) {
+		boolean checkreview = false;
 		boolean checkJang = false;
+		Integer customSeq = 0;
 		System.out.println("/book/" + bookSeq + "/subcateseq/" + subCateSeq);
 		
 		HttpSession session = request.getSession();
@@ -59,7 +61,7 @@ public class BookController {
 		if (customId != null) {
 			System.out.println("customId: " + customId);
 			
-			Integer customSeq = customerService.selectCustomerSeq(customId);
+			customSeq = customerService.selectCustomerSeq(customId);
 			System.out.println("customSeq: " + customSeq);
 			CheckJang check = new CheckJang(customSeq, bookSeq);
 			
@@ -70,9 +72,15 @@ public class BookController {
 			
 		}
 		
+		//로그인이 안되있고 그냥 책을 조회할때
+		//customSeq = customerService.selectCustomerSeq(customId);
+		System.out.println("customSeq: " + customSeq);
 		
 		
-		String mainCateName = categoryService.selectMaincateName(subCateSeq);
+		Integer mainCateSeq = categoryService.selectMainCateSeq(subCateSeq);
+		
+		
+		String mainCateName = categoryService.selectMaincateName(mainCateSeq);
 		System.out.println("mainCateName: "  + mainCateName);
 		
 		
@@ -89,8 +97,6 @@ public class BookController {
 		
 	
 		
-		
-		
 		model.addAttribute("book", book);
 		model.addAttribute("subcatename", subCateName);
 		model.addAttribute("maincatename", mainCateName);
@@ -98,6 +104,7 @@ public class BookController {
 		model.addAttribute("bookSeq", bookSeq);
 		model.addAttribute("reviews", purchaseReviews);
 		model.addAttribute("jangs", jangs);
+		model.addAttribute("customSeq", customSeq);
 		return "shop/book_detail";
 	}
 	
@@ -110,6 +117,7 @@ public class BookController {
 		Integer customSeq = customerService.selectCustomerSeq(customId);
 		
 		purchaseReviewDTO.setCustomSeq(customSeq);
+		purchaseReviewDTO.setWriterStatus("true");
 		
 		CheckJang jangCheck = new CheckJang(customSeq, bookSeq);
 		List<JangEntity> jangs = jangService.selectJang(jangCheck);
@@ -143,5 +151,39 @@ public class BookController {
 		return "redirect:/book/" + bookSeq + "/subcateseq/" + book.getSubCateSeq();
 	}
 	
+	@PostMapping("/review/update/{purchaseReviewSeq}")
+	public String updateReview(@PathVariable Integer purchaseReviewSeq, PurchaseReviewDTO purchaseReviewDTO) {
+		PurchaseReview before = purchaseReviewService.find(purchaseReviewSeq);
+		System.out.println("수정전: " + before.toString());
+		
+		
+		System.out.println("purchaseReviewDTO: " + purchaseReviewDTO.toString());
+		
+		before.rewrite(purchaseReviewDTO.getPurchaseReviewContent());
+		System.out.println("수정후: " + before.toString());
+		
+		Integer updateSuccess = purchaseReviewService.update(before);
+		System.out.println("updateSuccess: " + updateSuccess);
+		
+		
+		Integer subCateSeq = categoryService.selectSubCateSeq(before.getBookSeq());
+		System.out.println("subCateSeq: " + subCateSeq);
+		return "redirect:/book/" + before.getBookSeq() + "/subcateseq/" + subCateSeq;
+	}
+	
+	
+	@GetMapping("/review/{purchaseReviewSeq}/delete/{bookSeq}")
+	public String deleteReview(@PathVariable Integer purchaseReviewSeq, @PathVariable Integer bookSeq) {
+		System.out.println("/review/" + purchaseReviewSeq + "/delete/" + bookSeq);
+		
+		Integer deleteSuccess = purchaseReviewService.delete(purchaseReviewSeq);
+		System.out.println("댓글 삭제 성공여부: " + deleteSuccess);
+		
+		
+		Integer subCateSeq = categoryService.selectSubCateSeq(bookSeq);
+		System.out.println("subCateSeq: " + subCateSeq);
+		
+		return "redirect:/book/" + bookSeq + "/subcateseq/" + subCateSeq;
+	}
 
 }
