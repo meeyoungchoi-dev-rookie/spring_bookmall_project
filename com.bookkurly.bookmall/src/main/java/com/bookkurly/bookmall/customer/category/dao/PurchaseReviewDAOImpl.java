@@ -1,5 +1,7 @@
 package com.bookkurly.bookmall.customer.category.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -34,6 +36,18 @@ public class PurchaseReviewDAOImpl implements PurchaseReviewDAO {
 	@Override
 	public Integer delete(Integer purchaseReviewSeq) {
 		return sqlSession.delete("PurchaseReviewDAO.delete", purchaseReviewSeq);
+	}
+
+
+	@Override
+	public List<PurchaseReview> findPurchaseReview(String myOrderSerialNum) {
+		return sqlSession.selectList("PurchaseReviewDAO.findPurchaseReview", myOrderSerialNum);
+	}
+
+
+	@Override
+	public Integer deleteReviews(String myOrderSerialNum) {
+		return sqlSession.delete("PurchaseReviewDAO.deleteReviews", myOrderSerialNum);
 	}
 	
 	

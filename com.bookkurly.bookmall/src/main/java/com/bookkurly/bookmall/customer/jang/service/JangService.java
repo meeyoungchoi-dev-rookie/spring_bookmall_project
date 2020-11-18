@@ -6,8 +6,11 @@ import com.bookkurly.bookmall.customer.category.entity.CheckJang;
 import com.bookkurly.bookmall.customer.jang.dto.JangDeleteInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangUpdate;
+import com.bookkurly.bookmall.customer.jang.dto.ManagerOrderDelivery;
 import com.bookkurly.bookmall.customer.jang.dto.OrderDetail;
+import com.bookkurly.bookmall.customer.jang.dto.OrderRefund;
 import com.bookkurly.bookmall.customer.jang.entity.JangEntity;
+import com.bookkurly.bookmall.customer.jang.entity.OrderNumber;
 
 public interface JangService {
 	
@@ -35,4 +38,12 @@ public interface JangService {
 	public JangEntity findJangInfo(JangEntity jangEntity);
 
 	public List<JangEntity> selectJang(CheckJang check);
+	
+	public Integer deleteOrders(String myOrderSerialNum);
+	
+	public Integer refundOrder(OrderRefund orderRefund);
+	
+	public List<OrderNumber> selectOrderSerialNums();
+	
+	public Integer updateOrderDeliveryStatement(ManagerOrderDelivery managerOrderDelivery);
 }

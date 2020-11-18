@@ -14,9 +14,7 @@ public class JangForm {
 	private Integer customSeq;
 	private String customId;
 	private String bookTitle;
-	
-	
-	
+	private String orderDeliveryStatus;
 
 	public Date getOrderDate() {
 		return orderDate;
@@ -33,11 +31,6 @@ public class JangForm {
 	public void setBookTitle(String bookTitle) {
 		this.bookTitle = bookTitle;
 	}
-
-	
-	
-	
-	
 
 	public String getCustomId() {
 		return customId;
@@ -95,8 +88,17 @@ public class JangForm {
 		this.orderSerialNum = orderSerialNum;
 	}
 
+	public String getOrderDeliveryStatus() {
+		return orderDeliveryStatus;
+	}
+
+	public void setOrderDeliveryStatus(String orderDeliveryStatus) {
+		this.orderDeliveryStatus = orderDeliveryStatus;
+	}
+
 	public JangForm(String orderSerialNum, Date orderDate, String orderPaymentStatus, Integer bookOrderCnt,
-			Integer bookOrderCntPrice, Integer bookSeq, Integer customSeq, String customId, String bookTitle) {
+			Integer bookOrderCntPrice, Integer bookSeq, Integer customSeq, String customId, String bookTitle,
+			String orderDeliveryStatus) {
 		super();
 		this.orderSerialNum = orderSerialNum;
 		this.orderDate = orderDate;
@@ -107,19 +109,22 @@ public class JangForm {
 		this.customSeq = customSeq;
 		this.customId = customId;
 		this.bookTitle = bookTitle;
+		this.orderDeliveryStatus = orderDeliveryStatus;
 	}
 
 	public JangEntity toEntity() {
 		return JangEntity.builder().orderSerialNum(orderSerialNum).orderDate(orderDate)
 				.orderPaymentStatus(orderPaymentStatus).bookOrderCnt(bookOrderCnt).bookOrderCntPrice(bookOrderCntPrice)
-				.bookSeq(bookSeq).customSeq(customSeq).bookTitle(bookTitle).build();
+				.bookSeq(bookSeq).customSeq(customSeq).bookTitle(bookTitle).orderDeliveryStatus(orderDeliveryStatus)
+				.build();
 	}
 
 	@Override
 	public String toString() {
 		return "JangForm [orderSerialNum=" + orderSerialNum + ", orderDate=" + orderDate + ", orderPaymentStatus="
-				+ orderPaymentStatus + ", bookOrderCnt=" + bookOrderCnt + ", bookSeq=" + bookSeq + ", customSeq="
-				+ customSeq + ", customId=" + customId + ", bookOrderCntPrice=" + bookOrderCntPrice + "]";
+				+ orderPaymentStatus + ", bookOrderCnt=" + bookOrderCnt + ", bookOrderCntPrice=" + bookOrderCntPrice
+				+ ", bookSeq=" + bookSeq + ", customSeq=" + customSeq + ", customId=" + customId + ", bookTitle="
+				+ bookTitle + ", orderDeliveryStatus=" + orderDeliveryStatus + "]";
 	}
 
 }

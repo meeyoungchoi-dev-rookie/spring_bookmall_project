@@ -38,6 +38,11 @@ public class CustomerDAOImpl implements CustomerDAO {
 	public String findCustomerName(Integer customSeq) {
 		return sqlSession.selectOne("CustomerDAO.selectCustomerName", customSeq);
 	}
+
+	@Override
+	public String selectCustomerId(Integer customSeq) {
+		return sqlSession.selectOne("CustomerDAO.selectCustomerId", customSeq);
+	}
 	
 	
 	

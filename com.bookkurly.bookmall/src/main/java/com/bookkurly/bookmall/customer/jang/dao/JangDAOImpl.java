@@ -10,8 +10,11 @@ import com.bookkurly.bookmall.customer.category.entity.CheckJang;
 import com.bookkurly.bookmall.customer.jang.dto.JangDeleteInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangUpdate;
+import com.bookkurly.bookmall.customer.jang.dto.ManagerOrderDelivery;
 import com.bookkurly.bookmall.customer.jang.dto.OrderDetail;
+import com.bookkurly.bookmall.customer.jang.dto.OrderRefund;
 import com.bookkurly.bookmall.customer.jang.entity.JangEntity;
+import com.bookkurly.bookmall.customer.jang.entity.OrderNumber;
 
 @Repository
 public class JangDAOImpl implements JangDAO {
@@ -73,6 +76,26 @@ public class JangDAOImpl implements JangDAO {
 	@Override
 	public List<JangEntity> selectJang(CheckJang check) {
 		return sqlSession.selectList("JangDAO.selectJang", check);
+	}
+
+	@Override
+	public Integer deleteOrders(String myOrderSerialNum) {
+		return sqlSession.delete("JangDAO.deleteOrders", myOrderSerialNum);
+	}
+
+	@Override
+	public Integer refundOrder(OrderRefund orderRefund) {
+		return sqlSession.delete("JangDAO.refundOrder", orderRefund);
+	}
+
+	@Override
+	public List<OrderNumber> selectOrderSerialNums() {
+		return sqlSession.selectList("JangDAO.selectOrderSerialNumbers");
+	}
+
+	@Override
+	public Integer updateOrderDeliverStatement(ManagerOrderDelivery managerOrderDelivery) {
+		return sqlSession.update("JangDAO.updateOrderDeliveryStatement", managerOrderDelivery);
 	}
 
 }

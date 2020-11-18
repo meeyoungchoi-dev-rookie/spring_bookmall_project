@@ -76,6 +76,7 @@ public class JangController {
 			jangForm.setCustomSeq(customSeq);
 			jangForm.setOrderPaymentStatus("false");
 			jangForm.setBookTitle(bookTitle);
+			jangForm.setOrderDeliveryStatus("false");
 			System.out.println("최초 장바구니에 담긴 상품: " + jangForm.toString());
 
 			JangEntity entity = jangForm.toEntity();
@@ -104,6 +105,7 @@ public class JangController {
 			jangForm.setOrderPaymentStatus("false");
 			jangForm.setBookOrderCntPrice(bookOrderCntPrice);
 			jangForm.setBookTitle(bookTitle);
+			jangForm.setOrderDeliveryStatus("false");
 			System.out.println("두번째부터 장바구니 담을때: " + session.getAttribute("userJangSession") + " , jangForm: "
 					+ jangForm.toString());
 
@@ -224,7 +226,7 @@ public class JangController {
 		System.out.println("디비에 저장하기 위한 paymentForm: " + paymentForm.toString());
 
 		Integer myOrderSerialNumUpdated = jangService.updateOrderStatement(myOrderSerialNum);
-		System.out.println("결제상태변경 성공: " + myOrderSerialNumUpdated);
+		System.out.println("결제상태 및 배송상태변경 성공: " + myOrderSerialNumUpdated);
 		
 		
 		Integer updatedSuccess = customerService.updateCustomInfo(paymentForm);

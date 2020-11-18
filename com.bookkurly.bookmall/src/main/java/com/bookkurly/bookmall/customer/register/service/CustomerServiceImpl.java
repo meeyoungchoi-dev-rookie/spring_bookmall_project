@@ -39,6 +39,13 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.findCustomerName(customSeq);
 	}
 
+	@Override
+	public String selectCustomerId(Integer customSeq) {
+		return customerDao.selectCustomerId(customSeq);
+	}
+
+	
+
 
 
 }

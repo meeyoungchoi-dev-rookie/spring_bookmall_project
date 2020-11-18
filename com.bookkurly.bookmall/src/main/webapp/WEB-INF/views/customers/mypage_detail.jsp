@@ -31,6 +31,7 @@ JangEntity jangEntityDetail = (JangEntity)request.getAttribute("jangEntityDetail
 			<th>구매수량</th>
 			<th>결제금액</th>
 			<th>결제상테</th>
+			<th>상품환불</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -41,6 +42,16 @@ JangEntity jangEntityDetail = (JangEntity)request.getAttribute("jangEntityDetail
 			<td>${jangEntityDetail.bookOrderCnt}</td>
 			<td>${jangEntityDetail.bookOrderCntPrice}</td>
 			<td>${jangEntityDetail.orderPaymentStatus}</td>
+			<td>
+				<form method="post" action="${path}/orders/refund">
+					<button type="submit" class="btn btn-danger">환불</button>
+					<input type="hidden" name="orderSerialNum" value="${jangEntityDetail.orderSerialNum}">
+					<input type="hidden" name="orderSeq" value="${jangEntityDetail.orderSeq}">
+					<input type="hidden" name="bookOrderCnt" value="${jangEntityDetail.bookOrderCnt}">
+					<input type="hidden" name="bookSeq" value="${jangEntityDetail.bookSeq}">
+					<input type="hidden" name="bookTitle" value="${jangEntityDetail.bookTitle}">
+				</form>
+			</td>
 		</tr>
 	</tbody>
 

@@ -41,6 +41,11 @@
 		select "custom_id" from "customer" where "custom_seq" = #{customSeq}
 	</select>
 	
+	<select id="selectCustomerId" parameterType="Integer" resultType="String">
+		select "custom_id" from "customer" where "custom_seq" = #{customSeq}
+	
+	
+	</select>
 
 
 </mapper>

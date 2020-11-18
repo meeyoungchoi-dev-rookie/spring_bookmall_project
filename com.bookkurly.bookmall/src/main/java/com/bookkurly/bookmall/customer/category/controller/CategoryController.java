@@ -58,14 +58,14 @@ public class CategoryController {
 
 		List<Book> books = null;
 
-		System.out.println(subcategories.get(0).getSubCateSeq());
+		//System.out.println(subcategories.get(0).getSubCateSeq());
 		books = categoryService.selectList2(subcategories.get(0).getSubCateSeq());
 
 		System.out.println(books.toString());
-		System.out.println(subcategories.get(1).getSubCateSeq());
+		//System.out.println(subcategories.get(1).getSubCateSeq());
 		List<Book> books2 = categoryService.selectList2(subcategories.get(1).getSubCateSeq());
 
-		System.out.println(subcategories.get(2).getSubCateSeq());
+		//System.out.println(subcategories.get(2).getSubCateSeq());
 		List<Book> books3 = categoryService.selectList2(subcategories.get(2).getSubCateSeq());
 		System.out.println(books3.toString());
 
@@ -94,11 +94,11 @@ public class CategoryController {
 		
 		List<Book> books = null;
 
-		System.out.println(subcategories.get(0).getSubCateSeq());
+		//System.out.println(subcategories.get(0).getSubCateSeq());
 		books = categoryService.selectList2(subcategories.get(0).getSubCateSeq());
 
 		System.out.println(books.toString());
-		System.out.println(subcategories.get(1).getSubCateSeq());
+		//System.out.println(subcategories.get(1).getSubCateSeq());
 		List<Book> books2 = categoryService.selectList2(subcategories.get(1).getSubCateSeq());
 		System.out.println("books2: " + books2.toString());
 

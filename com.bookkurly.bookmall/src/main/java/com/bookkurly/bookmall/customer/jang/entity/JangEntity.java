@@ -7,7 +7,9 @@ import javax.persistence.Entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
 @NoArgsConstructor
 @Getter
 @Entity
@@ -22,19 +24,20 @@ public class JangEntity {
 	private Integer bookSeq;
 	private Integer customSeq;
 	private String bookTitle;
+	private String orderDeliveryStatus;
 
 	@Override
 	public String toString() {
 		return "JangEntity [orderSeq=" + orderSeq + ", orderSerialNum=" + orderSerialNum + ", orderDate=" + orderDate
 				+ ", orderPaymentStatus=" + orderPaymentStatus + ", bookOrderCnt=" + bookOrderCnt
 				+ ", bookOrderCntPrice=" + bookOrderCntPrice + ", bookSeq=" + bookSeq + ", customSeq=" + customSeq
-				+ ", bookTitle=" + bookTitle + "]";
+				+ ", bookTitle=" + bookTitle + ", orderDeliveryStatus=" + orderDeliveryStatus + "]";
 	}
-
 
 	@Builder
 	public JangEntity(Integer orderSeq, String orderSerialNum, Date orderDate, String orderPaymentStatus,
-			Integer bookOrderCnt, Integer bookOrderCntPrice, Integer bookSeq, Integer customSeq, String bookTitle) {
+			Integer bookOrderCnt, Integer bookOrderCntPrice, Integer bookSeq, Integer customSeq, String bookTitle,
+			String orderDeliveryStatus) {
 		super();
 		this.orderSeq = orderSeq;
 		this.orderSerialNum = orderSerialNum;
@@ -45,6 +48,10 @@ public class JangEntity {
 		this.bookSeq = bookSeq;
 		this.customSeq = customSeq;
 		this.bookTitle = bookTitle;
+		this.orderDeliveryStatus = orderDeliveryStatus;
 	}
 
+
+	
+	
 }

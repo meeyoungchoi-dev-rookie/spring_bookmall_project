@@ -13,7 +13,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.bookkurly.bookmall.customer.category.entity.Book;
+import com.bookkurly.bookmall.customer.category.entity.PurchaseReview;
+import com.bookkurly.bookmall.customer.category.service.BookServiceImpl;
+import com.bookkurly.bookmall.customer.category.service.PurchaseReviewServiceImpl;
 import com.bookkurly.bookmall.customer.jang.dto.OrderDetail;
+import com.bookkurly.bookmall.customer.jang.dto.OrderRefund;
 import com.bookkurly.bookmall.customer.jang.entity.JangEntity;
 import com.bookkurly.bookmall.customer.jang.service.JangServiceImpl;
 import com.bookkurly.bookmall.customer.register.dto.LoginForm;
@@ -29,8 +34,14 @@ public class CustomerController {
 
 	@Autowired
 	private JangServiceImpl jangService;
+
+	@Autowired
+	private PurchaseReviewServiceImpl purchaseService;
 	
+	@Autowired
+	private BookServiceImpl bookService;
 	
+
 	@GetMapping("/customer/login")
 	public String login() {
 		return "customers/login";
@@ -76,39 +87,123 @@ public class CustomerController {
 
 		return "redirect:/customer/login";
 	}
-	
+
 	@GetMapping("/customer/mypage")
 	public String mypage() {
 		return "customers/mypage";
 	}
-	
-	
+
 	@PostMapping("/mypage/search")
 	public String searchOrder(HttpServletRequest request, Model model) {
-		String myOrderSerialNum = (String)request.getParameter("myOrderSerialNum");
+		String myOrderSerialNum = (String) request.getParameter("myOrderSerialNum");
 		System.out.println("search: " + request.getParameter("myOrderSerialNum"));
-		
+
 		List<JangEntity> myOrders = jangService.selectAll(myOrderSerialNum);
-		
+
 		System.out.println("myOrders: " + myOrders.toString());
-		
+
 		model.addAttribute("myOrders", myOrders);
 		model.addAttribute("myOrderSerialNum", myOrderSerialNum);
-		
+
 		return "customers/mypage";
 	}
-	
-	
-	@RequestMapping(value="/order/detail/{myOrderSerialNum}/{bookTitle}", produces="text/plain;charset=UTF-8")
+
+	@RequestMapping(value = "/order/detail/{myOrderSerialNum}/{bookTitle}", produces = "text/plain;charset=UTF-8")
 	public String orderDetail(@PathVariable String myOrderSerialNum, @PathVariable String bookTitle, Model model) {
 		OrderDetail orderDetail = new OrderDetail(myOrderSerialNum, bookTitle);
 		System.out.println("orderDetail: " + orderDetail.toString());
-		
+
 		JangEntity jangEntityDetail = jangService.selectOrderDetail(orderDetail);
 		System.out.println("jangEntityDetail: " + jangEntityDetail.toString());
 		model.addAttribute("jangEntityDetail", jangEntityDetail);
-		
+
 		return "customers/mypage_detail";
 	}
+
+	@GetMapping("/order/delete/{myOrderSerialNum}")
+	public String deleteOrders(@PathVariable String myOrderSerialNum, Model model) {
+		System.out.println("/order/delete/" + myOrderSerialNum);
+
+		List<PurchaseReview> reviews = purchaseService.findPurchaseReview(myOrderSerialNum);
+
+		List<JangEntity> orderDeleteJangs = null;
+		
+		if (reviews == null) {
+			orderDeleteJangs = jangService.selectAll(myOrderSerialNum);
+			System.out.println("orderDeleteJangs: " + orderDeleteJangs);
+			
+			for (int i = 0; i < orderDeleteJangs.size(); i++) {
+				int bookOrderCnt = orderDeleteJangs.get(i).getBookOrderCnt();
+				Book book = bookService.selectBook(orderDeleteJangs.get(i).getBookSeq());
+				book.setBookAmount(book.getBookAmount() + bookOrderCnt);
+				System.out.println("결제 취소후 책 재고수량: " + book.getBookAmount());
+				Integer bookUpdateSuccess = bookService.updateBookAmount(book);
+				System.out.println("책 재고수량 변견성공여부: " + bookUpdateSuccess);
+			}
+			
+			Integer deleteOrderSuccess = jangService.deleteOrders(myOrderSerialNum);
+			System.out.println("전체 결제 취소 성공여부: " + deleteOrderSuccess);
 	
+		} else {
+			System.out.println("reviews: " + reviews.toString());
+			Integer deletePurchaseReviews = purchaseService.deleteReviews(myOrderSerialNum);
+			System.out.println("결제번호 관련 댓글 삭제 성공여부: " + deletePurchaseReviews);
+			orderDeleteJangs = jangService.selectAll(myOrderSerialNum);
+			System.out.println("orderDeleteJangs: " + orderDeleteJangs);
+			
+			for (int i = 0; i < orderDeleteJangs.size(); i++) {
+				int bookOrderCnt = orderDeleteJangs.get(i).getBookOrderCnt();
+				Book book = bookService.selectBook(orderDeleteJangs.get(i).getBookSeq());
+				book.setBookAmount(book.getBookAmount() + bookOrderCnt);
+				System.out.println("결제 취소후 책 재고수량: " + book.getBookAmount());
+				Integer bookUpdateSuccess = bookService.updateBookAmount(book);
+				System.out.println("책 재고수량 변견성공여부: " + bookUpdateSuccess);
+			}
+			
+			
+			Integer deleteOrderSuccess = jangService.deleteOrders(myOrderSerialNum);
+			System.out.println("댓글 삭제후 전체 결제 취소 성공여부: " + deleteOrderSuccess);
+			
+		
+			
+		}
+		
+		model.addAttribute("deletejangs", orderDeleteJangs);
+
+		return "customers/mypage_delete_order";
+	}
+	
+	@PostMapping("/orders/refund")
+	public String refund(OrderRefund orderRefund, Model model) {
+		System.out.println("/orders/refund: " + orderRefund.toString());
+		
+		Integer bookSeq = orderRefund.getBookSeq();
+		Book book = bookService.selectBook(bookSeq);
+		System.out.println("책 정보: " + book.toString());
+		
+		book.setBookAmount(orderRefund.getBookOrderCnt() + book.getBookAmount());
+		Integer bookAmountUpdateSuccess = bookService.updateBookAmount(book);
+		System.out.println("도서 재고수량 수정성공여부: " + bookAmountUpdateSuccess);
+		
+		book = bookService.selectBook(bookSeq);
+		System.out.println("도서 환불 성공후 책 정보: " + book.toString());
+		
+		jangService.refundOrder(orderRefund);
+		
+		List<JangEntity> myOrders = jangService.selectAll(orderRefund.getOrderSerialNum());
+		model.addAttribute("myOrders", myOrders);
+		model.addAttribute("myOrderSerialNum", orderRefund.getOrderSerialNum());
+		
+		return "redirect:/customers/mypage_detail/" + orderRefund.getOrderSerialNum();
+	}
+	
+	
+	@GetMapping("/customers/mypage_detail/{orderSerialNum}")
+	public String mypage(@PathVariable String orderSerialNum, Model model) {
+		List<JangEntity> myOrders = jangService.selectAll(orderSerialNum);
+		model.addAttribute("myOrders", myOrders);
+		model.addAttribute("myOrderSerialNum", orderSerialNum);
+		return "customers/mypage";
+	}
+
 }

@@ -30,6 +30,7 @@ String myOrderSerialNum = (String)request.getAttribute("myOrderSerialNum");
 				<th>구매수량</th>
 				<th>총가격</th>
 				<th>결제상태</th>
+				<th>배송상태</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -40,6 +41,11 @@ String myOrderSerialNum = (String)request.getAttribute("myOrderSerialNum");
 
 					<td>${str.bookOrderCntPrice}</td>
 					<td>${str.orderPaymentStatus}</td>
+					<td>
+						<c:if test="${str.orderDeliveryStatus == false}">
+							배송중
+						</c:if>
+					</td>
 				</tr>
 
 				<c:set var="total" value="${total + str.bookOrderCntPrice}" />

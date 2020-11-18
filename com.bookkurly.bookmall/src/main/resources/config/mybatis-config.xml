@@ -59,7 +59,12 @@
 		<typeAlias alias="PurchaseReview" type="com.bookkurly.bookmall.customer.category.entity.PurchaseReview"/>
 
 		<typeAlias alias="CheckJang" type="com.bookkurly.bookmall.customer.category.entity.CheckJang"/>
-	
+		
+		<typeAlias alias="OrderRefund" type="com.bookkurly.bookmall.customer.jang.dto.OrderRefund"/>
+		
+		<typeAlias alias="OrderNumber" type="com.bookkurly.bookmall.customer.jang.entity.OrderNumber"/>
+		
+		<typeAlias alias="ManagerOrderDelivery" type="com.bookkurly.bookmall.customer.jang.dto.ManagerOrderDelivery"/>
 
 	</typeAliases>
 </configuration>

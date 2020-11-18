@@ -29,6 +29,12 @@ import com.bookkurly.bookmall.customer.category.entity.Book;
 import com.bookkurly.bookmall.customer.category.entity.MainCategory;
 import com.bookkurly.bookmall.customer.category.entity.SubCategory;
 import com.bookkurly.bookmall.customer.category.service.CategoryService;
+import com.bookkurly.bookmall.customer.jang.dto.ManagerOrderDelivery;
+import com.bookkurly.bookmall.customer.jang.entity.JangEntity;
+import com.bookkurly.bookmall.customer.jang.entity.OrderNumber;
+import com.bookkurly.bookmall.customer.jang.service.JangServiceImpl;
+import com.bookkurly.bookmall.customer.register.service.CustomerService;
+import com.bookkurly.bookmall.customer.register.service.CustomerServiceImpl;
 
 @Controller
 public class BookMallMangerController {
@@ -41,6 +47,12 @@ public class BookMallMangerController {
 
 	@Autowired
 	private CategoryService categoryService;
+	
+	@Autowired
+	private JangServiceImpl jangService;
+	
+	@Autowired
+	private CustomerServiceImpl CustomerService;
 
 	@GetMapping("/manager/page")
 	public String index() {
@@ -332,5 +344,65 @@ public class BookMallMangerController {
 	
 		return "redirect:/manager/subcate/" + book.getSubCateSeq();
 	}
+	
+	
+	@GetMapping("/manager/orders")
+	public String controlOrder(Model model) {
+		List<OrderNumber> orderSerialNumbers = jangService.selectOrderSerialNums();
+		
+		for (OrderNumber str : orderSerialNumbers) {
+			System.out.println("주문고유번호: " + str.getOrderSeq() + " : " + str.getOrderSerialNum());
+		}
+		
+		model.addAttribute("orderNumbers", orderSerialNumbers);
+		
+		return "admin/orders";
+	}
+	
+	
+	@GetMapping("/manager/orders/{orderSerialNum}")
+	public String orderDetail(@PathVariable String orderSerialNum, Model model) {
+		System.out.println("/manager/orders/" + orderSerialNum);
+		
+		List<JangEntity> jangs = jangService.selectAll(orderSerialNum);
+		System.out.println("jangs: " + jangs.toString());
+		
+		for (int i = 0; i < jangs.size(); i++) {
+			if (jangs.get(i).getBookTitle() == null) {
+				Book book = categoryService.findBook(jangs.get(i).getBookSeq());
+				jangs.get(i).setBookTitle(book.getBookTitle());
+			}
+		}
+		
+		for (int i = 0; i < jangs.size(); i++) {
+			if (jangs.get(i).getOrderDeliveryStatus() == null) {
+				jangs.get(i).setOrderDeliveryStatus("false");
+			}
+		}
+		
+	
+		System.out.println("update후 jangs: " + jangs.toString());
+		
+		String customerId = CustomerService.selectCustomerId(jangs.get(0).getCustomSeq());
+		
+		
+		model.addAttribute("jangs", jangs);
+		model.addAttribute("customerId", customerId);
+		model.addAttribute("orderSerialNum", orderSerialNum);
+		
+		return "admin/orders_detail";
+	}
+	
+	@PostMapping("/manager/update/orderDeliverStatus")
+	public String updateOrderDeliverStatus(ManagerOrderDelivery managerOrderDelivery) {
+		managerOrderDelivery.setOrderDeliveryStatus("true");
+		System.out.println("marnagerOrderDelivery: " + managerOrderDelivery);
+		
+		Integer deliveryUpdateSuccess = jangService.updateOrderDeliveryStatement(managerOrderDelivery);
+		System.out.println("deliveryUpdateSuccess: " + deliveryUpdateSuccess);
+		
+		return "redirect:/manager/orders/" + managerOrderDelivery.getOrderSerialNum();
+	}
+	
 
 }

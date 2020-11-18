@@ -46,7 +46,7 @@ List<JangEntity> myOrders = (List<JangEntity>) request.getAttribute("myOrders");
 				<th>결제일</th>
 				<th>상품명</th>
 				<th>결제금액</th>
-				<th>출하상태</th>
+				<th>결제상태</th>
 				<th>배송상태</th>
 			</tr>
 		</thead>
@@ -56,8 +56,17 @@ List<JangEntity> myOrders = (List<JangEntity>) request.getAttribute("myOrders");
 					<td>${str.orderDate}</td>
 					<td><a href="${path}/order/detail/${myOrderSerialNum}/${str.bookTitle}">${str.bookTitle}</a></td>
 					<td>${str.bookOrderCntPrice}</td>
-					<td>출하완료</td>
-					<td>배송준비중</td>
+					<td>${str.orderPaymentStatus}</td>
+					<td>
+						<c:if test="${str.orderDeliveryStatus == false}">
+							배송중
+						</c:if>
+						<c:if test="${str.orderDeliveryStatus == true}">
+							배송완료
+						</c:if>
+					
+					
+					</td>
 				</tr>
 
 
@@ -65,16 +74,13 @@ List<JangEntity> myOrders = (List<JangEntity>) request.getAttribute("myOrders");
 
 
 		</tbody>
-
-
-
-
-
 	</table>
-
-
-
-
+	
+	<div class="container">
+		<a class="btn btn-danger" href="${path}/order/delete/${myOrderSerialNum}">전체 결제 취소</a>
+	</div>
+	
+	
 </c:if>
 
 <jsp:include page="../layouts/footer.jsp" />
