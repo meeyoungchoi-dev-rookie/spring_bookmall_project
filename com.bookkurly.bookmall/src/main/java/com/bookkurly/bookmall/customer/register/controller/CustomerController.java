@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.bookkurly.bookmall.customer.category.entity.Book;
 import com.bookkurly.bookmall.customer.category.entity.PurchaseReview;
 import com.bookkurly.bookmall.customer.category.service.BookServiceImpl;
+import com.bookkurly.bookmall.customer.category.service.CategoryServiceImpl;
 import com.bookkurly.bookmall.customer.category.service.PurchaseReviewServiceImpl;
 import com.bookkurly.bookmall.customer.jang.dto.OrderDetail;
 import com.bookkurly.bookmall.customer.jang.dto.OrderRefund;
@@ -41,6 +42,9 @@ public class CustomerController {
 	@Autowired
 	private BookServiceImpl bookService;
 	
+	@Autowired
+	private CategoryServiceImpl categoryService;
+	
 
 	@GetMapping("/customer/login")
 	public String login() {
@@ -57,6 +61,10 @@ public class CustomerController {
 
 		HttpSession session = request.getSession();
 		session.setAttribute("customId", loginresult.getCustomId());
+		
+		
+		Integer mainCateSeq = categoryService.findMainCateSeq("백엔드");
+		System.out.println("mainCateSeq: " + mainCateSeq);
 
 		model.addAttribute("loginSession", session.getAttribute("customId"));
 
@@ -111,12 +119,21 @@ public class CustomerController {
 	@RequestMapping(value = "/order/detail/{myOrderSerialNum}/{bookTitle}", produces = "text/plain;charset=UTF-8")
 	public String orderDetail(@PathVariable String myOrderSerialNum, @PathVariable String bookTitle, Model model) {
 		OrderDetail orderDetail = new OrderDetail(myOrderSerialNum, bookTitle);
-		System.out.println("orderDetail: " + orderDetail.toString());
+		
 
 		JangEntity jangEntityDetail = jangService.selectOrderDetail(orderDetail);
-		System.out.println("jangEntityDetail: " + jangEntityDetail.toString());
-		model.addAttribute("jangEntityDetail", jangEntityDetail);
+		
+		
+		if (orderDetail == null && jangEntityDetail == null) {
+			model.addAttribute("jangEntityDetail", null);
+		} else if (orderDetail != null && jangEntityDetail != null) {
+			System.out.println("orderDetail: " + orderDetail.toString());
+			System.out.println("jangEntityDetail: " + jangEntityDetail.toString());
+			model.addAttribute("jangEntityDetail", jangEntityDetail);
 
+		}
+		
+		
 		return "customers/mypage_detail";
 	}
 

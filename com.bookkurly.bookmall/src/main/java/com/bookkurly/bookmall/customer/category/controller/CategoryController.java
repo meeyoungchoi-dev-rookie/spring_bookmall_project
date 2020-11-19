@@ -80,10 +80,9 @@ public class CategoryController {
 	
 	
 	
-	@RequestMapping(value = "/subacategory/backend/{mainCateSeq}", method = RequestMethod.GET )
+	@GetMapping("/subacategory/backend/{mainCateSeq}" )
 	public String backendCate(@PathVariable Integer mainCateSeq, Model model) {
 		System.out.println("subcategroy/backend: " + mainCateSeq);
-		
 		
 		
 		List<SubCategory> subcategories = categoryService.selectList(mainCateSeq);

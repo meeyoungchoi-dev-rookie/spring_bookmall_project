@@ -30,6 +30,7 @@ String subCateName = (String)request.getAttribute("subCateName");
 
 
 <c:if test="${book != null}">
+<form method="post" action="${path}/manager/book/edit/${book.bookSeq}">
 <div class="card mb-3 container mt-5 " style="max-width: 1100px;">
 	
 	<div class="row no-gutters">
@@ -40,7 +41,7 @@ String subCateName = (String)request.getAttribute("subCateName");
 		</div>
 		<div class="col-md-8">
 			
-				<form method="post" action="${path}/manager/book/edit/${book.bookSeq}">
+				
 					<div class="card-body  mt-5 ">
 						<div class="row">
 							<label class="col-sm-2">책번호</label>
@@ -93,11 +94,11 @@ String subCateName = (String)request.getAttribute("subCateName");
 	<button type="submit" class="btn btn-success">수정하기</button>
 
 </div>
-
+</form>
 </c:if>
 
 
-</form>
+
 <jsp:include page="../layouts/footer.jsp" />
 
 

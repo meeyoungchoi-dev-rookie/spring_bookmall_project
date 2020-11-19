@@ -45,4 +45,8 @@ public interface CategoryDAO {
 	public Integer insertBook(Book book);
 
 	public Integer selectSubCateSeq(Integer bookSeq);
+
+	public String findMokcha(Integer bookSeq);
+
+	public String findFileName(Integer bookSeq);
 }

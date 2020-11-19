@@ -15,7 +15,11 @@
 <% List<MainCategory> mainCategories  = (List<MainCategory>)session.getAttribute("maincategories"); %>
 
 <div class="jumbotron">
-	<h1>고객이 볼 페이지</h1>
+	<h1 class="display-4">환영합니다~!</h1>
+	<p class="lead">도서 쇼핑몰 BookKurly입니다</p>
+	<hr class="my-4">
+	<p>즐거운 쇼핑 하세용~</p>
+	<a class="btn btn-success btn-lg" href="${path}/subcategory/backend/${1}">쇼핑하기</a>
 </div>
 
 <div class="conainter">

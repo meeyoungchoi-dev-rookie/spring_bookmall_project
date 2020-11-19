@@ -182,7 +182,10 @@ public class BookMallMangerController {
 		// 4.
 		String mainCateName = categoryService.findMainCateName(mainCateSeq);
 		System.out.println("mainCateName: " + mainCateName);
-
+		
+		//String bookContents = categoryService.findMokcha(bookSeq);
+		System.out.println("bookContents: " + book.getBookContents());
+		
 		model.addAttribute("book", book);
 		model.addAttribute("mainCateName", mainCateName);
 		model.addAttribute("subCateName", book.getSubCateName());
@@ -207,48 +210,80 @@ public class BookMallMangerController {
 		// 4.
 		String mainCateName = categoryService.findMainCateName(mainCateSeq);
 		System.out.println("mainCateName: " + mainCateName);
-
+		
+		String bookContents = categoryService.findMokcha(bookSeq);
+		System.out.println("bookContents: " + bookContents);
+		
 		model.addAttribute("book", book);
 		model.addAttribute("mainCateName", mainCateName);
 		model.addAttribute("subCateName", subCateName);
-
+		model.addAttribute("bookContents", bookContents);
+		
 		return "admin/book_update";
 	}
 
 	@PostMapping("/manager/book/update/{bookSeq}")
 	public String update(@PathVariable Integer bookSeq, BookDTO bookdto, Model model , MultipartFile file, HttpServletRequest request) throws IOException {
+		Book book = null;
 		System.out.println("/manager/book/update/" + bookSeq);
 
 		System.out.println("수정후 book: " + bookdto.toString());
 
 		System.out.println("uploadPath: " + uploadPath);
+		
 		System.out.println("파일이름: " + file.getOriginalFilename());
 		
-		bookdto.setBookImageName(file);
 		
-		System.out.println("파일크기: " + file.getSize());
+		if (file == null) {
+			String beforeUpdatedName = categoryService.findFileName(bookSeq);
+			System.out.println("before: " + beforeUpdatedName);
+			
+			book = bookdto.toEntity(bookdto.getBookSeq(),beforeUpdatedName);
+			System.out.println("파일이름 없을때 book: " + book.toString());
+			
+			String resourcesPath = request.getSession().getServletContext().getRealPath(uploadPath);
+			System.out.println("파일이름 없을때 resourcesPath: " + resourcesPath);
 
-		System.out.println("컨텍트 타입: " + file.getContentType());// 어떤 종류의 파일인지를 알려준다
+			File target = new File(resourcesPath, beforeUpdatedName);
+			System.out.println("파일이름 없을때 target: " + target.toString());
 
-		String savedName = file.getOriginalFilename();
-		System.out.println("originalFileName: " + savedName);
+			FileCopyUtils.copy(file.getBytes(), target);
+			System.out.println("파일이름 없을때 resourcesPath: " + resourcesPath);
+			
+			Integer updateSuccess = categoryService.updateBook(book);
+			System.out.println("파일이름 없을때 update 성공: " + updateSuccess);
+
+
+			
+		} else {
+			bookdto.setBookImageName(file);
+			
+			System.out.println("파일크기: " + file.getSize());
+
+			System.out.println("컨텍트 타입: " + file.getContentType());// 어떤 종류의 파일인지를 알려준다
+
+			String savedName = file.getOriginalFilename();
+			System.out.println("originalFileName: " + savedName);
+			
+			book = bookdto.toEntity(bookdto.getBookSeq(),file.getOriginalFilename());
+			System.out.println("book: " + book.toString());
+
+			String resourcesPath = request.getSession().getServletContext().getRealPath(uploadPath);
+			System.out.println("resourcesPath: " + resourcesPath);
+
+			File target = new File(resourcesPath, savedName);
+			System.out.println("target: " + target.toString());
+
+			FileCopyUtils.copy(file.getBytes(), target);
+			System.out.println("resourcesPath: " + resourcesPath);
+			
+			Integer updateSuccess = categoryService.updateBook(book);
+			System.out.println("update 성공: " + updateSuccess);
+
+
+		}
 		
-		Book book = bookdto.toEntity(bookdto.getBookSeq(),file.getOriginalFilename());
-		System.out.println("book: " + book.toString());
-
-		String resourcesPath = request.getSession().getServletContext().getRealPath(uploadPath);
-		System.out.println("resourcesPath: " + resourcesPath);
-
-		File target = new File(resourcesPath, savedName);
-		System.out.println("target: " + target.toString());
-
-		FileCopyUtils.copy(file.getBytes(), target);
-		System.out.println("resourcesPath: " + resourcesPath);
-		
-		Integer updateSuccess = categoryService.updateBook(book);
-		System.out.println("update 성공: " + updateSuccess);
-
-		return "redirect:/manager/book/" + bookSeq;
+				return "redirect:/manager/book/" + bookSeq;
 	}
 
 	@GetMapping("/manager/create")
@@ -379,6 +414,9 @@ public class BookMallMangerController {
 				jangs.get(i).setOrderDeliveryStatus("false");
 			}
 		}
+		
+		
+		
 		
 	
 		System.out.println("update후 jangs: " + jangs.toString());

@@ -21,6 +21,11 @@ JangEntity jangEntityDetail = (JangEntity)request.getAttribute("jangEntityDetail
 	<h2>결제내역 상세조회</h2>
 </div>
 
+<c:if test="${empty jangEntityDetail}">
+	<h1>결제가 취소된 상품입니다.</h1>
+</c:if>
+
+
 <c:if test="${not empty jangEntityDetail}">
 <table class="table text-center table-hover container">
 	<thead>

@@ -92,6 +92,7 @@ List<JangEntity> myOrders = (List<JangEntity>) request.getAttribute("myOrders");
 
 		<button class="btn btn-outline-primary my-2 my-sm-0 ml-2 mr-20"
 		 type="submit">결제하기</button>
+		 <a class="btn btn-danger my-2 my-sm-0 ml-2 mr-20" href="${path}/orders/cancel/${myOrderSerialNum}">결제취소</a>
 
 	</form>
 

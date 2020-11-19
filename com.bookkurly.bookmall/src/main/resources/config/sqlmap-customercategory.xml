@@ -119,6 +119,7 @@
 		set
 		"book_title" = #{bookTitle},
 		"book_intro" = #{bookIntro},
+		"book_contents" = #{bookContents},
 		"book_amount"
 		= #{bookAmount},
 		"book_image_name" = #{bookImageName}
@@ -148,6 +149,13 @@
 		select "sub_cate_seq" from "book" where "book_seq" = #{bookSeq}
 	</select>
 
+	<select id="findMokcha" parameterType="Integer" resultType="String">
+	select "book_contents" from "book" where "book_seq" = #{bookSeq} 
+	</select>
+
+	<select id="findFileName" parameterType="Integer" resultType="String">
+		select "book_image_name" from "book" where "book_seq" = #{bookSeq}
+	</select>
 
 
 </mapper>

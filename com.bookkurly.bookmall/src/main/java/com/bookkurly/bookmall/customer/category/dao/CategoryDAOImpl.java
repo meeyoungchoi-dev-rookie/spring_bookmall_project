@@ -112,6 +112,16 @@ public class CategoryDAOImpl implements CategoryDAO {
 		return sqlSession.selectOne("MainCateDAO.selectSubCateSeq", bookSeq);
 	}
 
+	@Override
+	public String findMokcha(Integer bookSeq) {
+		return sqlSession.selectOne("MainCateDAO.findMokcha", bookSeq);
+	}
+
+	@Override
+	public String findFileName(Integer bookSeq) {
+		return sqlSession.selectOne("MainCateDAO.findFileName", bookSeq);
+	}
+
 	
 
 	

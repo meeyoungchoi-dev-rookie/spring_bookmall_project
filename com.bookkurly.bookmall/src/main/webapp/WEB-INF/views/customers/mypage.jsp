@@ -17,7 +17,8 @@ List<JangEntity> myOrders = (List<JangEntity>) request.getAttribute("myOrders");
 %>
 
 <div class="container">
-	<h1>${customId}님마이페이지</h1>
+	<h1 class="display-4">${customId}님마이페이지</h1>
+	<p class="lead">결제내역을 확인할수 있습니다</p>
 </div>
 
 

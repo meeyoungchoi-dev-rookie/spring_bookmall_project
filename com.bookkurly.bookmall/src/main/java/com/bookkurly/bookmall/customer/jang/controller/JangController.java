@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.bookkurly.bookmall.customer.category.entity.Book;
+import com.bookkurly.bookmall.customer.category.entity.MainCategory;
 import com.bookkurly.bookmall.customer.category.service.BookServiceImpl;
+import com.bookkurly.bookmall.customer.category.service.CategoryServiceImpl;
 import com.bookkurly.bookmall.customer.jang.dto.JangDeleteInfo;
 import com.bookkurly.bookmall.customer.jang.dto.JangForm;
 import com.bookkurly.bookmall.customer.jang.dto.JangInfo;
@@ -34,6 +36,9 @@ public class JangController {
 
 	@Autowired
 	private CustomerServiceImpl customerService;
+	
+	@Autowired
+	private CategoryServiceImpl categoryService;
 
 	static String jangId;
 	static Integer customSeq;
@@ -225,8 +230,16 @@ public class JangController {
 		paymentForm.setCustomSeq(customSeq);
 		System.out.println("디비에 저장하기 위한 paymentForm: " + paymentForm.toString());
 
-		Integer myOrderSerialNumUpdated = jangService.updateOrderStatement(myOrderSerialNum);
-		System.out.println("결제상태 및 배송상태변경 성공: " + myOrderSerialNumUpdated);
+		List<JangEntity> jangEntities = jangService.selectAll(myOrderSerialNum);
+		
+		for (int i = 0; i < jangEntities.size(); i++ ) {
+			if (jangEntities.get(i).getOrderDeliveryStatus().equals("false") ) {
+				Integer myOrderSerialNumUpdated = jangService.updateOrderStatement(myOrderSerialNum);
+				System.out.println("결제상태 및 배송상태변경 성공: " + myOrderSerialNumUpdated);
+			}
+		}
+		
+		
 		
 		
 		Integer updatedSuccess = customerService.updateCustomInfo(paymentForm);
@@ -235,16 +248,16 @@ public class JangController {
 		
 		
 		
-		List<JangEntity> myOrders = jangService.selectAll(myOrderSerialNum);
-		System.out.println("결제완료후 myOrders: " + myOrders.toString());
+		jangEntities = jangService.selectAll(myOrderSerialNum);
+		System.out.println("결제완료후 jangEntities: " + jangEntities.toString());
 		
 		
 		System.out.println("==================책 주문수량 만큼 삭제하기위한 코드==================");
-		for (int i = 0; i < myOrders.size(); i++) {
-			JangEntity bookEntity = jangService.findJangInfo(myOrders.get(i));
+		for (int i = 0; i < jangEntities.size(); i++) {
+			JangEntity bookEntity = jangService.findJangInfo(jangEntities.get(i));
 			System.out.println((i + 1) + "번 도서: " + bookEntity.toString());
 			System.out.println("=================현재 디비에 저장되 있는 책 정보=====================");
-			Book book = bookService.findBook(myOrders.get(i));
+			Book book = bookService.findBook(jangEntities.get(i));
 			System.out.println((i + 1) + "번 도서: " + book.toString());
 			int bookAmount = book.getBookAmount();
 			System.out.println("bookAmount: " + bookAmount);
@@ -264,11 +277,27 @@ public class JangController {
 		session.setAttribute("userJangSession", null);
 	
 		model.addAttribute("myOrderSerialNum", myOrderSerialNum);
-		model.addAttribute("myOrders",myOrders);
+		model.addAttribute("myOrders",jangEntities);
 		
 		return "shop/paymentsuccess";
 	}
 
 
+	@GetMapping("/orders/cancel/{myOrderSerialNum}")
+	public String cancelOrders(@PathVariable String myOrderSerialNum) {
+		System.out.println("/orders/cancel/" + myOrderSerialNum);
+		
+		Integer orderCancelSuccess = jangService.deleteJang(myOrderSerialNum);
+		System.out.println("결제 취소 성공여부: " + orderCancelSuccess);
+		
+		List<MainCategory> mainCategories = categoryService.selectList();
 
+		for (MainCategory mc : mainCategories) {
+			System.out.println(mc.toString());
+		}
+		
+		return "redirect:/subcategory/backend/" + mainCategories.get(0).getMainCateSeq();
+	}
+	
+	
 }

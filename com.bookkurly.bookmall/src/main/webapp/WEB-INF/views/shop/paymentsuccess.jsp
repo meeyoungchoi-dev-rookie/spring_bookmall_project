@@ -45,6 +45,9 @@ String myOrderSerialNum = (String)request.getAttribute("myOrderSerialNum");
 						<c:if test="${str.orderDeliveryStatus == false}">
 							배송중
 						</c:if>
+							<c:if test="${str.orderDeliveryStatus == true}">
+							배송완료
+						</c:if>
 					</td>
 				</tr>
 

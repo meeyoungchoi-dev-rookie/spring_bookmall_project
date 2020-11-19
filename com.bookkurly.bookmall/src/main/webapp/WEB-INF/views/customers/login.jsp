@@ -15,7 +15,8 @@
 
 
 <div class="jumbotron">
-	<h1>고객 로그인 페이지</h1>
+	<h1 class="display-4">BookKurly 로그인</h1>
+	<p class="lead">로그인 하시고 더 다양한 서비스를 경험하세요</p>
 </div>
 
 

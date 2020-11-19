@@ -112,6 +112,16 @@ public class CategoryServiceImpl implements CategoryService {
 		return categoryDao.selectSubCateSeq(bookSeq);
 	}
 
+	@Override
+	public String findMokcha(Integer bookSeq) {
+		return categoryDao.findMokcha(bookSeq);
+	}
+
+	@Override
+	public String findFileName(Integer bookSeq) {
+		return categoryDao.findFileName(bookSeq);
+	}
+
 	
 	
 

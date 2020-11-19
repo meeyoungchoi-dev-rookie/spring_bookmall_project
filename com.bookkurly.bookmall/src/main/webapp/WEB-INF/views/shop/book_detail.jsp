@@ -61,15 +61,15 @@ Integer bookSeq = (Integer) request.getAttribute("bookSeq");
 						<input type="hidden" name=customId value="${customId}"> <input
 							type="hidden" name="bookPrice" value="${book.bookPrice}">
 
-
-						<div class="row mt-2">
-							<label class="col-sm-2 col-form-label">구매수량</label> <input
-								type="text" name="bookOrderCnt" placeholder="구매하실 수량을 입력하세요"
-								class="form-control col-sm-9">
-
-						</div>
-
 						<c:if test="${customId != null}">
+							<div class="row mt-2">
+								<label class="col-sm-2 col-form-label">구매수량</label> <input
+									type="text" name="bookOrderCnt" placeholder="구매하실 수량을 입력하세요"
+									class="form-control col-sm-9">
+
+							</div>
+
+
 							<button type="submit" class="btn btn-success mt-5 btn-lg">주문담기</button>
 						</c:if>
 
@@ -141,24 +141,34 @@ Integer bookSeq = (Integer) request.getAttribute("bookSeq");
 						test="${bookreview.writerStatus eq true && bookreview.customSeq == customSeq}">
 						<a href="#" class="review-edit-btn ml-3" data-toggle="collapse"
 							data-target=".multi-collapse-${bookreview.purchaseReviewSeq}">수정</a>
-						<a href="${path}/review/${bookreview.purchaseReviewSeq}/delete/${bookreview.bookSeq}" class="review-edit-btn ml-3" style="color:red">삭제</a>	
+						<a
+							href="${path}/review/${bookreview.purchaseReviewSeq}/delete/${bookreview.bookSeq}"
+							class="review-edit-btn ml-3" style="color: red">삭제</a>
 					</c:if>
 
 				</div>
 
-				<p class="collapse multi-collapse-${bookreview.purchaseReviewSeq} show mr-3">${bookreview.purchaseReviewContent}</p>
+				<p
+					class="collapse multi-collapse-${bookreview.purchaseReviewSeq} show mr-3">${bookreview.purchaseReviewContent}</p>
 
-				<form class="collapse multi-collapse-${bookreview.purchaseReviewSeq}" method="post" action="${path}/review/update/${bookreview.purchaseReviewSeq}">
+				<form
+					class="collapse multi-collapse-${bookreview.purchaseReviewSeq}"
+					method="post"
+					action="${path}/review/update/${bookreview.purchaseReviewSeq}">
 					<div class="form-group">
-						<textarea class="form-control" name="purchaseReviewContent" rows="3">${bookreview.purchaseReviewContent}</textarea>
+						<textarea class="form-control" name="purchaseReviewContent"
+							rows="3">${bookreview.purchaseReviewContent}</textarea>
 					</div>
-					<input type="hidden" name="purchaseReviewSeq" value="${bookreview.purchaseReviewSeq}"> 
-					<input type="hidden" name="customId" value="${bookReview.customId}">
-					<input type="hidden" name="customSeq" value="${bookReview.customSeq}">
-					<input type="hidden" name="orderSeq" value="${bookReview.orderSeq}">
-					<input type="hidden" name="bookSeq" value="${bookReview.bookSeq}">
-					<input type="hidden" name="orderSerialNum" value="${bookReview.orderSerialNum}">
-					<input type="hidden" name="writerStatus" value="${bookReview.writerStataus}">
+					<input type="hidden" name="purchaseReviewSeq"
+						value="${bookreview.purchaseReviewSeq}"> <input
+						type="hidden" name="customId" value="${bookReview.customId}">
+					<input type="hidden" name="customSeq"
+						value="${bookReview.customSeq}"> <input type="hidden"
+						name="orderSeq" value="${bookReview.orderSeq}"> <input
+						type="hidden" name="bookSeq" value="${bookReview.bookSeq}">
+					<input type="hidden" name="orderSerialNum"
+						value="${bookReview.orderSerialNum}"> <input type="hidden"
+						name="writerStatus" value="${bookReview.writerStataus}">
 					<button type="submit" class="btn btn-info comment-update-btn">수정
 						완료</button>
 				</form>

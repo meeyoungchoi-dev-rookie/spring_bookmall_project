@@ -68,7 +68,7 @@
 		<c:forEach var="book2" items="${books2}">
 			<div class="card mt-5 mr-5 ml-4" style="width: 19rem;">
 				<img
-					src="https://image.shutterstock.com/image-illustration/handsome-cartoon-character-billy-sitting-600w-1388391212.jpg"
+					src="${path}/resources/${book2.bookImageName}"
 					class="card-img-top" alt="...">
 				<div class="card-body">
 
@@ -87,7 +87,7 @@
 		<c:forEach var="book3" items="${books3}">
 			<div class="card mt-5 mr-5 ml-4" style="width: 19rem;">
 				<img
-					src="https://image.shutterstock.com/image-illustration/handsome-cartoon-character-billy-sitting-600w-1388391212.jpg"
+					src="${path}/resources/${book3.bookImageName}"
 					class="card-img-top" alt="...">
 				<div class="card-body">
 
