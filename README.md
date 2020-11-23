@@ -20,7 +20,7 @@ spring oracle 연동 도서쇼핑몰 프로젝트
 > 고객페이지 로그인 기능 구현
 + 흐름: 로그인view -> controller -> service -> dao -> sqlSession.selectOne 디비에 저장된 정보와 일치하는 값이 있는지 검사
 + 있으면 해당 row 반환 session에 담아 로그인 상태유지
-+ [로그인 회원가입 상세 소스코드](https://blog.naver.com/tkgksw)
++ [로그인 회원가입 상세 소스코드](https://blog.naver.com/tkgksw/222152191916)
 
 
 > 고객페이지 로그아웃 기능 구현
