@@ -17,6 +17,9 @@ spring oracle 연동 도서쇼핑몰 프로젝트
 - 도서 상세내용을 상세조회 페이지에 출력
 
 # 11월 10일 고객 페이지 로그인 회원가입
+> 고객 회원가입 기능 구현
++ 흐름: 회원가입view -> controller -> service -> dao -> sqlSession.insert 디비에 회원정보 저장
+
 > 고객페이지 로그인 기능 구현
 + 흐름: 로그인view -> controller -> service -> dao -> sqlSession.selectOne 디비에 저장된 정보와 일치하는 값이 있는지 검사
 + 있으면 해당 row 반환 session에 담아 로그인 상태유지
