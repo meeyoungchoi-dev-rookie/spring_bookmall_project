@@ -70,7 +70,8 @@ Integer bookSeq = (Integer) request.getAttribute("bookSeq");
 							</div>
 
 
-							<button type="submit" class="btn btn-success mt-5 btn-lg">주문담기</button>
+							<button type="submit" class="btn btn-success mt-5 btn-lg">장바구니
+								담기</button>
 						</c:if>
 
 					</form>
@@ -95,15 +96,22 @@ Integer bookSeq = (Integer) request.getAttribute("bookSeq");
 
 <div class="container">
 	<c:if test="${book != null}">
+		<label class="font-weight-bold">목차</label>
 		<p>${book.bookContents}</p>
 
 	</c:if>
 </div>
 
+<c:if test="${customId == null}">
+	<div class="container">
+		<p class="text-success">도서를 구매하신후 댓글을 작성하실수 있습니다</p>
+	</div>
+</c:if>
 
 
 
 <c:if test="${not empty jangs}">
+
 	<div class="card container mt-5">
 		<div class="card-body">
 			<form method="post" action="${path}/review/${bookSeq}"
@@ -121,7 +129,11 @@ Integer bookSeq = (Integer) request.getAttribute("bookSeq");
 
 
 
+
 </c:if>
+
+
+
 
 
 
@@ -141,9 +153,38 @@ Integer bookSeq = (Integer) request.getAttribute("bookSeq");
 						test="${bookreview.writerStatus eq true && bookreview.customSeq == customSeq}">
 						<a href="#" class="review-edit-btn ml-3" data-toggle="collapse"
 							data-target=".multi-collapse-${bookreview.purchaseReviewSeq}">수정</a>
-						<a
+						<!-- <a
 							href="${path}/review/${bookreview.purchaseReviewSeq}/delete/${bookreview.bookSeq}"
-							class="review-edit-btn ml-3" style="color: red">삭제</a>
+							class="review-edit-btn ml-3" style="color: red">삭제</a> -->
+
+						<button type="button" class="btn btn-danger ml-3" data-toggle="modal"
+							data-target="#exampleModal">삭제</button>
+
+						<div class="modal fade" id="exampleModal" tabindex="-1"
+							aria-labelledby="exampleModalLabel" aria-hidden="true">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title" id="exampleModalLabel">Modal
+											title</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">정말로 삭제하시겠습니까?</div>
+									<div class="modal-footer">
+										<button type="button" class="btn btn-warning"
+											data-dismiss="modal">취소</button>
+											<form method="get" action="${path}/review/${bookreview.purchaseReviewSeq}/delete/${bookreview.bookSeq}">
+												<button type="submit" class="btn btn-danger">삭제</button>	
+											</form>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+
 					</c:if>
 
 				</div>

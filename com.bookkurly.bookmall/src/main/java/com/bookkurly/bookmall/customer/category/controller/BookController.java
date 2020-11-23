@@ -49,6 +49,7 @@ public class BookController {
 	
 	@RequestMapping(value ="/book/{bookSeq}/subcateseq/{subCateSeq}", method=RequestMethod.GET)
 	public String detail(@PathVariable Integer bookSeq, @PathVariable Integer subCateSeq , Model model ,  HttpServletRequest  request) {
+		boolean writeStatus = false;
 		boolean checkreview = false;
 		boolean checkJang = false;
 		Integer customSeq = 0;
@@ -67,8 +68,17 @@ public class BookController {
 			
 			jangs = jangService.selectJang(check);
 			
+			for (int i = 0; i < jangs.size(); i++) {
+				if (jangs.get(i).getBookSeq() == bookSeq) {
+					if (jangs.get(i).getOrderPaymentStatus().equals("true")) {
+						writeStatus = true;
+					}
+				}
+			}
+			
 			
 			System.out.println( "jangs: " + jangs.toString());
+			
 			
 		}
 		

@@ -82,6 +82,8 @@ public class JangController {
 			jangForm.setOrderPaymentStatus("false");
 			jangForm.setBookTitle(bookTitle);
 			jangForm.setOrderDeliveryStatus("false");
+			jangForm.setAllOrderDeleteStatus("false");
+			jangForm.setProductRefundstatus("false");
 			System.out.println("최초 장바구니에 담긴 상품: " + jangForm.toString());
 
 			JangEntity entity = jangForm.toEntity();
@@ -111,6 +113,8 @@ public class JangController {
 			jangForm.setBookOrderCntPrice(bookOrderCntPrice);
 			jangForm.setBookTitle(bookTitle);
 			jangForm.setOrderDeliveryStatus("false");
+			jangForm.setAllOrderDeleteStatus("false");
+			jangForm.setProductRefundstatus("false");
 			System.out.println("두번째부터 장바구니 담을때: " + session.getAttribute("userJangSession") + " , jangForm: "
 					+ jangForm.toString());
 
@@ -296,7 +300,7 @@ public class JangController {
 			System.out.println(mc.toString());
 		}
 		
-		return "redirect:/subcategory/backend/" + mainCategories.get(0).getMainCateSeq();
+		return "redirect:/shopping";
 	}
 	
 	

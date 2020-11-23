@@ -48,6 +48,7 @@ List<JangEntity> myOrders = (List<JangEntity>) request.getAttribute("myOrders");
 				<th>상품명</th>
 				<th>결제금액</th>
 				<th>결제상태</th>
+				<th>전체결제취소</th>
 				<th>배송상태</th>
 			</tr>
 		</thead>
@@ -59,14 +60,26 @@ List<JangEntity> myOrders = (List<JangEntity>) request.getAttribute("myOrders");
 					<td>${str.bookOrderCntPrice}</td>
 					<td>${str.orderPaymentStatus}</td>
 					<td>
+						<c:if test="${str.allOrderDeleteStatus == true}">
+							전체결제취소
+						</c:if>
+						<c:if test="${str.allOrderDeleteStatus == false}">
+							전체결제완료
+						</c:if>
+					
+					</td>
+					<td>
+					<c:if test="${str.allOrderDeleteStatus == false}">
 						<c:if test="${str.orderDeliveryStatus == false}">
 							배송중
 						</c:if>
 						<c:if test="${str.orderDeliveryStatus == true}">
 							배송완료
 						</c:if>
-					
-					
+					</c:if>
+					<c:if test="${str.allOrderDeleteStatus == true}">
+						배송대상아님
+					</c:if>
 					</td>
 				</tr>
 
@@ -78,7 +91,10 @@ List<JangEntity> myOrders = (List<JangEntity>) request.getAttribute("myOrders");
 	</table>
 	
 	<div class="container">
+	<c:if test="${allOrderDeleteStatus == false}">
+	
 		<a class="btn btn-danger" href="${path}/order/delete/${myOrderSerialNum}">전체 결제 취소</a>
+		</c:if>
 	</div>
 	
 	

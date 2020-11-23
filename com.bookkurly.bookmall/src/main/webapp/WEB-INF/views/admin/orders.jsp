@@ -16,9 +16,9 @@
 		</tr>
 	</thead>
 	<tbody>
-		<c:forEach var="str" items="${orderNumbers}">
+		<c:forEach var="str" items="${orderNumbers}" varStatus="status">
 			<tr>
-				<td>${str.orderSeq}</td>
+				<td>${status.count}</td>
 				<td>
 					<a href="${path}/manager/orders/${str.orderSerialNum}">${str.orderSerialNum}</a>
 				</td>

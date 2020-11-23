@@ -25,19 +25,25 @@ public class JangEntity {
 	private Integer customSeq;
 	private String bookTitle;
 	private String orderDeliveryStatus;
+	private String allOrderDeleteStatus;
+	private String productRefundstatus;
+
 
 	@Override
 	public String toString() {
 		return "JangEntity [orderSeq=" + orderSeq + ", orderSerialNum=" + orderSerialNum + ", orderDate=" + orderDate
 				+ ", orderPaymentStatus=" + orderPaymentStatus + ", bookOrderCnt=" + bookOrderCnt
 				+ ", bookOrderCntPrice=" + bookOrderCntPrice + ", bookSeq=" + bookSeq + ", customSeq=" + customSeq
-				+ ", bookTitle=" + bookTitle + ", orderDeliveryStatus=" + orderDeliveryStatus + "]";
+				+ ", bookTitle=" + bookTitle + ", orderDeliveryStatus=" + orderDeliveryStatus
+				+ ", allOrderDeleteStatus=" + allOrderDeleteStatus + ", productRefundstatus=" + productRefundstatus
+				+ "]";
 	}
+
 
 	@Builder
 	public JangEntity(Integer orderSeq, String orderSerialNum, Date orderDate, String orderPaymentStatus,
 			Integer bookOrderCnt, Integer bookOrderCntPrice, Integer bookSeq, Integer customSeq, String bookTitle,
-			String orderDeliveryStatus) {
+			String orderDeliveryStatus, String allOrderDeleteStatus, String productRefundstatus) {
 		super();
 		this.orderSeq = orderSeq;
 		this.orderSerialNum = orderSerialNum;
@@ -49,6 +55,8 @@ public class JangEntity {
 		this.customSeq = customSeq;
 		this.bookTitle = bookTitle;
 		this.orderDeliveryStatus = orderDeliveryStatus;
+		this.allOrderDeleteStatus = allOrderDeleteStatus;
+		this.productRefundstatus = productRefundstatus;
 	}
 
 

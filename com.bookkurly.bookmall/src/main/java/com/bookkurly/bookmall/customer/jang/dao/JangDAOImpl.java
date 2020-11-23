@@ -80,7 +80,7 @@ public class JangDAOImpl implements JangDAO {
 
 	@Override
 	public Integer deleteOrders(String myOrderSerialNum) {
-		return sqlSession.delete("JangDAO.deleteOrders", myOrderSerialNum);
+		return sqlSession.update("JangDAO.deleteOrders", myOrderSerialNum);
 	}
 
 	@Override

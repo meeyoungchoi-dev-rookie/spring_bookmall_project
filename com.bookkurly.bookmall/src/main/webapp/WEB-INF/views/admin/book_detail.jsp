@@ -64,7 +64,11 @@ String subCateName = (String)request.getAttribute("subCateName");
 
 						<div class="row">
 							<label class="col-sm-2">재고수량</label>
-							<p class="col-sm-9">${book.bookAmount}</p>
+							<p class="col-sm-9">${book.bookAmount}
+								<c:if test="${book.bookAmount <= 5}">
+									<p class="text-danger">도서 재고 수량 부족</p>
+								</c:if>
+							</p>
 						</div>
 
 

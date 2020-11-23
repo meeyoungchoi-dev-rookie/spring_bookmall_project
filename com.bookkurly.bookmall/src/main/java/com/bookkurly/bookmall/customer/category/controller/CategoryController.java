@@ -38,9 +38,13 @@ public class CategoryController {
 		for (MainCategory mc : mainCategories) {
 			System.out.println(mc.toString());
 		}
+		
+		List<Book> books = categoryService.selectList2(1);
+		System.out.println("books: " + books.toString());
 
 		session.setAttribute("mainCategories", mainCategories);	
 		model.addAttribute("mainCategories", mainCategories);
+		model.addAttribute("books", books);
 		
 		return "shop/categories";
 	}

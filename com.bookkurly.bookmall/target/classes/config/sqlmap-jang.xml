@@ -10,7 +10,7 @@
 		values("order_seq".nextval, #{orderSerialNum},
 		sysdate,#{orderPaymentStatus}, #{bookOrderCnt},
 		#{bookOrderCntPrice},
-		#{bookSeq}, #{customSeq} , #{bookTitle}, #{orderDeliveryStatus})
+		#{bookSeq}, #{customSeq} , #{bookTitle}, #{orderDeliveryStatus}, #{allOrderDeleteStatus}, #{productRefundstatus})
 
 	</insert>
 
@@ -68,7 +68,8 @@
 	<update id="updateOrderStatement" parameterType="String">
 		update "order"
 		set "order_payment_status" = 'true',
-		"order_delivery_status" = 'false'
+		"order_delivery_status" = 'false',
+		"all_order_delete_status" = 'false'
 		where "order_serial_num" =
 		#{myOrderSerialNum}
 	</update>
@@ -99,16 +100,21 @@
 	</select>
 
 
-	<delete id="deleteOrders" parameterType="String">
-		delete from "order" where "order_serial_num" = #{orderSerialNum}
-	</delete>
+	<update id="deleteOrders" parameterType="String">
+		update "order"
+		set "all_order_delete_status" = 'true'
+		where "order_serial_num" = #{orderSerialNum}
+	</update>
 
-	<delete id="refundOrder" parameterType="OrderRefund">
-		delete from "order" where  "order_serial_num" = #{orderSerialNum} and "book_seq" = #{bookSeq}
-	</delete>
+	<update id="refundOrder" parameterType="OrderRefund">
+		update "order"
+		set "product_refund_status" = 'true',
+		"all_order_delete_status" = 'true'
+		where "order_serial_num" = #{orderSerialNum} and "book_seq" = #{bookSeq}
+	</update>
 
 	<select id="selectOrderSerialNumbers" resultType="OrderNumber">
-		select distinct "order_serial_num" ,"order_seq"  from "order"
+		select distinct "order_serial_num"  from "order"
 	</select>
 
 	<update id="updateOrderDeliveryStatement" parameterType="ManagerOrderDelivery">

@@ -77,6 +77,7 @@ public class BookMallMangerController {
 
 		HttpSession session = request.getSession();
 		session.setAttribute("adminlogin", bm.getAdminId());
+		model.addAttribute("adminlogin",session.getAttribute("adminlogin"));
 		System.out.println(session.getAttribute("adminlogin"));
 		return "redirect:/admin/manager";
 	}
@@ -85,6 +86,7 @@ public class BookMallMangerController {
 	public String manage(HttpSession session, Model model) {
 		System.out.println("/admin/manager");
 		session.getAttribute("adminlogin");
+		model.addAttribute("adminlogin", session.getAttribute("adminlogin"));
 		return "admin/manager";
 	}
 
@@ -234,7 +236,7 @@ public class BookMallMangerController {
 		System.out.println("파일이름: " + file.getOriginalFilename());
 		
 		
-		if (file == null) {
+		if (file.isEmpty()) {
 			String beforeUpdatedName = categoryService.findFileName(bookSeq);
 			System.out.println("before: " + beforeUpdatedName);
 			
@@ -386,7 +388,7 @@ public class BookMallMangerController {
 		List<OrderNumber> orderSerialNumbers = jangService.selectOrderSerialNums();
 		
 		for (OrderNumber str : orderSerialNumbers) {
-			System.out.println("주문고유번호: " + str.getOrderSeq() + " : " + str.getOrderSerialNum());
+			System.out.println("주문고유번호: "  + str.getOrderSerialNum());
 		}
 		
 		model.addAttribute("orderNumbers", orderSerialNumbers);
@@ -396,7 +398,7 @@ public class BookMallMangerController {
 	
 	
 	@GetMapping("/manager/orders/{orderSerialNum}")
-	public String orderDetail(@PathVariable String orderSerialNum, Model model) {
+	public String orderDetail(@PathVariable String orderSerialNum, Model model , HttpSession session) {
 		System.out.println("/manager/orders/" + orderSerialNum);
 		
 		List<JangEntity> jangs = jangService.selectAll(orderSerialNum);
@@ -424,6 +426,8 @@ public class BookMallMangerController {
 		String customerId = CustomerService.selectCustomerId(jangs.get(0).getCustomSeq());
 		
 		
+		
+		model.addAttribute("adminlogin", session.getAttribute("adminlogin"));
 		model.addAttribute("jangs", jangs);
 		model.addAttribute("customerId", customerId);
 		model.addAttribute("orderSerialNum", orderSerialNum);

@@ -128,7 +128,10 @@ String mainCateName = (String) request.getAttribute("mainCateName");
 
 		<div class="container mt-5">
 			<label class="col-sm-2">책 설명</label>
-			<p class="card-title font-weight-bold col-sm-9">책 내용</p>
+		
+			
+				<textarea rows="10" cols="50" id="editor" name="bookDescription" 
+			>${book.bookDescription}</textarea>
 			<input type="hidden" name="bookDescription"
 				value="${book.bookDescription}">
 		</div>

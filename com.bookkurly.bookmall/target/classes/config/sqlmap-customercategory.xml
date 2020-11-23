@@ -122,7 +122,9 @@
 		"book_contents" = #{bookContents},
 		"book_amount"
 		= #{bookAmount},
-		"book_image_name" = #{bookImageName}
+		"book_image_name" = #{bookImageName},
+		"book_description" = #{bookDescription},
+		"book_price" = #{bookPrice}
 		where "book_seq" = #{bookSeq}
 
 	</update>

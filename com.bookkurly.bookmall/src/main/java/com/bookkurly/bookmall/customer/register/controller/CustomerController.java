@@ -112,6 +112,7 @@ public class CustomerController {
 
 		model.addAttribute("myOrders", myOrders);
 		model.addAttribute("myOrderSerialNum", myOrderSerialNum);
+		model.addAttribute("allOrderDeleteStatus", myOrders.get(0).getAllOrderDeleteStatus());
 
 		return "customers/mypage";
 	}
@@ -159,7 +160,7 @@ public class CustomerController {
 			}
 			
 			Integer deleteOrderSuccess = jangService.deleteOrders(myOrderSerialNum);
-			System.out.println("전체 결제 취소 성공여부: " + deleteOrderSuccess);
+			System.out.println("전체 결제 취소 상태변경 성공여부: " + deleteOrderSuccess);
 	
 		} else {
 			System.out.println("reviews: " + reviews.toString());
@@ -205,7 +206,8 @@ public class CustomerController {
 		book = bookService.selectBook(bookSeq);
 		System.out.println("도서 환불 성공후 책 정보: " + book.toString());
 		
-		jangService.refundOrder(orderRefund);
+		Integer refundOrderSuccess = jangService.refundOrder(orderRefund);
+		System.out.println("도서환불성공여부: " + refundOrderSuccess);
 		
 		List<JangEntity> myOrders = jangService.selectAll(orderRefund.getOrderSerialNum());
 		model.addAttribute("myOrders", myOrders);

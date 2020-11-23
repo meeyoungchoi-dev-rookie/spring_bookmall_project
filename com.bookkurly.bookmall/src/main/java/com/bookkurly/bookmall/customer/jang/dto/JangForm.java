@@ -15,6 +15,8 @@ public class JangForm {
 	private String customId;
 	private String bookTitle;
 	private String orderDeliveryStatus;
+	private String allOrderDeleteStatus;
+	private String productRefundstatus;
 
 	public Date getOrderDate() {
 		return orderDate;
@@ -95,10 +97,35 @@ public class JangForm {
 	public void setOrderDeliveryStatus(String orderDeliveryStatus) {
 		this.orderDeliveryStatus = orderDeliveryStatus;
 	}
+	
+	
+	
+
+	public String getAllOrderDeleteStatus() {
+		return allOrderDeleteStatus;
+	}
+
+	public void setAllOrderDeleteStatus(String allOrderDeleteStatus) {
+		this.allOrderDeleteStatus = allOrderDeleteStatus;
+	}
+	
+	
+	
+
+	public String getProductRefundstatus() {
+		return productRefundstatus;
+	}
+
+	public void setProductRefundstatus(String productRefundstatus) {
+		this.productRefundstatus = productRefundstatus;
+	}
+
+	
+	
 
 	public JangForm(String orderSerialNum, Date orderDate, String orderPaymentStatus, Integer bookOrderCnt,
 			Integer bookOrderCntPrice, Integer bookSeq, Integer customSeq, String customId, String bookTitle,
-			String orderDeliveryStatus) {
+			String orderDeliveryStatus, String allOrderDeleteStatus, String productRefundstatus) {
 		super();
 		this.orderSerialNum = orderSerialNum;
 		this.orderDate = orderDate;
@@ -110,12 +137,15 @@ public class JangForm {
 		this.customId = customId;
 		this.bookTitle = bookTitle;
 		this.orderDeliveryStatus = orderDeliveryStatus;
+		this.allOrderDeleteStatus = allOrderDeleteStatus;
+		this.productRefundstatus = productRefundstatus;
 	}
 
 	public JangEntity toEntity() {
 		return JangEntity.builder().orderSerialNum(orderSerialNum).orderDate(orderDate)
 				.orderPaymentStatus(orderPaymentStatus).bookOrderCnt(bookOrderCnt).bookOrderCntPrice(bookOrderCntPrice)
 				.bookSeq(bookSeq).customSeq(customSeq).bookTitle(bookTitle).orderDeliveryStatus(orderDeliveryStatus)
+				.allOrderDeleteStatus(allOrderDeleteStatus).productRefundstatus(productRefundstatus)
 				.build();
 	}
 
@@ -124,7 +154,14 @@ public class JangForm {
 		return "JangForm [orderSerialNum=" + orderSerialNum + ", orderDate=" + orderDate + ", orderPaymentStatus="
 				+ orderPaymentStatus + ", bookOrderCnt=" + bookOrderCnt + ", bookOrderCntPrice=" + bookOrderCntPrice
 				+ ", bookSeq=" + bookSeq + ", customSeq=" + customSeq + ", customId=" + customId + ", bookTitle="
-				+ bookTitle + ", orderDeliveryStatus=" + orderDeliveryStatus + "]";
+				+ bookTitle + ", orderDeliveryStatus=" + orderDeliveryStatus + ", allOrderDeleteStatus="
+				+ allOrderDeleteStatus + ", productRefundstatus=" + productRefundstatus + "]";
 	}
+
+
+	
+
+	
+	
 
 }

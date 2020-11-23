@@ -15,22 +15,28 @@
 </div>
 
 <c:if test="${not empty deletejangs}">
-<table class="table text-center table-hover container mt-5">
-	<thead>
+	<table class="table text-center table-hover container mt-5">
+		<thead>
 			<tr>
 				<th>결제일</th>
 				<th>상품명</th>
 				<th>결제금액</th>
 				<th>취소상태</th>
 			</tr>
-	</thead>
-	<tbody>
+		</thead>
+		<tbody>
 			<c:forEach var="str" items="${deletejangs}">
 				<tr>
 					<td>${str.orderDate}</td>
-					<td><a href="${path}/order/detail/${myOrderSerialNum}/${str.bookTitle}">${str.bookTitle}</a></td>
+					<td><a
+						href="${path}/order/detail/${myOrderSerialNum}/${str.bookTitle}">${str.bookTitle}</a></td>
 					<td>${str.bookOrderCntPrice}</td>
-					<td>취소완료</td>
+
+					<td><c:if test="${str.allOrderDeleteStatus  == true}">
+						결제취소
+						</c:if></td>
+
+
 				</tr>
 
 
@@ -39,7 +45,7 @@
 
 		</tbody>
 
-</table>
+	</table>
 
 
 </c:if>

@@ -81,7 +81,7 @@ List<JangEntity> myJangList = (List<JangEntity>) request.getAttribute("myJangLis
 
 
 	<a class="btn btn-info  my-2 my-sm-0 ml-2"
-		href="${path}/shop/categories">계속 쇼핑하기</a> <a
+		href="${path}/shopping">계속 쇼핑하기</a> <a
 		class="btn btn-danger my-2 my-sm-0 ml-2"
 		href="${path}/remove/${myOrderSerialNum}">장바구니 전체 삭제</a>
 </div>
