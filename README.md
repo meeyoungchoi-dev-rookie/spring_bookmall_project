@@ -11,7 +11,15 @@ spring oracle 연동 도서쇼핑몰 프로젝트
 - 관리자 테이블을 데이터베이스와 연동하여 로그인 기능 구현
 
 # 11월 9일 고객 페이지
-- 메인카테고리 와 서브카테고리 데이터베이스를 연동하여 화면에 카테고리 데이터 출력
+> 메인카테고리 와 서브카테고리 데이터베이스를 연동하여 화면에 카테고리 데이터 출력
++ 메인카테고리에 속한 데이터출력
++ 흐름: /shopping -> controller -> service -> dao -> mapper
++ [메인카테고리 데이터 출력 과정 상세 코드](https://blog.naver.com/tkgksw/222153608868)
++ 메인카테고리 sequence에 속한 서브카테고리 데이터 출력
++ 흐름: header.jsp -> 메인카테고리 항목 선택시 -> /subacategory/backend/${maincategory.mainCateSeq} -> controller -> service -> dao -> mapper
++ ${maincategory.mainCateSeq}에 메인카테고리 sequence값이 담긴다
++ [메인카테고리 시퀀스를 갖는 서브카테고리 항목 출력 과정 상세 코드](https://blog.naver.com/tkgksw/222153644678)
+
 - 카테고리와 도서 테이블을 연동하여 카테고리별 도서목록 출력
 - 도서 상세조회 버튼 클릭시 도서가 속한 메인카테고리와 서브카테고리 출력
 - 도서 상세내용을 상세조회 페이지에 출력

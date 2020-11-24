@@ -12,9 +12,7 @@
 <jsp:include page="../layouts/header.jsp" />
 
 
-<%
-	List<MainCategory> mainCategories = (List<MainCategory>) session.getAttribute("maincategories");
-%>
+
 
 <div class="jumbotron">
 	<h1 class="display-4">환영합니다~!</h1>

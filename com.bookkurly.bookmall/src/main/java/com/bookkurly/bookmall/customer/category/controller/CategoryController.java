@@ -43,7 +43,7 @@ public class CategoryController {
 		System.out.println("books: " + books.toString());
 
 		session.setAttribute("mainCategories", mainCategories);	
-		model.addAttribute("mainCategories", mainCategories);
+//		model.addAttribute("mainCategories", mainCategories);
 		model.addAttribute("books", books);
 		
 		return "shop/categories";
@@ -85,9 +85,10 @@ public class CategoryController {
 	
 	
 	@GetMapping("/subacategory/backend/{mainCateSeq}" )
-	public String backendCate(@PathVariable Integer mainCateSeq, Model model) {
+	public String backendCate(@PathVariable Integer mainCateSeq, Model model, HttpSession session) {
 		System.out.println("subcategroy/backend: " + mainCateSeq);
 		
+		session.getAttribute("mainCategories");
 		
 		List<SubCategory> subcategories = categoryService.selectList(mainCateSeq);
 		System.out.println("백엔드 서브카테고리");
