@@ -28,7 +28,7 @@ public class CategoryController {
 	@Autowired
 	private BookService bookService;
 
-	@RequestMapping(value = "/shopping", method = RequestMethod.GET)
+	@GetMapping("/shopping")
 	public String mainCateIndex(Model model, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		
@@ -43,16 +43,14 @@ public class CategoryController {
 		System.out.println("books: " + books.toString());
 
 		session.setAttribute("mainCategories", mainCategories);	
-//		model.addAttribute("mainCategories", mainCategories);
 		model.addAttribute("books", books);
 		
 		return "shop/categories";
 	}
 
-	@RequestMapping(value = "/subacategory/frontend/{mainCateSeq}", method = RequestMethod.GET)
+	@GetMapping("/subacategory/frontend/{mainCateSeq}")
 	public String subcateIndex(@PathVariable Integer mainCateSeq, Model model, HttpSession session) {
 
-		List<MainCategory> mainCategories = (List<MainCategory>) session.getAttribute("mainCategories");
 		System.out.println("subcategory/frontend mainCateSeq: " + mainCateSeq);
 		List<SubCategory> subcategories = categoryService.selectList(mainCateSeq);
 		System.out.println("frontend 서브카테고리");
@@ -62,14 +60,13 @@ public class CategoryController {
 
 		List<Book> books = null;
 
-		//System.out.println(subcategories.get(0).getSubCateSeq());
+		
 		books = categoryService.selectList2(subcategories.get(0).getSubCateSeq());
-
 		System.out.println(books.toString());
-		//System.out.println(subcategories.get(1).getSubCateSeq());
+		
 		List<Book> books2 = categoryService.selectList2(subcategories.get(1).getSubCateSeq());
 
-		//System.out.println(subcategories.get(2).getSubCateSeq());
+		
 		List<Book> books3 = categoryService.selectList2(subcategories.get(2).getSubCateSeq());
 		System.out.println(books3.toString());
 
@@ -78,7 +75,7 @@ public class CategoryController {
 		model.addAttribute("books2", books2);
 		model.addAttribute("books3",books3);
 
-		model.addAttribute("maincategories", mainCategories);
+		
 		return "shop/subcategories";
 	}
 	
@@ -97,26 +94,21 @@ public class CategoryController {
 		}
 		
 		List<Book> books = null;
-
-		//System.out.println(subcategories.get(0).getSubCateSeq());
 		books = categoryService.selectList2(subcategories.get(0).getSubCateSeq());
-
 		System.out.println(books.toString());
-		//System.out.println(subcategories.get(1).getSubCateSeq());
+		
 		List<Book> books2 = categoryService.selectList2(subcategories.get(1).getSubCateSeq());
 		System.out.println("books2: " + books2.toString());
 
-		
 		model.addAttribute("subcategories", subcategories);
 		model.addAttribute("books", books);
 		model.addAttribute("books2", books2);
 	
-		
 		return "shop/subcategories";
 	}
 	
 
-	@RequestMapping(value = "/maincategory/{mainCateSeq}/subcategory/{subCateSeq}", method = RequestMethod.GET)
+	@GetMapping("/maincategory/{mainCateSeq}/subcategory/{subCateSeq}")
 	public String subCateBook(@PathVariable Integer mainCateSeq, @PathVariable Integer subCateSeq, Model model) {
 		System.out.println("subCateBook()  mainCateSeq: " + mainCateSeq + ", subCateSeq: " + subCateSeq);
 		

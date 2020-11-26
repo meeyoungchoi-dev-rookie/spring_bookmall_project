@@ -99,6 +99,7 @@ public class BookController {
 		
 		System.out.println("detail/book: bookSeq " + bookSeq);
 		Book book = bookService.selectBook(bookSeq);
+		
 		System.out.println("book: " + book.toString());
 		
 		
@@ -110,7 +111,7 @@ public class BookController {
 		model.addAttribute("book", book);
 		model.addAttribute("subcatename", subCateName);
 		model.addAttribute("maincatename", mainCateName);
-		model.addAttribute("userId", customId);
+		//model.addAttribute("userId", customId);
 		model.addAttribute("bookSeq", bookSeq);
 		model.addAttribute("reviews", purchaseReviews);
 		model.addAttribute("jangs", jangs);

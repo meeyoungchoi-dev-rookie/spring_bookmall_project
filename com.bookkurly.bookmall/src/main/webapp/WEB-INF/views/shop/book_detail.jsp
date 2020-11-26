@@ -12,10 +12,9 @@
 <jsp:include page="../layouts/header.jsp" />
 
 <%
-	List<MainCategory> mainCategories = (List<MainCategory>) session.getAttribute("maincategories");
-
-String customId = (String) session.getAttribute("loginSession");
-Integer bookSeq = (Integer) request.getAttribute("bookSeq");
+	
+//String customId = (String) session.getAttribute("loginSession");
+//Integer bookSeq = (Integer) request.getAttribute("bookSeq");
 %>
 
 <div class="container">

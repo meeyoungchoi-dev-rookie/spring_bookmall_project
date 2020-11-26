@@ -1,18 +1,10 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="java.util.List"%>
-<%@page
-	import="com.bookkurly.bookmall.customer.category.entity.MainCategory"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="<%=request.getContextPath()%>" />
 
-
-
 <jsp:include page="../layouts/header.jsp" />
-
-
-
 
 <div class="jumbotron">
 	<h1 class="display-4">환영합니다~!</h1>
@@ -23,33 +15,9 @@
 		href="${path}/subcategory/backend/${1}">쇼핑하기</a>
 </div>
 
-<!-- 
-<div class="conainter">
-	<div class="row">
 
-		<div class="col-sm-4">
-			<label>카테고리 선택</label>
-			<c:forEach var="maincategory" items="${mainCategories}"
-				varStatus="status">
-				<div class="row">
-					<a href="${path}/subacategory/${maincategory.mainCateSeq}">${maincategory.mainCateName}</a>
-				</div>
-			</c:forEach>
-		</div>
-
-	</div>
-</div>
- -->
 
 <div class="container">
-
-
-
-	<!-- C:/images/${subcatebook.bookImageName}
-	${path}/resources/${subcatebook.bookImageName}
-
-
-   -->
 	<div class="row">
 
 		<c:forEach var="str" items="${books}">

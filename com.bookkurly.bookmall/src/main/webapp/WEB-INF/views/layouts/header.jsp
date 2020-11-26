@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ page import="java.util.List"%>
-<%@ page
-	import="com.bookkurly.bookmall.customer.category.entity.MainCategory"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="<%=request.getContextPath()%>" />
-
-
 
 <!DOCTYPE html>
 <html>
@@ -17,12 +12,8 @@
 </head>
 <body>
 
-
-
 	<%
-		List<MainCategory> mainCategories = (List<MainCategory>) session.getAttribute("mainCategories");
-
-	String customId = (String) session.getAttribute("loginSession");
+		String customId = (String) session.getAttribute("loginSession");
 	%>
 
 	<nav class="navbar navbar-expand-lg navbar-light bg-light ">
