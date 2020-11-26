@@ -49,6 +49,12 @@ public class PurchaseReviewDAOImpl implements PurchaseReviewDAO {
 	public Integer deleteReviews(String myOrderSerialNum) {
 		return sqlSession.delete("PurchaseReviewDAO.deleteReviews", myOrderSerialNum);
 	}
+
+
+	@Override
+	public List<PurchaseReview> findAllPurchaseReviews(Integer customSeq) {
+		return sqlSession.selectList("PurchaseReviewDAO.selectAllReviews", customSeq);
+	}
 	
 	
 	

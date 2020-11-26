@@ -17,4 +17,6 @@ public interface PurchaseReviewDAO {
 
 	public Integer deleteReviews(String myOrderSerialNum);
 
+	public List<PurchaseReview> findAllPurchaseReviews(Integer customSeq);
+
 }

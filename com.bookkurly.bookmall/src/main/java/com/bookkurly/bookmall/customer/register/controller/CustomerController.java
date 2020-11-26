@@ -53,22 +53,30 @@ public class CustomerController {
 
 	@PostMapping("/customer/logincheck")
 	public String loginCheck(LoginForm loginForm, HttpServletRequest request, Model model) {
+		String url = "redirect:/shopping";
 		System.out.println("loginForm: " + loginForm.toString());
 		Customer login = loginForm.toEntity();
 		System.out.println("login: " + login.toString());
 		Customer loginresult = customerService.checkLogin(login);
-		System.out.println("login: " + loginresult.toString());
+		if (loginresult != null) {
+			System.out.println("login: " + loginresult.toString());
 
-		HttpSession session = request.getSession();
-		session.setAttribute("customId", loginresult.getCustomId());
+			HttpSession session = request.getSession();
+			session.setAttribute("customId", loginresult.getCustomId());
+			
+			
+			Integer mainCateSeq = categoryService.findMainCateSeq("백엔드");
+			System.out.println("mainCateSeq: " + mainCateSeq);
+
+			model.addAttribute("loginSession", session.getAttribute("customId"));
+			return url;
+		} else 
+			model.addAttribute("loginresult", loginresult);
+			model.addAttribute("loginFail", "로그인 실패");
+			url = "customers/login";
+			return url;
 		
 		
-		Integer mainCateSeq = categoryService.findMainCateSeq("백엔드");
-		System.out.println("mainCateSeq: " + mainCateSeq);
-
-		model.addAttribute("loginSession", session.getAttribute("customId"));
-
-		return "redirect:/shopping";
 	}
 
 	@GetMapping("/customer/logout")
@@ -97,7 +105,13 @@ public class CustomerController {
 	}
 
 	@GetMapping("/customer/mypage")
-	public String mypage() {
+	public String mypage(HttpSession session, Model model) {
+		String userId = (String)session.getAttribute("customId");
+		Integer customSeq = customerService.selectCustomerSeq(userId);
+		
+		List<PurchaseReview> myReviews = purchaseService.findAllPurchaseReviews(customSeq);
+		model.addAttribute("myReviews",myReviews);
+		
 		return "customers/mypage";
 	}
 

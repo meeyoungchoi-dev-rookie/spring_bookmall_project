@@ -15,6 +15,10 @@
 </div>
 
 
+<c:if test="${loginFail  == '로그인 실패'}">
+	<p class="container" style="color:red">로그인 정보를 확인해주세요</p>
+</c:if>
+
 
 	<form method="post" action="${path}/customer/logincheck" class="container">
     <div class="form-group row">

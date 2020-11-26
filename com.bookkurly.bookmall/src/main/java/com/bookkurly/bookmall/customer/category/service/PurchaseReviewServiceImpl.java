@@ -51,6 +51,15 @@ public class PurchaseReviewServiceImpl implements PurchaseReviewService {
 	}
 
 
+	@Override
+	public List<PurchaseReview> findAllPurchaseReviews(Integer customSeq) {
+		return purchaseReviewDAO.findAllPurchaseReviews(customSeq);
+	}
+
+
+
+
+
 
 
 	

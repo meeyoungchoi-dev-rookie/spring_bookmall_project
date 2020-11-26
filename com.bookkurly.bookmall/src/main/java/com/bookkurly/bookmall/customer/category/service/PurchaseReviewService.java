@@ -16,4 +16,6 @@ public interface PurchaseReviewService {
 	public List<PurchaseReview> findPurchaseReview(String myOrderSerialNum);
 	
 	public Integer deleteReviews(String myOrderSerialNum);
+	
+	public List<PurchaseReview> findAllPurchaseReviews(Integer customSeq);
 }

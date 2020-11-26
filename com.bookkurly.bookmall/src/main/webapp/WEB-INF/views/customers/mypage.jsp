@@ -16,13 +16,37 @@ String customId = (String) session.getAttribute("loginSession");
 List<JangEntity> myOrders = (List<JangEntity>) request.getAttribute("myOrders");
 %>
 
-<div class="container">
+<div class="jumbotron">
 	<h1 class="display-4">${customId}님마이페이지</h1>
-	<p class="lead">결제내역을 확인할수 있습니다</p>
+	<p class="lead">결제내역 및 댓글목록을 확인할수 있습니다</p>
 </div>
 
+<c:if test="${empty myOrderSerialNum}">
+<div class="container">
+	<h1>내가 작성한 댓글 목록</h1>
+</div>
 
-<form class="form-inline mr-auto container mt-5" method="post"
+<table class="table text-center table-hover container mt-5">
+	<thead>
+		<tr>
+			<th>작성일</th>
+			<th>내용</th>
+		</tr>
+	</thead>
+	<tbody>
+	<c:forEach var="review" items="${myReviews}">
+		<tr>
+			<td>${review.purchaseReviewCreatedDate}</td>
+			<td>${review.purchaseReviewContent}</td>
+		
+		</tr>
+	</c:forEach>
+	</tbody>
+</table>
+</c:if>
+
+
+<form class="form-inline mr-auto container mt-5 mb-5" method="post"
 	action="${path}/mypage/search">
 	<input class="form-control col-sm-8" type="text"
 		placeholder="주문번호를 사용하여 검색하세요" name="myOrderSerialNum"
@@ -99,5 +123,8 @@ List<JangEntity> myOrders = (List<JangEntity>) request.getAttribute("myOrders");
 	
 	
 </c:if>
+
+
+
 
 <jsp:include page="../layouts/footer.jsp" />

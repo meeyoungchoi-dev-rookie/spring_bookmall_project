@@ -42,6 +42,10 @@
 	<delete id="deleteReviews" parameterType="String">
 		delete from "purchase_review" where "order_serial_num" = #{orderSerialNum}
 	</delete>
+	
+	<select id="selectAllReviews" parameterType="Integer" resultType="PurchaseReview">
+		select * from "purchase_review" where "custom_seq" = #{customSeq}
+	</select>
 
 
 </mapper>
