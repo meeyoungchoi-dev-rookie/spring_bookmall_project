@@ -10,13 +10,7 @@
 <jsp:include page="../layouts/header.jsp" />
 
 
-<%
-	List<MainCategory> mainCategories = (List<MainCategory>) session.getAttribute("maincategories");
 
-String customId = (String) session.getAttribute("loginSession");
-
-List<JangEntity> myJangList = (List<JangEntity>) request.getAttribute("myJangList");
-%>
 
 <div class="jumbotron">
 	<h1>${customId}님장바구니</h1>
