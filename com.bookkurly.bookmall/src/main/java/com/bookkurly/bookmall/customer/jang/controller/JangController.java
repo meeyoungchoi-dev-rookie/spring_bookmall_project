@@ -68,9 +68,9 @@ public class JangController {
 
 			bookTitle = bookService.findBookTitle(jangForm.getBookSeq());
 
-			Integer bookPrice = bookService.selectBookPrice(jangForm.getBookSeq());
-			System.out.println("책 한권 당 가격: " + bookPrice);
-			Integer bookOrderCntPrice = jangForm.getBookOrderCnt() * bookPrice;
+			//Integer bookPrice = bookService.selectBookPrice(jangForm.getBookSeq());
+			System.out.println("책 한권 당 가격: " + jangForm.getBookPrice());
+			Integer bookOrderCntPrice = jangForm.getBookOrderCnt() * jangForm.getBookPrice();
 			System.out.println("책 주문 수량 별 가격: " + bookOrderCntPrice);
 
 			jangForm.setBookOrderCntPrice(bookOrderCntPrice);
@@ -102,9 +102,9 @@ public class JangController {
 			System.out.println("주문한 책 번호: " + jangForm.getBookSeq());
 			bookTitle = bookService.findBookTitle(jangForm.getBookSeq());
 
-			Integer bookPrice = bookService.selectBookPrice(jangForm.getBookSeq());
-			System.out.println("책 한권 당 가격: " + bookPrice);
-			Integer bookOrderCntPrice = jangForm.getBookOrderCnt() * bookPrice;
+//			Integer bookPrice = bookService.selectBookPrice(jangForm.getBookSeq());
+			System.out.println("책 한권 당 가격: " + jangForm.getBookPrice());
+			Integer bookOrderCntPrice = jangForm.getBookOrderCnt() * jangForm.getBookPrice();
 			System.out.println("책 주문 수량 별 가격: " + bookOrderCntPrice);
 			System.out.println("주문한 고객 Id: " + jangForm.getCustomId());
 			System.out.println("주문한 고객 seq: " + customSeq);

@@ -17,6 +17,17 @@ public class JangForm {
 	private String orderDeliveryStatus;
 	private String allOrderDeleteStatus;
 	private String productRefundstatus;
+	private Integer bookPrice;
+	
+	
+
+	public Integer getBookPrice() {
+		return bookPrice;
+	}
+
+	public void setBookPrice(Integer bookPrice) {
+		this.bookPrice = bookPrice;
+	}
 
 	public Date getOrderDate() {
 		return orderDate;
@@ -121,11 +132,10 @@ public class JangForm {
 	}
 
 	
-	
 
 	public JangForm(String orderSerialNum, Date orderDate, String orderPaymentStatus, Integer bookOrderCnt,
 			Integer bookOrderCntPrice, Integer bookSeq, Integer customSeq, String customId, String bookTitle,
-			String orderDeliveryStatus, String allOrderDeleteStatus, String productRefundstatus) {
+			String orderDeliveryStatus, String allOrderDeleteStatus, String productRefundstatus, Integer bookPrice) {
 		super();
 		this.orderSerialNum = orderSerialNum;
 		this.orderDate = orderDate;
@@ -139,6 +149,7 @@ public class JangForm {
 		this.orderDeliveryStatus = orderDeliveryStatus;
 		this.allOrderDeleteStatus = allOrderDeleteStatus;
 		this.productRefundstatus = productRefundstatus;
+		this.bookPrice = bookPrice;
 	}
 
 	public JangEntity toEntity() {
@@ -155,8 +166,11 @@ public class JangForm {
 				+ orderPaymentStatus + ", bookOrderCnt=" + bookOrderCnt + ", bookOrderCntPrice=" + bookOrderCntPrice
 				+ ", bookSeq=" + bookSeq + ", customSeq=" + customSeq + ", customId=" + customId + ", bookTitle="
 				+ bookTitle + ", orderDeliveryStatus=" + orderDeliveryStatus + ", allOrderDeleteStatus="
-				+ allOrderDeleteStatus + ", productRefundstatus=" + productRefundstatus + "]";
+				+ allOrderDeleteStatus + ", productRefundstatus=" + productRefundstatus + ", bookPrice=" + bookPrice
+				+ "]";
 	}
+
+	
 
 
 	
