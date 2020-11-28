@@ -211,11 +211,12 @@ public class JangController {
 	}
 
 	@GetMapping("/order/{myOrderSerialNum}")
-	public String order(@PathVariable String myOrderSerialNum, Model model) {
+	public String order(@PathVariable String myOrderSerialNum, Model model, HttpSession session) {
 		List<JangEntity> myOrders = jangService.selectAll(myOrderSerialNum);
 		System.out.println("주문목록: " + myOrders.toString());
 		model.addAttribute("myOrders", myOrders);
 		model.addAttribute("myOrderSerialNum", myOrderSerialNum);
+		model.addAttribute("userId", session.getAttribute("loginSession"));
 
 		return "shop/orders";
 	}

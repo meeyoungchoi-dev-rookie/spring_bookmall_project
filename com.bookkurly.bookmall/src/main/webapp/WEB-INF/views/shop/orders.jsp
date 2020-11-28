@@ -7,21 +7,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <c:set var="path" value="<%=request.getContextPath()%>" />
 <jsp:include page="../layouts/header.jsp" />
-<%
-	List<MainCategory> mainCategories = (List<MainCategory>) session.getAttribute("maincategories");
-
-String customId = (String) session.getAttribute("loginSession");
-
-List<JangEntity> myOrders = (List<JangEntity>) request.getAttribute("myOrders");
-%>
 
 
-<c:if test="${not empty userId}">
+
+
 	<div class="jumbotron">
 		<h1>${customId}님주문목록</h1>
 
 	</div>
-</c:if>
+
 
 <c:if test="${not empty myOrders}">
 	<table class="table text-center table-hover container">
