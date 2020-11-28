@@ -151,7 +151,7 @@ public class JangController {
 		model.addAttribute("myJangList", jangs);
 
 		System.out.println("myOrderSerialNum: " + jangInfo.getOrderSerialNum());
-		model.addAttribute("myOrderSerialNum", jangInfo.getOrderSerialNum());
+		model.addAttribute("myOrderSerialNum", jangId);
 
 		return "shop/myjangs";
 	}
@@ -185,11 +185,8 @@ public class JangController {
 		List<JangEntity> myUpdatedJangs = jangService.getCustomerJangList(jangInfo);
 
 		System.out.println("myUpdatedJangs: " + myUpdatedJangs.toString());
-
-		model.addAttribute("myJangList", myUpdatedJangs);
-
 		System.out.println("myOrderSerialNum: " + updatedEntity.getOrderSerialNum());
-		model.addAttribute("orderSerialNum", updatedEntity.getOrderSerialNum());
+		
 		return "redirect:/shop/janglist";
 	}
 
