@@ -85,7 +85,7 @@ public class JangDAOImpl implements JangDAO {
 
 	@Override
 	public Integer refundOrder(OrderRefund orderRefund) {
-		return sqlSession.delete("JangDAO.refundOrder", orderRefund);
+		return sqlSession.update("JangDAO.refundOrder", orderRefund);
 	}
 
 	@Override

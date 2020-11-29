@@ -66,7 +66,7 @@
 					<form method="post"
 						action="${path}/manager/update/orderDeliverStatus">
 						<button type="submit" class="btn btn-info">
-							배송완료</a> <input type="hidden" name="orderSerialNum"
+							배송완료</button> <input type="hidden" name="orderSerialNum"
 								value="${orderSerialNum}"> <input type="hidden"
 								name="orderDeliveryStatus" value="${sts.orderDeliveryStatus}">
 							<input type="hidden" name="bookSeq" value="${sts.bookSeq}">

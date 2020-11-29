@@ -388,7 +388,7 @@ public class BookMallMangerController {
 		List<OrderNumber> orderSerialNumbers = jangService.selectOrderSerialNums();
 		
 		for (OrderNumber str : orderSerialNumbers) {
-			System.out.println("주문고유번호: "  + str.getOrderSerialNum());
+			System.out.println("결제번호: "  + str.getOrderSerialNum());
 		}
 		
 		model.addAttribute("orderNumbers", orderSerialNumbers);

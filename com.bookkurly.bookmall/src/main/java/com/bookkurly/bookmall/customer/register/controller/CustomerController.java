@@ -221,7 +221,7 @@ public class CustomerController {
 		System.out.println("도서 환불 성공후 책 정보: " + book.toString());
 		
 		Integer refundOrderSuccess = jangService.refundOrder(orderRefund);
-		System.out.println("도서환불성공여부: " + refundOrderSuccess);
+		System.out.println("환불성공여부: " + refundOrderSuccess);
 		
 		List<JangEntity> myOrders = jangService.selectAll(orderRefund.getOrderSerialNum());
 		model.addAttribute("myOrders", myOrders);
