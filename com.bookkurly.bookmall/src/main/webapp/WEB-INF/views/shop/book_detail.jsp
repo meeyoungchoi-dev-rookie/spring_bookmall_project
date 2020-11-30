@@ -11,11 +11,7 @@
 
 <jsp:include page="../layouts/header.jsp" />
 
-<%
-	
-//String customId = (String) session.getAttribute("loginSession");
-//Integer bookSeq = (Integer) request.getAttribute("bookSeq");
-%>
+
 
 <div class="container">
 	<div class="row ml-2 mt-5">
@@ -101,9 +97,9 @@
 	</c:if>
 </div>
 
-<c:if test="${customId == null}">
+<c:if test="${customId == null || empty jangs}">
 	<div class="container">
-		<p class="text-success">도서를 구매하신후 댓글을 작성하실수 있습니다</p>
+		<p class="text-success">도서를 구매하신후 구매후기를 작성하실수 있습니다</p>
 	</div>
 </c:if>
 
@@ -115,10 +111,10 @@
 		<div class="card-body">
 			<form method="post" action="${path}/review/${bookSeq}"
 				class="container">
-				<label>댓글을 입력하세요</label>
+				<label>구매후기를 입력하세요</label>
 				<textarea rows="5" class="form-control" name="purchaseReviewContent"></textarea>
 				<input type="hidden" name="customId" value="${customId}">
-				<button type="submit" class="btn btn-primary mt-3">댓글저장</button>
+				<button type="submit" class="btn btn-primary mt-3">후기저장</button>
 			</form>
 
 
