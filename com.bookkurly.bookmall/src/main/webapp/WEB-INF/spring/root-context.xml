@@ -12,7 +12,7 @@
 		<property value="jdbc:oracle:thin:@localhost:1521:xe"
 			name="jdbcUrl" />
 		<property value="scott" name="user" />
-		<property value="tiger" name="password" />
+		<property value="tiger2" name="password" />
 		<property value="100" name="maxPoolSize" />
 		<property value="600" name="maxIdleTime" />
 	</bean>
